@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="music_app">
+        <item>FM Radio</item>
+        <item>Music</item>
+    </string-array>
+    <string-array name="navigation_app">
+        <item>Maps</item>
+        <item>Google Maps</item>
+        <item>Street View</item>
+    </string-array>
+    <string-array name="security">
+        <item>None</item>
+        <item>SSL</item>
+        <item>SSL (Accept all certificates)</item>
+    </string-array>
+</resources>

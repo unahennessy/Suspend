@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Suspend!</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="welcome_txt"><b><font color="red"> Suspend! </font> Distraction Free Driving saves lives!"</b></string>
+    <string name="step1Info">"Setup your Reply message or use ours below. Tap on the message to edit."</string>
+    <string name="welcome2_txt">This app lets you: setup replies to let friends know you are driving and that you will get back to them later."</string>
+    <string name="welcome3_txt"><font color="red"> Suspend! </font> will not allow texts, WhatsAPPs etc to distract you from driving."</string>
+    <string name="default_message_to_reply">"I'm driving and can't respond just now. I will get back to you soon."</string>
+    <string name="Step2_headerQuestion">Which features do you want to set on Reply?</string>
+    <string name="Step2Option1">Texts(sms)</string>
+    <string name="Step2Option2">Picture Messages(mms)</string>
+    <string name="Step2Option3">WhatsApp</string>
+    <string name="Step2Option4">Phone Calls</string>
+    <string name="Step2Option4_text">Reply messages will be sent to mobile callers.</string>
+    <string name="step2WhatsAPPInfo">To activate Reply for your WhatsAPP account, please confirm your username and password.</string>
+    <string name="Step2Continue">"Great! Account Confirmed."</string>
+    <string name="Step2Continue2">While Suspend! is active, Replies will be sent from the WhatsAPP account associated with Suspend!</string>
+    <string name="helpInfo">"Activate Suspend! every time you drive for Distraction Free Driving!"</string>
+    <string name="aboutInfo">"Suspend! Version 1.0 Copyright ©2015"</string>
+    <string name="settingOption1">Reply On/Off</string>
+    <string name="settingOption2">Reply Message</string>
+    <string name="settingOption3">Allow List</string>
+    <string name="settingOption4">Quick Access</string>
+    <string name="on_popup_message">Suspend! status: <b>ON</b>" To exit the app and use your phone functions, turn off Suspend! by tapping the car image."</string>
+    <string name="off_popup_message">"Congratulations! Suspend! is now ready to use. Tap the car image to turn it on. Obviously phone functionality will be limited while app is enabled."</string>
+    <string name="emergencyNo"><b>112 Emergency</b>" Are you sure you want to make an emergency call?"</string>
+    <string name="music_selection">Select your Music source for Quick Access.</string>
+    <string name="navigation_selection">Select your Navigation source for Quick Access.</string>
+    <string name="no_WhatsAPP_message"><b>INFORMATION</b>"WhatsAPP is not configured on this phone. Please set up WhatsAPP first."</string>
+    <string name="musicQuickAccess"><b>Music Quick Access</b>"Please turn Suspend! "<b>OFF</b> to select your Music Source for Quick Access.</string>
+    <string name="navigationQuickAccess"><b>Navigation Quick Access</b>"Please turn Suspend! "<b>OFF</b> to select your Navigation Source for Quick Access.</string>
+    <string name="WhatsAPPErrorMessage"><b>INFORMATION</b>"WhatsAPP account cannot be configured"</string>
+    <string name="musicAppNotInstalled">No music applications installed.</string>
+    <string name="navAppNotInstalled">No navigation applications installed.</string>
+    <string name="musicUrlList">Tap to view music applications</string>
+    <string name="navUrlList">Tap to view navigation applications</string>
+    <string name="gmail_pop_server">pop.gmail.com</string>
+    <string name="gmail_pop_port">995</string>
+    <string name="gmail_pop_security">SSL</string>
+    <string name="gmail_imap_server">imap.gmail.com</string>
+    <string name="gmail_imap_port">993</string>
+    <string name="gmail_imap_security">SSL</string>
+    <string name="gmail_smtp_server">smtp.gmail.com</string>
+    <string name="gmail_smtp_port">465</string>
+    <string name="gmail_smtp_security">SSL</string>
+    <string name="agree_setup_info">">"Agreement for Suspend!. IF YOU DO NOT AGREE TO SETUP, DO NOT CLICK THE ACCEPT BUTTON."</string>
+    <string name="space_empty">">"                              "</string>
+ </resources>
+

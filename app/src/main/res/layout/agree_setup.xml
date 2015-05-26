@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="@drawable/backgroundsuspend" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textSize="20.0dip" android:textColor="@color/topHeadFontColour" android:gravity="center_horizontal" android:id="@id/setup_text" android:background="@drawable/headersuspend" android:padding="8.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Agree to seup SuspendOn" />
+    <ScrollView android:scrollbars="vertical" android:fadingEdge="none" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_above="@id/button_close" android:layout_below="@id/setup_text">
+        <RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_below="@id/setup_text">
+            <TextView android:textSize="16.0dip" android:textColor="@color/black" android:id="@id/text_help" android:padding="10.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/agree_setup_info" />
+        </RelativeLayout>
+    </ScrollView>
+    <Button android:id="@id/button_close" android:background="@layout/btn_help_close_selector" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="10.0dip" android:layout_marginRight="15.0dip" android:layout_marginBottom="10.0dip" android:layout_alignParentRight="true" android:layout_alignParentBottom="true" />
+</RelativeLayout>
