@@ -3,10 +3,10 @@
     <string name="app_name">Suspend!</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
-    <string name="welcome_txt"><b><font color="red"> Suspend! </font> Distraction Free Driving saves lives!"</b></string>
+    <string name="welcome_txt"><b><font color="blue"> Suspend! </font> Distraction Free Driving saves lives!"</b></string>
     <string name="step1Info">"Setup your Reply message or use ours below. Tap on the message to edit."</string>
     <string name="welcome2_txt">This app lets you: setup replies to let friends know you are driving and that you will get back to them later."</string>
-    <string name="welcome3_txt"><font color="red"> Suspend! </font> will not allow texts, WhatsAPPs etc to distract you from driving."</string>
+    <string name="welcome3_txt"><font color="blue"> Suspend! </font> will not allow texts, WhatsAPPs etc to distract you from driving."</string>
     <string name="default_message_to_reply">"I'm driving and can't respond just now. I will get back to you soon."</string>
     <string name="Step2_headerQuestion">Which features do you want to set on Reply?</string>
     <string name="Step2Option1">Texts(sms)</string>
