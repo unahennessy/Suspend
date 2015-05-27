@@ -51,5 +51,8 @@
     <string name="gmail_smtp_security">SSL</string>
     <string name="agree_setup_info">">"Agreement for Suspend!. IF YOU DO NOT AGREE TO SETUP, DO NOT CLICK THE ACCEPT BUTTON."</string>
     <string name="space_empty"><br>"   "</br></string>
+    <string name="home_txt"><b> Thank you for downloading Suspend!, The app that helps you drive safely."</b></string>
+    <string name="home2_txt">Do you want to change any settings? Click checkbox and next time you start Suspend! it will go straight to on/off screen"</string>
+    <string name="home3_txt">Thanks for using Suspend! and for driving safely!</string>
  </resources>
 

@@ -64,6 +64,7 @@
     <item type="id" name="check_secure">false</item>
     <item type="id" name="check_accept">false</item>
     <item type="id" name="music_url">false</item>
+    <item type="id" name="settings">false</item>
     <item type="id" name="navigation_url">false</item>
     <item type="id" name="button_pledge">false</item>
     <item type="id" name="text_log">false</item>
@@ -80,6 +81,7 @@
     <item type="id" name="navigation_list">false</item>
     <item type="id" name="logo">false</item>
     <item type="id" name="image_logo">false</item>
+    <item type="id" name="app_logo">false</item>
     <item type="id" name="edit_message">false</item>
     <item type="id" name="image_bottom">false</item>
     <item type="id" name="top_image">false</item>
@@ -121,9 +123,14 @@
     <item type="id" name="welcome_text">false</item>
     <item type="id" name="welcome2_text">false</item>
     <item type="id" name="welcome3_text">false</item>
+    <item type="id" name="home_text">false</item>
+    <item type="id" name="home2_text">false</item>
+    <item type="id" name="home3_text">false</item>
     <item type="id" name="send_log">false</item>
     <item type="id" name="help">false</item>
     <item type="id" name="about">false</item>
+    <item type="id" name="button_about">false</item>
+    <item type="id" name="button_setup">false</item>
     <item type="id" name="exit">false</item>
     <item type="id" name="space_empty">false</item>
 </resources>

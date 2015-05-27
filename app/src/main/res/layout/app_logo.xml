@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Una Hennessy d02126371@mydit.ie Semester 2 2015 -->
 <!-- use design to see changes to this screen -->
-<!-- xml to display the logo screen -->
-<LinearLayout android:orientation="vertical" android:background="@drawable/splashscreensuspend" android:layout_width="fill_parent" android:layout_height="fill_parent"
+<!-- xml to display the suspend off screen -->
+<LinearLayout android:orientation="vertical" android:background="@drawable/app_logo" android:layout_width="fill_parent" android:layout_height="fill_parent"
   xmlns:android="http://schemas.android.com/apk/res/android" />
