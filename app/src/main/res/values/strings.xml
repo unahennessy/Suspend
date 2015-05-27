@@ -3,6 +3,10 @@
     <string name="app_name">Suspend!</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="setup_agree">"Agree to setup Suspend!"</string>
+    <string name="about">"This is the first version of Suspend. It is aimed at android drivers who wish to stop interruptions from their mobile phone while they are driving."</string>
+    <string name="aboutsuspend">"As it is the first version, bugs are inevitable but if you do find a bug kindly contact una.hennessy4@mydit.ie with a synopsis of the bug and I will fix it as soon as possible"</string>
+    <string name="aboutmore">"Remember, it only takes a few seconds of distraction to become a statistic! Don't lose concentration because of a tweet, text message or status update!"</string>
     <string name="welcome_txt"><b><font color="blue"> Suspend! </font> Distraction Free Driving saves lives!"</b></string>
     <string name="step1Info">"Setup your Reply message or use ours below. Tap on the message to edit."</string>
     <string name="welcome2_txt">This app lets you: setup replies to let friends know you are driving and that you will get back to them later."</string>

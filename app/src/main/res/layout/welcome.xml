@@ -7,9 +7,9 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true">
-            <TextView android:textSize="14.0dip" android:textColor="@color/settingFontColour" android:id="@id/welcome_text" android:paddingLeft="10.0dip" android:paddingTop="10.0dip" android:paddingRight="10.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/welcome_txt" />
-            <TextView android:textSize="14.0dip" android:textColor="@color/settingFontColour" android:id="@id/welcome2_text" android:paddingLeft="10.0dip" android:paddingTop="10.0dip" android:paddingRight="10.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/welcome2_txt" android:layout_below="@id/welcome_text" />
-            <TextView android:textSize="14.0dip" android:textColor="@color/settingFontColour" android:id="@id/welcome3_text" android:paddingLeft="10.0dip" android:paddingTop="10.0dip" android:paddingRight="10.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/welcome3_txt" android:layout_below="@id/welcome2_text"  />
+            <TextView android:textSize="14.0dip" android:textColor="@color/topHeadFontColour" android:id="@id/welcome_text" android:paddingLeft="10.0dip" android:paddingTop="10.0dip" android:paddingRight="10.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/welcome_txt" />
+            <TextView android:textSize="14.0dip" android:textColor="@color/topHeadFontColour" android:id="@id/welcome2_text" android:paddingLeft="10.0dip" android:paddingTop="10.0dip" android:paddingRight="10.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/welcome2_txt" android:layout_below="@id/welcome_text" />
+            <TextView android:textSize="14.0dip" android:textColor="@color/topHeadFontColour" android:id="@id/welcome3_text" android:paddingLeft="10.0dip" android:paddingTop="10.0dip" android:paddingRight="10.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/welcome3_txt" android:layout_below="@id/welcome2_text"  />
             <ImageView android:id="@id/line1" android:src="@drawable/linesuspend"
                 android:layout_width="wrap_content" android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"

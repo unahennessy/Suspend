@@ -2,6 +2,8 @@
 <resources>
     <item type="id" name="setup_text">false</item>
     <item type="id" name="text_help">false</item>
+    <item type="id" name="text_aboutsuspend">false</item>
+    <item type="id" name="text_aboutmore">false</item>
     <item type="id" name="button_close">false</item>
     <item type="id" name="text_name">false</item>
     <item type="id" name="edit_name">false</item>

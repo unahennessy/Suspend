@@ -2,16 +2,16 @@
 <resources>
     <color name="setupScreeBackground">#d5cda8ff</color>
     <color name="settingFontColour">#e37153ff</color>
-    <color name="topHeadFontColour">#fc000000</color>
+    <color name="topHeadFontColour">#ff3b0976</color>
     <color name="black">#ff000000</color>
     <color name="black_Overlay">#49484848</color>
     <color name="white">#ffffffff</color>
     <color name="blue">#ff4457e9</color>
     <color name="red">#ffff0000</color>
     <color name="settingSelectedColour">#bbbcb4ff</color>
-    <color name="settingOption1Colour">#e8d3abff</color>
+    <color name="settingOption1Colour">#e85a10b3</color>
     <color name="settingOption1ExtraColour">#e8d3abff</color>
-    <color name="settingEditMessageColour">#e8d3abff</color>
+    <color name="settingEditMessageColour">#e85a10b3</color>
     <color name="setup2EmailBackgroundColour">#d5cda8ff</color>
     <color name="contactListDisabledBackgroundColour">#fee9beff</color>
     <color name="transparency">#ffffffff</color>
