@@ -40,7 +40,6 @@
     <item type="id" name="image_popup">false</item>
     <item type="id" name="image_cross">false</item>
     <item type="id" name="text_popup">false</item>
-    <item type="id" name="image_list">false</item>
     <item type="id" name="image_music">false</item>
     <item type="id" name="image_navigation">false</item>
     <item type="id" name="image_suspend_on">false</item>

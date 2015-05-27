@@ -2,7 +2,7 @@
 <!-- Una Hennessy d02126371@mydit.ie Semester 2 2015 -->
 <!-- use design to see changes to this screen -->
 <!-- xml to display the suspend off screen -->
-<RelativeLayout android:background="@color/white" android:layout_width="fill_parent" android:layout_height="fill_parent"
+<RelativeLayout android:background="@color/black" android:layout_width="fill_parent" android:layout_height="fill_parent"
   xmlns:android="http://schemas.android.com/apk/res/android">
     <ImageView android:id="@id/image_emergency" android:focusable="true" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content"
         android:src="@layout/image_emergency_selector"
@@ -14,16 +14,14 @@
         android:layout_alignParentTop="true"
         android:layout_toLeftOf="@id/image_cross"
         android:layout_toStartOf="@id/image_cross" />
-    <ImageView android:id="@id/image_suspend_off" android:layout_width="fill_parent" android:layout_height="wrap_content"
-        android:src="@drawable/off_offsuspend"
+    <ImageView android:id="@id/image_suspend_off_clickable" android:layout_width="fill_parent" android:layout_height="wrap_content"
+        android:src="@drawable/off_suspendimage"
         android:layout_below="@id/image_setting"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
     <ImageView android:id="@id/image_popup" android:background="@drawable/onoffpopupsuspend" android:layout_width="fill_parent" android:layout_height="wrap_content"
-        android:layout_toStartOf="@id/image_cross"
-        android:layout_toLeftOf="@id/image_cross"
         android:gravity="center_horizontal"
-        android:layout_above="@id/image_music"
+        android:layout_below="@id/image_suspend_off_clickable"
         android:layout_alignRight="@id/image_navigation"
         android:layout_alignEnd="@id/image_navigation" />
     <ImageView android:id="@id/image_cross" android:focusable="true" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content"
@@ -37,6 +35,10 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="33dp" />
-    <ImageView android:id="@id/image_music" android:focusable="true" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:layout_marginBottom="10.0dip" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true" />
-    <ImageView android:id="@id/image_navigation" android:focusable="true" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="10.0dip" android:layout_marginBottom="10.0dip" android:layout_alignParentRight="true" android:layout_alignParentBottom="true" />
+    <ImageView android:id="@id/image_music" android:focusable="true" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:src="@layout/image_music_selector"
+        android:layout_alignTop="@id/image_navigation"
+        android:layout_alignLeft="@id/image_suspend_off_clickable"
+        android:layout_alignStart="@id/image_suspend_off_clickable" />
+    <ImageView android:id="@id/image_navigation" android:focusable="true" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="10.0dip" android:layout_marginBottom="10.0dip" android:src="@layout/image_navigation_selector" android:layout_alignParentRight="true" android:layout_alignParentBottom="true" />
 </RelativeLayout>

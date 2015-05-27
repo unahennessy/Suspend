@@ -3,32 +3,32 @@
     <string name="app_name">Suspend!</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
-    <string name="setup_agree">"Agree to setup Suspend!"</string>
+    <string name="setup_agree">"Suspend! setup agreement"</string>
     <string name="about">"This is the first version of Suspend. It is aimed at android drivers who wish to stop interruptions from their mobile phone while they are driving."</string>
-    <string name="aboutsuspend">"As it is the first version, bugs are inevitable but if you do find a bug kindly contact una.hennessy4@mydit.ie with a synopsis of the bug and I will fix it as soon as possible"</string>
+    <string name="aboutsuspend">"As it is the first version, bugs are inevitable but if you do find a bug kindly contact me, una.hennessy4@mydit.ie with a synopsis of the bug and I will fix it as soon as possible"</string>
     <string name="aboutmore">"Remember, it only takes a few seconds of distraction to become a statistic! Don't lose concentration because of a tweet, text message or status update!"</string>
     <string name="welcome_txt"><b><font color="blue"> Suspend! </font> Distraction Free Driving saves lives!"</b></string>
-    <string name="step1Info">"Setup your Reply message or use ours below. Tap on the message to edit."</string>
-    <string name="welcome2_txt">This app lets you: setup replies to let friends know you are driving and that you will get back to them later."</string>
+    <string name="step1Info">"Setup your automatic Reply message or use ours below. Tap on the message to edit."</string>
+    <string name="welcome2_txt">This app lets you: setup an automatic reply to let friends and colleagues know you are driving and that you will get back to them later."</string>
     <string name="welcome3_txt"><font color="blue"> Suspend! </font> will not allow texts, WhatsAPPs etc to distract you from driving."</string>
     <string name="default_message_to_reply">"I'm driving and can't respond just now. I will get back to you soon."</string>
-    <string name="Step2_headerQuestion">Which features do you want to set on Reply?</string>
+    <string name="Step2_headerQuestion">Which features do you want to set on automatic Reply?</string>
     <string name="Step2Option1">Texts(sms)</string>
     <string name="Step2Option2">Picture Messages(mms)</string>
     <string name="Step2Option3">WhatsApp</string>
     <string name="Step2Option4">Phone Calls</string>
-    <string name="Step2Option4_text">Reply messages will be sent to mobile callers.</string>
-    <string name="step2WhatsAPPInfo">To activate Reply for your WhatsAPP account, please confirm your username and password.</string>
+    <string name="Step2Option4_text">Reply messages will be sent to mobile callers. If the caller is from a land-line, the app will redirect to voice-mail.</string>
+    <string name="step2WhatsAPPInfo">To activate an automatic Reply for your WhatsAPP account, please confirm your username and password.</string>
     <string name="Step2Continue">"Great! Account Confirmed."</string>
-    <string name="Step2Continue2">While Suspend! is active, Replies will be sent from the WhatsAPP account associated with Suspend!</string>
+    <string name="Step2Continue2">While Suspend! is active, automatic replies will be sent from the WhatsAPP account associated with Suspend!</string>
     <string name="helpInfo">"Activate Suspend! every time you drive for Distraction Free Driving!"</string>
     <string name="aboutInfo">"Suspend! Version 1.0 Copyright ©2015"</string>
     <string name="settingOption1">Reply On/Off</string>
-    <string name="settingOption2">Reply Message</string>
-    <string name="settingOption3">Allow List</string>
-    <string name="settingOption4">Quick Access</string>
-    <string name="on_popup_message">Suspend! status: <b>ON</b>" To exit the app and use your phone functions, turn off Suspend! by tapping the car image."</string>
-    <string name="off_popup_message">"Congratulations! Suspend! is now ready to use. Tap the car image to turn it on. Obviously phone functionality will be limited while app is enabled."</string>
+    <string name="settingOption2">Reply On/Off</string>
+    <string name="settingOption3">Reply On/Off</string>
+    <string name="settingOption4">Reply On/Off</string>
+    <string name="on_popup_message">Suspend! status: <b>ON</b>" To exit the app and use your phone functions, turn off Suspend! by tapping the S! above."</string>
+    <string name="off_popup_message">"Suspend! is now ready to use. Tap the S! to turn it on. Obviously phone functionality will be limited while app is enabled."</string>
     <string name="emergencyNo"><b>112 Emergency</b>" Are you sure you want to make an emergency call?"</string>
     <string name="music_selection">Select your Music source for Quick Access.</string>
     <string name="navigation_selection">Select your Navigation source for Quick Access.</string>
@@ -50,6 +50,6 @@
     <string name="gmail_smtp_port">465</string>
     <string name="gmail_smtp_security">SSL</string>
     <string name="agree_setup_info">">"Agreement for Suspend!. IF YOU DO NOT AGREE TO SETUP, DO NOT CLICK THE ACCEPT BUTTON."</string>
-    <string name="space_empty">">"                              "</string>
+    <string name="space_empty"><br>"   "</br></string>
  </resources>
 

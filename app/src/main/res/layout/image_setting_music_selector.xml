@@ -4,8 +4,8 @@
 <!-- xml to display drawables -->
 <selector android:layout_width="fill_parent" android:layout_height="wrap_content"
   xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_pressed="true" android:drawable="@drawable/settingmusicsuspend_hover" />
-    <item android:state_focused="true" android:drawable="@drawable/settingmusicsuspend_hover" />
-    <item android:state_selected="true" android:drawable="@drawable/settingmusicsuspend_hover" />
-    <item android:drawable="@drawable/settingmusicsuspend" />
+    <ImageView android:id="@id/image_music" android:state_pressed="true" android:drawable="@drawable/settingmusicsuspend_hover" />
+    <ImageView android:id="@id/image_music"  android:state_focused="true" android:drawable="@drawable/settingmusicsuspend_hover" />
+    <ImageView android:id="@id/image_music"  android:state_selected="true" android:drawable="@drawable/settingmusicsuspend_hover" />
+    <ImageView android:id="@id/image_music"  android:drawable="@drawable/settingmusicsuspend" />
 </selector>
