@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Una Hennessy d02126371@mydit.ie Semester 2 2015 -->
+<!-- use design to see changes to this screen -->
+<!-- xml to display drawables -->
 <selector android:layout_width="fill_parent" android:layout_height="wrap_content"
   xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_pressed="true" android:drawable="@drawable/editsavesuspend_hover" />

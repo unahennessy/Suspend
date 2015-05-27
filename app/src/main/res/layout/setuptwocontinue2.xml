@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Una Hennessy d02126371@mydit.ie Semester 2 2015 -->
+<!-- use design to see changes to this screen -->
+<!-- xml to display the setup two continue screen -->
 <RelativeLayout android:background="@color/white" android:layout_width="fill_parent" android:layout_height="fill_parent"
   xmlns:android="http://schemas.android.com/apk/res/android">
     <TextView android:textSize="20.0dip" android:textColor="@color/topHeadFontColour" android:gravity="center_horizontal" android:id="@id/setup_text" android:background="@drawable/headersuspend" android:padding="8.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Setup - Step 2 of 3" />
