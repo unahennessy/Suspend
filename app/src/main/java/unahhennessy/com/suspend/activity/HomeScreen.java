@@ -4,10 +4,12 @@ package unahhennessy.com.suspend.activity;
  */
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 
 import unahhennessy.com.suspend.R;
 import unahhennessy.com.suspend.util.SystemUiHider;
@@ -24,37 +26,93 @@ public class HomeScreen extends Activity {
     private Button mAbout;
     private Button mSettings;
     private Button mCancel;
-    private CheckBox mSettingsCheckbox;
+    private boolean mIsSettingsCheckbox_checked;
+    private CheckBox mSettingsCheck;
+    private SharedPreferences pref;
+
+
+    private void initializeCheckedValue()
+    {
+        this.mIsSettingsCheckbox_checked = this.pref.getBoolean("is_whatsapp_enabled", true);
+        this.mSettingsCheck.setChecked(this.mIsSettingsCheckbox_checked);
+       
+    }
+
+    private void saveCheckedValue()
+    {       
+        this.mIsSettingsCheckbox_checked = this.mSettingsCheck.isChecked();
+        SharedPreferences.Editor localEditor = this.pref.edit();
+        localEditor.putBoolean("is_whatsapp_enabled", this.mIsSettingsCheckbox_checked);
+        localEditor.commit();
+    }
+
+    private void saveEdit()
+    {
+        SharedPreferences.Editor localEditor = this.pref.edit();
+
+    }
+
+    protected void onActivityResult(int paramInt1, int paramInt2, Intent paramIntent)
+    {
+        super.onActivityResult(paramInt1, paramInt2, paramIntent);
+    }
+
+
 
     protected void onCreate(Bundle paramBundle)
     {   // set up the home screen
         super.onCreate(paramBundle);
         setContentView(R.layout.home);
-        // set up listener on the about button
-        this.mAbout = ((Button)findViewById(R.id.button_about));
-        this.mAbout.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View paramAnonymousView)
+        this.mSettingsCheck = ((CheckBox)findViewById(R.id.settingsok_checkbox));
+        //initialize listener
+        this.mSettingsCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
+        {
+            public void onCheckedChanged(CompoundButton paramAnonymousCompoundButton, boolean paramAnonymousBoolean)
             {
-                onOptionsItemSelected(mAbout);
+                HomeScreen.this.mIsSettingsCheckbox_checked = paramAnonymousBoolean;
             }
         });
-        // set up listener on the settings button
-        this.mSettings = ((Button)findViewById(R.id.settings));
-        this.mSettings.setOnClickListener(new View.OnClickListener() {
-           public void onClick(View paramAnonymousView)
-           {
-               onOptionsItemSelected(mSettings);
-           }
-        });
-        // set up listener on the settings button
-        this.mCancel = ((Button)findViewById(R.id.button_cancel));
-        this.mCancel.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View paramAnonymousView)
-            {
-                onOptionsItemSelected(mCancel);
-            }
+
+        if (mIsSettingsCheckbox_checked)
+        {
+            startActivity(new Intent(this, SuspendOff.class));
+            HomeScreen.this.finish();
+        }
+        
+        else 
+        {
+
+            // set up listener on the about button
+
+            this.mAbout = ((Button)findViewById(R.id.button_about));
+            this.mAbout.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View paramAnonymousView)
+                {
+                    onOptionsItemSelected(mAbout);
+                }
+            });
+            // set up listener on the settings button
+            this.mSettings = ((Button)findViewById(R.id.settings));
+            this.mSettings.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View paramAnonymousView)
+                {
+                    onOptionsItemSelected(mSettings);
+                }
+            });
+            // set up listener on the settings button
+            this.mCancel = ((Button)findViewById(R.id.button_cancel));
+            this.mCancel.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View paramAnonymousView)
+                {
+                    onOptionsItemSelected(mCancel);
+                }
 
             });
+
+    }
+        
+
+
     }
 
     public boolean onOptionsItemSelected(Button button)
@@ -71,7 +129,7 @@ public class HomeScreen extends Activity {
                 HomeScreen.this.finish();
             return true;
             case R.id.settings:
-                startActivity(new Intent(this, WelcomeScreen.class));
+                startActivity(new Intent(this, Agree_Setup.class));
                 HomeScreen.this.finish();
                 return true;
         }

@@ -1,58 +1,57 @@
 package unahhennessy.com.suspend.activity;
-
-
+/**
+ * Created by unahe_000 on 21/05/2015.
+ */
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import unahhennessy.com.suspend.R;
-import unahhennessy.com.suspend.constants.AppConstants;
 
 public class Agree_Setup extends Activity
-{
-  private Button mAccept;
-  private Button mCancel;
-  private TextView mAgree_Setup;
-  private SharedPreferences pref;
+{ // About is a screen about the app and its aims with info on who to contact if problems
+    private Button mCancel;
+    private Button mAccept;
 
-  protected void onCreate(Bundle paramBundle)
-  {
-    super.onCreate(paramBundle);
-    setContentView(R.layout.agree_setup);
-    this.pref = getSharedPreferences(AppConstants.SUSPEND_PREF, 0);
-    this.mAgree_Setup = ((TextView)findViewById(R.id.bottom_text));
-    this.mCancel = ((Button)findViewById(R.id.button_cancel));
-    this.mAccept = ((Button)findViewById(R.id.button_accept));
-    this.mAgree_Setup.setOnClickListener(new View.OnClickListener()
+    protected void onCreate(Bundle paramBundle)
     {
-      public void onClick(View paramAnonymousView)
-      {
-        Intent localIntent = new Intent("android.intent.action.VIEW", Uri.parse("http://www.google.ie"));
-        Agree_Setup.this.startActivity(localIntent);
-      }
-    });
-    this.mCancel.setOnClickListener(new View.OnClickListener()
+
+        super.onCreate(paramBundle);
+        setContentView(R.layout.about);
+        // go to the welcome screen if accept button clicked
+        this.mAccept = ((Button)findViewById(R.id.button_accept));
+        this.mAccept.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View paramAnonymousView)
+            {
+                onOptionsItemSelected(mAccept);
+            }
+        });
+        //  to the screen before if cancel button clicked
+        this.mCancel = ((Button)findViewById(R.id.button_cancel));
+        this.mCancel.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View paramAnonymousView)
+            {
+                onOptionsItemSelected(mCancel);
+            }
+        });
+    }
+
+    public boolean onOptionsItemSelected(Button button)
     {
-      public void onClick(View paramAnonymousView)
-      {
-        Agree_Setup.this.finish();
-      }
-    });
-    this.mAccept.setOnClickListener(new View.OnClickListener()
-    {
-      public void onClick(View paramAnonymousView)
-      {
-        SharedPreferences.Editor localEditor = Agree_Setup.this.pref.edit();
-        localEditor.putBoolean("agree_setup", true);
-        localEditor.commit();
-        Agree_Setup.this.startActivity(new Intent(Agree_Setup.this, WelcomeScreen.class));
-        Agree_Setup.this.finish();
-      }
-    });
-  }
+        switch (button.getId())
+        {
+            default:
+                return false;
+            case R.id.button_cancel:
+                Agree_Setup.this.finish();
+                return true;
+            case R.id.button_accept:
+                startActivity(new Intent(this, WelcomeScreen.class));
+                Agree_Setup.this.finish();
+                return true;
+        }
+    }
 }
