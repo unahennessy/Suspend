@@ -15,12 +15,14 @@ public class Agree_Setup extends Activity
     private Button mCancel;
     private Button mAccept;
 
-    protected void onCreate(Bundle paramBundle)
-    {
 
-        super.onCreate(paramBundle);
-        setContentView(R.layout.about);
+
+
+    protected void onCreate(Bundle paramBundle)
+    {   super.onCreate(paramBundle);
+        setContentView(R.layout.agree_setup);
         // go to the welcome screen if accept button clicked
+
         this.mAccept = ((Button)findViewById(R.id.button_accept));
         this.mAccept.setOnClickListener(new View.OnClickListener()
         {

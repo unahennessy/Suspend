@@ -3,7 +3,7 @@
     <string name="app_name">Suspend!</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
-    <string name="setup_agree">"Suspend! setup agreement"</string>
+    <string name="setup_agree">"Suspend! Terms and Conditions"</string>
     <string name="about">"This is the first version of Suspend. It is aimed at android drivers who wish to stop interruptions from their mobile phone while they are driving."</string>
     <string name="aboutsuspend">"As it is the first version, bugs are inevitable but if you do find a bug kindly contact me, una.hennessy4@mydit.ie with a synopsis of the bug and I will fix it as soon as possible"</string>
     <string name="aboutmore">"Remember, it only takes a few seconds of distraction to become a statistic! Don't lose concentration because of a tweet, text message or status update!"</string>
@@ -50,7 +50,10 @@
     <string name="gmail_smtp_server">smtp.gmail.com</string>
     <string name="gmail_smtp_port">465</string>
     <string name="gmail_smtp_security">SSL</string>
-    <string name="agree_setup_info">">"Agreement for Suspend!. IF YOU DO NOT AGREE TO SETUP, DO NOT CLICK THE ACCEPT BUTTON."</string>
+    <string name="agree_setup_info">"In order to use Suspend! Please accept the following Terms and Conditions:
+        The Suspend! Application is an aid to distraction free driving. It has not been tested, approved or certified by the Irish Government or any private agency for use in connection with driving while using a phone. It is illegal to text or otherwise have your phone in your hand while you are driving in Ireland and if caught you may be sanctioned with penalty points or otherwise. It is up to you the driver to ensure you are focused on the road at all times and using this app does not preclude you from paying attention to the road.
+
+        IF YOU AGREE WITH THESE TERMS AND CONDITIONS, PLEASE CLICK THE ACCEPT BUTTON."</string>
     <string name="space_empty"><br>"   "</br></string>
     <string name="home_txt"><b> Thank you for downloading Suspend!, The app that helps you drive safely. 1st time in, click Settings button to set yourself up for distraction free driving"</b></string>
     <string name="home2_txt">"If you do not need to change any settings and you want to quickly start Suspend then click checkbox and next time you start Suspend! it will go straight to on/off screen"</string>

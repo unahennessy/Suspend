@@ -21,8 +21,6 @@ public class HomeScreen extends Activity {
     private static final boolean TOGGLE_ON_CLICK = true;
     private static final int HIDER_FLAGS = SystemUiHider.FLAG_HIDE_NAVIGATION;
     private SystemUiHider mSystemUiHider;
-
-
     private Button mAbout;
     private Button mSettings;
     private Button mCancel;
@@ -99,9 +97,6 @@ public class HomeScreen extends Activity {
 
             });
         }
-
-
-
 
         if (mIsSettingsCheckbox_checked)
         {
