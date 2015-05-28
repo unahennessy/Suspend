@@ -3,12 +3,10 @@
 <!-- xml to display the home screen -->
 <RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <ImageView android:id="@id/app_logo" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@layout/app_logo"/>
     <RelativeLayout
         android:background="@drawable/splashscreensuspend"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_below="@id/app_logo">
+        android:layout_height="fill_parent">
         <TextView android:textSize="16.0dip"
                 android:textColor="@color/white"
                 android:id="@id/home_text"

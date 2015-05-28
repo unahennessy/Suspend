@@ -2,8 +2,8 @@
 <!-- Una Hennessy d02126371@mydit.ie Semester 2 2015 -->
 <!-- use design to see changes to this screen -->
 <!-- xml to display drawables -->
-<LinearLayout android:orientation="vertical" android:background="@drawable/backgroundsuspend" android:layout_width="fill_parent" android:layout_height="fill_parent"
+<RelativeLayout android:orientation="vertical" android:background="@drawable/backgroundsuspend" android:layout_width="fill_parent" android:layout_height="fill_parent"
   xmlns:android="http://schemas.android.com/apk/res/android">
     <TextView android:textSize="20.0dip" android:textColor="@color/topHeadFontColour" android:gravity="center_horizontal" android:id="@id/setup_text" android:background="@drawable/headersuspend" android:padding="8.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Logs" />
     <ListView android:id="@id/log_list" android:scrollbars="vertical" android:fadingEdge="none" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginTop="5.0dip" android:listSelector="@color/transparency" />
-</LinearLayout>
+</RelativeLayout>

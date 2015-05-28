@@ -68,6 +68,7 @@ public class HomeScreen extends Activity {
                 return true;
             case R.id.button_about:
             startActivity(new Intent(this, About.class));
+                HomeScreen.this.finish();
             return true;
             case R.id.settings:
                 startActivity(new Intent(this, WelcomeScreen.class));
