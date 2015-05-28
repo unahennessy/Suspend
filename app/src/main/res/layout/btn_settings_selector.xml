@@ -4,8 +4,8 @@
 <!-- xml to display drawables -->
 <selector android:layout_width="fill_parent" android:layout_height="wrap_content"
   xmlns:android="http://schemas.android.com/apk/res/android">
-  <ImageView android:id="@id/settings" android:state_pressed="true" android:drawable="@drawable/settings_hover"/>
-  <ImageView android:id="@id/settings" android:state_focused="true" android:drawable="@drawable/settings_hover"/>
-  <ImageView android:id="@id/settings" android:state_selected="true" android:drawable="@drawable/settings_hover"/>
-  <ImageView android:id="@id/settings" android:drawable="@drawable/settings"/>
+  <item android:state_pressed="true" android:drawable="@drawable/settings_hover"/>
+  <item android:state_focused="true" android:drawable="@drawable/settings_hover"/>
+  <item android:state_selected="true" android:drawable="@drawable/settings_hover"/>
+  <item android:drawable="@drawable/settings"/>
 </selector>

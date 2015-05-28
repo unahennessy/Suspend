@@ -6,7 +6,11 @@
   xmlns:android="http://schemas.android.com/apk/res/android">
     <ImageView android:id="@id/top_image" android:layout_width="fill_parent" android:layout_height="wrap_content" android:src="@drawable/headersuspend" />
     <TextView android:textSize="20.0dip" android:textColor="@color/topHeadFontColour" android:id="@id/setup_text" android:padding="8.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Settings" android:layout_centerHorizontal="true" />
-    <Button android:id="@id/button_done" android:background="@layout/btn_done_selector" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="5.0dip" android:layout_marginRight="10.0dip" android:layout_alignParentRight="true" />
+    <Button android:id="@id/button_done" android:background="@layout/btn_done_selector" android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignBottom="@id/setup_text"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
     <ScrollView android:scrollbars="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_below="@id/top_image" android:fadeScrollbars="true">
         <RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_below="@id/setup_text">
             <TextView android:textSize="17.0dip" android:textColor="@color/settingFontColour" android:id="@id/option1" android:background="@drawable/settingoptionbackgroundsuspend" android:padding="10.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/settingOption1"  />
