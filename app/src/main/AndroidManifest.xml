@@ -29,21 +29,14 @@
        android:allowBackup="true"
        android:icon="@mipmap/ic_launcher"
        android:label="@string/app_name">
-            <activity android:name="unahhennessy.com.suspend.activity.WelcomeScreen" android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/app_name"  android:theme="@style/FullscreenTheme" >
+            <activity android:name="unahhennessy.com.suspend.activity.HomeScreen" android:configChanges="orientation|keyboardHidden|screenSize"
+                android:icon="@mipmap/ic_launcher"  android:theme="@style/FullscreenTheme" android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:theme="@style/FullscreenTheme" android:name=".activity.HomeScreen" android:screenOrientation="portrait" />
-        <activity android:theme="@style/FullscreenTheme" android:name=".activity.SplashScreen" android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name="unahhennessy.com.suspend.activity.WelcomeScreen" android:configChanges="orientation|keyboardHidden|screenSize" android:screenOrientation="portrait" />
         <activity android:theme="@style/FullscreenTheme" android:name=".activity.Agree_Setup" android:screenOrientation="portrait" />
         <activity android:theme="@style/FullscreenTheme" android:name=".activity.Setup1OneScreen" android:screenOrientation="portrait" />
         <activity android:theme="@style/FullscreenTheme" android:name=".activity.SetUp2TwoScreen" android:screenOrientation="portrait" />
