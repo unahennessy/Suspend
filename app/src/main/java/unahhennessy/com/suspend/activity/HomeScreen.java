@@ -33,7 +33,7 @@ public class HomeScreen extends Activity {
 
     private void initializeCheckedValue()
     {
-        this.mIsSettingsCheckbox_checked = this.pref.getBoolean("is_whatsapp_enabled", true);
+        this.mIsSettingsCheckbox_checked = this.pref.getBoolean("is_settings_checked", true);
         this.mSettingsCheck.setChecked(this.mIsSettingsCheckbox_checked);
        
     }
@@ -72,6 +72,36 @@ public class HomeScreen extends Activity {
                 HomeScreen.this.mIsSettingsCheckbox_checked = paramAnonymousBoolean;
             }
         });
+        if (!mIsSettingsCheckbox_checked)
+        {    HomeScreen.this.mSettingsCheck.setVisibility(View.INVISIBLE);
+            this.mAbout = ((Button)findViewById(R.id.button_about));
+            this.mAbout.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View paramAnonymousView)
+                {
+                    onOptionsItemSelected(mAbout);
+                }
+            });
+            // set up listener on the settings button
+            this.mSettings = ((Button)findViewById(R.id.settings));
+            this.mSettings.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View paramAnonymousView)
+                {
+                    onOptionsItemSelected(mSettings);
+                }
+            });
+            // set up listener on the settings button
+            this.mCancel = ((Button)findViewById(R.id.button_cancel));
+            this.mCancel.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View paramAnonymousView)
+                {
+                    onOptionsItemSelected(mCancel);
+                }
+
+            });
+        }
+
+
+
 
         if (mIsSettingsCheckbox_checked)
         {
@@ -79,7 +109,7 @@ public class HomeScreen extends Activity {
             HomeScreen.this.finish();
         }
         
-        else 
+        else
         {
 
             // set up listener on the about button

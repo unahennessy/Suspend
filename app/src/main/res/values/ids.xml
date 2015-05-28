@@ -116,6 +116,8 @@
     <item type="id" name="step3_text">false</item>
     <item type="id" name="button_finish">false</item>
     <item type="id" name="setup_continue_text">false</item>
+    <item type="id" name="setup_continue_text2">false</item>
+    <item type="id" name="setup_continue_text3">false</item>
     <item type="id" name="button_continue">false</item>
     <item type="id" name="button_confirm">false</item>
     <item type="id" name="bottom_text">false</item>
@@ -134,4 +136,4 @@
     <item type="id" name="button_setup">false</item>
     <item type="id" name="exit">false</item>
     <item type="id" name="space_empty">false</item>
-</resources>
+    </resources>

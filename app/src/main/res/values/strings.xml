@@ -19,8 +19,9 @@
     <string name="Step2Option4">Phone Calls</string>
     <string name="Step2Option4_text">Reply messages will be sent to mobile callers. If the caller is from a land-line, the app will redirect to voice-mail.</string>
     <string name="step2WhatsAPPInfo">To activate an automatic Reply for your WhatsAPP account, please confirm your username and password.</string>
-    <string name="Step2Continue">"Great! Account Confirmed."</string>
-    <string name="Step2Continue2">While Suspend! is active, automatic replies will be sent from the WhatsAPP account associated with Suspend!</string>
+    <string name="Step2AllSetup">"Great! Your settings are saved. If you want to change any of them please click on the settings button on the Home Screen."</string>
+    <string name="Step2Continue2">While Suspend! is active, automatic replies will be sent from the WhatsAPP account and the phone account associated with Suspend!</string>
+    <string name="Step2Continue3">Click on Continue to turn on Suspend and start using it now!</string>
     <string name="helpInfo">"Activate Suspend! every time you drive for Distraction Free Driving!"</string>
     <string name="aboutInfo">"Suspend! Version 1.0 Copyright ©2015"</string>
     <string name="settingOption1">Reply On/Off</string>
@@ -54,5 +55,16 @@
     <string name="home_txt"><b> Thank you for downloading Suspend!, The app that helps you drive safely. 1st time in, click Settings button to set yourself up for distraction free driving"</b></string>
     <string name="home2_txt">"If you do not need to change any settings and you want to quickly start Suspend then click checkbox and next time you start Suspend! it will go straight to on/off screen"</string>
     <string name="home3_txt">Thanks for using Suspend! and for driving safely!</string>
+    <string name="is_sms_enabled">"is_sms_enabled"</string>
+    <string name="is_mms_enabled">"is_mms_enabled"</string>
+    <string name="is_whatsapp_enabled">"is_whatsapp_enabled"</string>
+    <string name="is_phone_enabled">"is_phone_enabled"</string>
+    <string name="is_settings_setup_enabled">"is_settings_setup_enabled"</string>
+    <string name="setup_step1of3">"Setup - Step 1 of 3"</string>
+    <string name="setup_step2of3">"Setup - Step 2 of 3"</string>
+    <string name="setup_step3of3">"Setup - Step 3 of 3"</string>
+    <string name="setup_save">"Setup Saved for next time you use Suspend!"</string>
+    <string name="Reply_message_header">"Don't like our default message, change it here!</string>
+    <string name="ReplyMessage">Automatic Reply Message</string>
  </resources>
 

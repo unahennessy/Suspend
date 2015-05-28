@@ -4,11 +4,36 @@
 <!-- xml to display the setup 1 screen -->
 <RelativeLayout android:background="@color/white" android:layout_width="fill_parent" android:layout_height="fill_parent"
   xmlns:android="http://schemas.android.com/apk/res/android">
-    <TextView android:textSize="20.0dip" android:textColor="@color/topHeadFontColour" android:gravity="center_horizontal" android:id="@id/setup_text" android:background="@drawable/headersuspend" android:padding="8.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Setup - Step 1 of 3" />
-    <RelativeLayout android:background="@drawable/backgroundsuspend" android:padding="10.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_below="@id/setup_text">
-        <TextView android:textSize="17.0dip" android:textColor="@color/black" android:id="@id/info_text" android:paddingTop="10.0dip" android:paddingRight="10.0dip" android:paddingBottom="10.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/step1Info" />
-        <TextView android:textSize="17.0dip" android:textColor="@color/black" android:id="@id/header_text" android:paddingTop="10.0dip" android:paddingBottom="5.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Suspend! Reply:" android:layout_below="@id/info_text" />
-        <TextView android:textSize="16.0dip" android:textColor="@color/black" android:gravity="top" android:id="@id/edit_message" android:background="@drawable/step1messagebackgroundsuspend" android:padding="10.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginRight="10.0dip" android:text="@string/default_message_to_reply" android:minLines="6" android:maxLines="8" android:layout_below="@id/header_text" />
-        <Button android:id="@id/button_save" android:background="@layout/btn_continue_selector" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="10.0dip" android:layout_alignParentRight="true" android:layout_alignParentBottom="true" />
+    <TextView android:textSize="20.0dip"
+        android:textColor="@color/topHeadFontColour"
+        android:gravity="center_horizontal"
+        android:id="@id/setup_text"
+        android:background="@drawable/headersuspend"
+        android:padding="8.0dip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/setup_step1of3" />
+    <RelativeLayout
+        android:background="@drawable/backgroundsuspend"
+        android:padding="10.0dip" android:layout_width="fill_parent"
+        android:layout_height="wrap_content" android:layout_below="@id/setup_text">
+        <TextView android:textSize="17.0dip" android:textColor="@color/black"
+            android:id="@id/info_text" android:paddingTop="10.0dip"
+            android:paddingRight="10.0dip" android:paddingBottom="10.0dip" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:text="@string/step1Info" />
+        <TextView android:textSize="17.0dip" android:textColor="@color/black"
+            android:id="@id/header_text" android:paddingTop="10.0dip" android:paddingBottom="5.0dip"
+            android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Suspend! Reply:"
+            android:layout_below="@id/info_text" />
+        <TextView android:textSize="16.0dip" android:textColor="@color/black"
+            android:gravity="top" android:id="@id/edit_message"
+            android:background="@drawable/step1messagebackgroundsuspend"
+            android:padding="10.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content"
+            android:layout_marginRight="10.0dip" android:text="@string/default_message_to_reply"
+            android:minLines="6" android:maxLines="8" android:layout_below="@id/header_text" />
+        <Button android:id="@id/button_save" android:background="@layout/btn_continue_selector"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginRight="10.0dip" android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true" />
     </RelativeLayout>
 </RelativeLayout>

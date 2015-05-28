@@ -12,7 +12,7 @@
     <color name="settingOption1Colour">#e85a10b3</color>
     <color name="settingOption1ExtraColour">#e8d3abff</color>
     <color name="settingEditMessageColour">#e85a10b3</color>
-    <color name="setup2EmailBackgroundColour">#d5cda8ff</color>
+    <color name="setupAllDoneBackgroundColour">#d5cda8ff</color>
     <color name="contactListDisabledBackgroundColour">#fee9beff</color>
     <color name="transparency">#ffffffff</color>
 </resources>

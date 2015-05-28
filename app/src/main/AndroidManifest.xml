@@ -41,7 +41,6 @@
         <activity android:theme="@style/FullscreenTheme" android:name=".activity.Setup1OneScreen" android:screenOrientation="portrait" />
         <activity android:theme="@style/FullscreenTheme" android:name=".activity.SetUp2TwoScreen" android:screenOrientation="portrait" />
         <activity android:theme="@style/FullscreenTheme" android:name=".activity.SetUp2TwoContinue" android:screenOrientation="portrait" />
-        <activity android:theme="@style/FullscreenTheme" android:name=".activity.SetUp2TwoContinue2" android:screenOrientation="portrait" />
         <activity android:theme="@style/FullscreenTheme" android:name=".activity.SuspendOff" android:screenOrientation="portrait" />
         <activity android:theme="@style/FullscreenTheme" android:name=".activity.SuspendOn" android:launchMode="singleTask" android:screenOrientation="portrait" />
         <activity android:theme="@style/FullscreenTheme" android:name=".activity.Help" android:screenOrientation="portrait" />
