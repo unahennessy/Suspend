@@ -113,7 +113,7 @@ public class SetUp2TwoScreen  extends Activity
     this.mSave.setOnClickListener(new View.OnClickListener() {
       public void onClick(View paramAnonymousView) {
         SetUp2TwoScreen.this.saveCheckedValue();
-        SetUp2TwoScreen.this.startActivity(new Intent(SetUp2TwoScreen.this,SetUp2TwoScreen.class));
+        SetUp2TwoScreen.this.startActivity(new Intent(SetUp2TwoScreen.this,SetUp2TwoContinue.class));
         SetUp2TwoScreen.this.finish();
       }
     });
