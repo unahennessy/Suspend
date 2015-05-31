@@ -117,7 +117,7 @@ public class HomeScreen extends Activity {
                 }
             });
             // set up listener on the settings button
-            this.mAgree = ((Button)findViewById(R.id.settings));
+            this.mAgree = ((Button)findViewById(R.id.btn_agree));
             this.mAgree.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View paramAnonymousView)
                 {
