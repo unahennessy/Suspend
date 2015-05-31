@@ -55,8 +55,8 @@
 
         IF YOU AGREE WITH THESE TERMS AND CONDITIONS, PLEASE CLICK THE ACCEPT BUTTON."</string>
     <string name="space_empty"><br>"   "</br></string>
-    <string name="home_txt"><b> Thank you for downloading Suspend!, The app that helps you drive safely. 1st time in, click Settings button to set yourself up for distraction free driving"</b></string>
-    <string name="home2_txt">"If you do not need to change any settings and you want to quickly start Suspend then click checkbox and next time you start Suspend! it will go straight to on/off screen"</string>
+    <string name="home_txt"><b> Thank you for downloading Suspend!, The app that helps you drive safely. 1st time in, click Agree button to set yourself up for distraction free driving"</b></string>
+    <string name="home2_txt">"Click on About button to find out more on Suspend! "</string>
     <string name="home3_txt">Thanks for using Suspend! and for driving safely!</string>
     <string name="is_sms_enabled">"is_sms_enabled"</string>
     <string name="is_mms_enabled">"is_mms_enabled"</string>
