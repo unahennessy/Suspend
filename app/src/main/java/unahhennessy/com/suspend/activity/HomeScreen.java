@@ -22,7 +22,7 @@ public class HomeScreen extends Activity {
     private static final int HIDER_FLAGS = SystemUiHider.FLAG_HIDE_NAVIGATION;
     private SystemUiHider mSystemUiHider;
     private Button mAbout;
-    private Button mSettings;
+    private Button mAgree;
     private Button mCancel;
     private boolean mIsSettingsCheckbox_checked;
     private CheckBox mSettingsCheck;
@@ -80,11 +80,11 @@ public class HomeScreen extends Activity {
                 }
             });
             // set up listener on the settings button
-            this.mSettings = ((Button)findViewById(R.id.settings));
-            this.mSettings.setOnClickListener(new View.OnClickListener() {
+            this.mAgree = ((Button)findViewById(R.id.btn_agree));
+            this.mAgree.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View paramAnonymousView)
                 {
-                    onOptionsItemSelected(mSettings);
+                    onOptionsItemSelected(mAgree);
                 }
             });
             // set up listener on the settings button
@@ -117,11 +117,11 @@ public class HomeScreen extends Activity {
                 }
             });
             // set up listener on the settings button
-            this.mSettings = ((Button)findViewById(R.id.settings));
-            this.mSettings.setOnClickListener(new View.OnClickListener() {
+            this.mAgree = ((Button)findViewById(R.id.settings));
+            this.mAgree.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View paramAnonymousView)
                 {
-                    onOptionsItemSelected(mSettings);
+                    onOptionsItemSelected(mAgree);
                 }
             });
             // set up listener on the settings button
@@ -153,7 +153,7 @@ public class HomeScreen extends Activity {
             startActivity(new Intent(this, About.class));
                 HomeScreen.this.finish();
             return true;
-            case R.id.settings:
+            case R.id.btn_agree:
                 startActivity(new Intent(this, Agree_Setup.class));
                 HomeScreen.this.finish();
                 return true;
