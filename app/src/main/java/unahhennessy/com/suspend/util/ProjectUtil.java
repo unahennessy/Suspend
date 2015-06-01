@@ -2,6 +2,7 @@ package unahhennessy.com.suspend.util;
 /**
  * Created by unahe_000 on 23/05/2015.
  */
+
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -19,6 +20,7 @@ import android.widget.RemoteViews;
 import java.util.Calendar;
 import java.util.Date;
 
+import unahhennessy.com.suspend.R;
 import unahhennessy.com.suspend.activity.SuspendOn;
 import unahhennessy.com.suspend.constants.AppConstants;
 
@@ -74,10 +76,7 @@ public class ProjectUtil
     if (i != -1)
     {
       boolean bool2 = paramString.substring(i + 1).trim().equalsIgnoreCase("live.com");
-      bool1 = false;
-      if (bool2) {
-        bool1 = true;
-      }
+        bool1 = bool2;
     }
     return bool1;
   }
@@ -117,12 +116,12 @@ public class ProjectUtil
     NotificationManager localNotificationManager = (NotificationManager)paramContext.getSystemService(Context.NOTIFICATION_SERVICE);
     if (localSharedPreferences.getBoolean("is_suspend_on", false))
     {
-      Notification localNotification = new Notification(2130837515, "", System.currentTimeMillis());
+      Notification localNotification = new Notification(R.drawable.appnotificationsuspend, "", System.currentTimeMillis());
       localNotification.flags = (0x22 | localNotification.flags);
-      localNotification.contentView = new RemoteViews(paramContext.getPackageName(), 2130903050);
+      localNotification.contentView = new RemoteViews(paramContext.getPackageName(), R.layout.custom_notification);
       PendingIntent localPendingIntent = PendingIntent.getActivity(paramContext, 0, new Intent(paramContext, SuspendOn.class), 0);
       localNotification.contentIntent = localPendingIntent;
-      localNotification.setLatestEventInfo(paramContext, "Suspend", null, localPendingIntent);
+      localNotification.setLatestEventInfo(paramContext, "Suspend", "Notifications", localPendingIntent);
       localNotificationManager.notify(1, localNotification);
       return;
     }
@@ -135,16 +134,16 @@ public class ProjectUtil
     {
       PendingIntent localPendingIntent = PendingIntent.getActivity(paramContext, 0, new Intent(paramContext, ProjectUtil.class), 0);
       SmsManager.getDefault().sendTextMessage(paramString1, null, paramString2, localPendingIntent, null);
-      //AppConstants.SUSPEND_DB.insertLog(currentTime() + " Send textMessage", "Info");
-      //AppConstants.SUSPEND_DB.insertLog(currentTime() + " Number: " + paramString1 + ", Body: " + paramString2, "Info");
-      //AppConstants.SUSPEND_DB.insertLog(currentTime() + " Send textMessage Successfully.", "Info");
+      AppConstants.SUSPEND_DB.insertLog(currentTime() + " Send SmsMessage", "Information");
+      AppConstants.SUSPEND_DB.insertLog(currentTime() + " Number: " + paramString1 + ", Body: " + paramString2, "Info");
+      AppConstants.SUSPEND_DB.insertLog(currentTime() + " Sent SmsMessage Successfully.", "Info");
       return;
     }
     catch (Exception localException)
     {
-      //AppConstants.SUSPEND_DB.insertLog(currentTime() + "Send textMessage", "Info");
-     // AppConstants.SUSPEND_DB.insertLog(currentTime() + " Number: " + paramString1 + " Body: " + paramString2, "Info");
-      //AppConstants.SUSPEND_DB.insertLog(currentTime() + " Error: " + localException.getMessage(), "Error");
+      AppConstants.SUSPEND_DB.insertLog(currentTime() + "Send SmsMessage", "Information");
+      AppConstants.SUSPEND_DB.insertLog(currentTime() + " Number: " + paramString1 + " Body: " + paramString2, "Info");
+      AppConstants.SUSPEND_DB.insertLog(currentTime() + " Error: " + localException.getMessage(), "Error");
     }
   }
 
@@ -158,14 +157,15 @@ public class ProjectUtil
       {
         if (localSharedPreferences.getBoolean("is_suspend_call_active", false))
         {
+            //check for bluetooth and if there is bluetooth then allow calls
           localAudioManager.setRingerMode(2);
-          return;
+
         }
         localAudioManager.setRingerMode(0);
-        return;
+
       }
       localAudioManager.setRingerMode(2);
-      return;
+
     }
     catch (Exception localException) {}
   }

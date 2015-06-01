@@ -59,12 +59,17 @@
             </intent-filter>
         </receiver>
         <receiver android:name=".listener.SmsListener">
-            <intent-filter android:priority="2147483647">
+            <intent-filter android:priority="50">
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
         </receiver>
+        <receiver android:name=".receiver.WhatsAppBroadcastReceiver" >
+            <intent-filter android:priority="1">
+                <action android:name="WhatsApp_ACTION" />
+            </intent-filter>
+        </receiver>
         <receiver android:name=".listener.MmsListener">
-            <intent-filter android:priority="2147483647">
+            <intent-filter android:priority="100">
                 <action android:name="android.provider.Telephony.WAP_PUSH_RECEIVED" />
                 <data android:mimeType="application/vnd.wap.mms-message" />
             </intent-filter>
