@@ -173,6 +173,7 @@ public class Settings extends Activity
     super.onCreate(paramBundle);
     setContentView(R.layout.settings);
     this.pref = getSharedPreferences(AppConstants.SUSPEND_PREF, 0);
+
     this.mRelativeLayoutOption1 = (RelativeLayout)findViewById(R.id.option1_layout);
     this.mRelativeLayoutOption2 = ((RelativeLayout)findViewById(R.id.option2_layout));
     this.mRelativeLayoutOption3 = ((RelativeLayout)findViewById(R.id.option3_layout));

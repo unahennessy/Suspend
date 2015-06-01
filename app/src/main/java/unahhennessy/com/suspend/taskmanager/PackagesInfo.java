@@ -11,6 +11,7 @@ public class PackagesInfo
 
   public PackagesInfo(Context paramContext)
   {
+    //ths gets all the apps on the drivers phone including deleted apps using flag 8192which is  GET_UNINSTALLED_PACKAGES
     this.appList = paramContext.getApplicationContext().getPackageManager().getInstalledApplications(8192);
   }
 

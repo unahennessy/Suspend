@@ -69,11 +69,6 @@
                 <data android:mimeType="application/vnd.wap.mms-message" />
             </intent-filter>
         </receiver>
-        <service android:name=".listener.MyPhoneStateListener" />
-        <service
-            android:name=".listener.PhoneListener"
-            android:enabled="true"
-            android:exported="true" >
-        </service>
+        <service android:name=".listener.PhoneListener" />
     </application>
 </manifest>

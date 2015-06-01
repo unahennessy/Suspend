@@ -24,12 +24,11 @@ import android.widget.TextView;
 
 import unahhennessy.com.suspend.R;
 import unahhennessy.com.suspend.constants.AppConstants;
-import unahhennessy.com.suspend.listener.MyPhoneStateListener;
+import unahhennessy.com.suspend.listener.PhoneListener;
 import unahhennessy.com.suspend.util.ProjectUtil;
 
 
-public class SuspendOn
-  extends Activity
+public class SuspendOn  extends Activity
 {
   private final int EMERGENCY_DIALOG = 3;
   private final int MUSIC_DIALOG = 1;
@@ -52,11 +51,12 @@ public class SuspendOn
       localEditor.putBoolean("is_suspend_on", false);
       localEditor.commit();
       this.mAudioManager.setRingerMode(2);
-      if (           MyPhoneStateListener.telephonymanager != null) {
-        MyPhoneStateListener.removeListener();
+      if ( PhoneListener.telephonymanager != null) {
+        PhoneListener.removeListener();
       }
-      stopService(new Intent(this, MyPhoneStateListener.class));
+      stopService(new Intent(this, PhoneListener.class));
       //stopService(new Intent(this, AppTrackingService.class));
+
       ProjectUtil.notifyIcon(this);
       return;
     }
@@ -70,16 +70,13 @@ public class SuspendOn
   {
     try
     {
-      AppConstants.GMAIL_EMAIL_COUNT1 = 0;
-      AppConstants.GMAIL_EMAIL_COUNT2 = 0;
-      AppConstants.EMAIL_IMAP_COUNT1 = 0;
-      AppConstants.EMAIL_IMAP_COUNT2 = 0;
-      AppConstants.EMAIL_POP_COUNT1 = 0;
-      AppConstants.EMAIL_POP_COUNT2 = 0;
       removeSavedSms();
       SharedPreferences.Editor localEditor = this.pref.edit();
       localEditor.putBoolean("is_suspend_on", true);
       localEditor.commit();
+
+        // need to check for bluetooth here and if driver has bluetooth then phone can be answered otherwise send a message
+
       this.mAudioManager.setRingerMode(0);
 
       for (;;)
@@ -87,7 +84,7 @@ public class SuspendOn
 
         ProjectUtil.notifyIcon(this);
         //startService(new Intent(this, AppTrackingService.class));
-        startService(new Intent(this, MyPhoneStateListener.class));
+        startService(new Intent(this, PhoneListener.class));
         return;
       }
 

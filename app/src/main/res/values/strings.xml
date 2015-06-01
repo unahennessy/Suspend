@@ -69,5 +69,7 @@
     <string name="setup_save">"Setup Saved for next time you use Suspend!"</string>
     <string name="Reply_message_header">"Don't like our default message, change it here!</string>
     <string name="ReplyMessage">Automatic Reply Message</string>
+    <string name="notification_text">"You have new notifications"</string>
+    <string name="notification_text2">" new notifications"</string>
  </resources>
 

@@ -8,23 +8,23 @@ import java.util.List;
 
 public class GetInstalledApps
 {
-  private static Context ctx;
+  private static Context mContext;
 
   public GetInstalledApps(Context paramContext)
   {
-    ctx = paramContext;
+    mContext = paramContext;
   }
 
   public static ArrayList<PackageInfo> getInstalledApps(boolean paramBoolean)
   {
     ArrayList localArrayList = new ArrayList();
-    List localList = ctx.getApplicationContext().getPackageManager().getInstalledPackages(0);
+    List localList = mContext.getApplicationContext().getPackageManager().getInstalledPackages(0);
     for (int i = 0;; i++)
     {
       if (i >= localList.size()) {
         return localArrayList;
       }
-      localArrayList.add((PackageInfo)localList.get(i));
+      localArrayList.add(localList.get(i));
     }
   }
 

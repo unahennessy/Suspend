@@ -11,8 +11,7 @@ import unahhennessy.com.suspend.R;
 import unahhennessy.com.suspend.constants.AppConstants;
 import unahhennessy.com.suspend.util.ProjectUtil;
 
-public class SmsListener
-  extends BroadcastReceiver
+public class SmsListener  extends BroadcastReceiver
 {
   private final String DEFAULT_MSG = "Driving so can't text. Will text when I'm stopped!";
   private final String TAG = "Suspend Reply: ";

@@ -137,4 +137,5 @@
     <item type="id" name="exit">false</item>
     <item type="id" name="space_empty">false</item>
     <item type="id" name="btn_agree">false</item>
+    <item type="id" name="notification_text">false</item>
     </resources>

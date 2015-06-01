@@ -3,6 +3,7 @@ package unahhennessy.com.suspend.taskmanager;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+
 import java.util.Iterator;
 import java.util.List;
 
