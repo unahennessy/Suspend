@@ -12,7 +12,6 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.text.format.DateFormat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -90,8 +89,6 @@ public class SuspendOff
     setContentView(R.layout.suspendoff);
 
     this.mPkgManager = getPackageManager();
-    ((TextView) findViewById(R.id.day)).setText(DateFormat.format("EEE", System.currentTimeMillis()));
-    ((TextView) findViewById(R.id.date)).setText(DateFormat.format("dd MM", System.currentTimeMillis()));
     this.pref = getSharedPreferences(AppConstants.SUSPEND_PREF, 0);
     this.mMusic = ((ImageView) findViewById(R.id.image_music));
     this.mNavigation = ((ImageView) findViewById(R.id.image_navigation));
