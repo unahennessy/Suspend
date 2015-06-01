@@ -26,7 +26,7 @@ public class SetUp2TwoContinue extends Activity
       public void onClick(View paramAnonymousView)
       {
 
-        SetUp2TwoContinue.this.startActivity(new Intent(SetUp2TwoContinue.this,SuspendOff.class));
+        SetUp2TwoContinue.this.startActivity(new Intent(SetUp2TwoContinue.this, SuspendOn.class));
         SetUp2TwoContinue.this.finish();
       }
     });
