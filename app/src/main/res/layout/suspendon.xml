@@ -22,11 +22,12 @@
     <!-- onsuspend image -->
     <ImageView
         android:id="@id/image_suspend_on"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20.0dip"
         android:src="@drawable/on_onsuspend"
-        android:layout_centerInParent="true" />
+        android:layout_alignTop="@id/image_suspend_on_clickable"
+        android:layout_alignLeft="@id/image_suspend_on_clickable"
+        android:layout_alignStart="@id/image_suspend_on_clickable" />
     <!-- onsuspend image clickable -->
     <ImageView android:id="@id/image_suspend_on_clickable"
         android:background="@layout/image_on_suspend_selector"
@@ -34,8 +35,9 @@
         android:clickable="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@id/image_suspend_on"
-        android:layout_centerHorizontal="true" />
+        android:layout_above="@id/image_popup"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="31dp" />
     <!-- popup image -->
     <ImageView android:id="@id/image_popup"
         android:background="@drawable/suspend_on_popup"
@@ -60,8 +62,9 @@
         android:paddingTop="20.0dip" android:paddingRight="15.0dip"
         android:layout_width="wrap_content" android:layout_height="wrap_content"
         android:text="@string/on_popup_message"
-        android:layout_below="@id/image_suspend_on"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignTop="@id/image_popup"
+        android:layout_alignLeft="@id/image_music"
+        android:layout_alignStart="@id/image_music" />
     <!-- music image -->
        <ImageView android:id="@id/image_music"
            android:focusable="true"

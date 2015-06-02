@@ -23,27 +23,27 @@
     <!-- onsuspend image -->
     <ImageView
         android:id="@id/image_suspend_off"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20.0dip"
-        android:src="@drawable/offsuspend"
-        android:layout_centerInParent="true" />
+        android:src="@drawable/off_offsuspend"
+        android:layout_above="@id/image_popup"
+        android:layout_toLeftOf="@id/image_navigation"
+        android:layout_toStartOf="@id/image_navigation" />
     <!-- clickable off suspend image -->
     <ImageView android:id="@id/image_suspend_off_clickable"
         android:background="@layout/image_off_suspend_selector"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/image_setting"
-        android:layout_marginTop="20.0dip"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignTop="@id/image_suspend_off"
+        android:layout_alignLeft="@id/image_suspend_off"
+        android:layout_alignStart="@id/image_suspend_off" />
     <!-- dialog popup image -->
     <ImageView android:id="@id/image_popup"
         android:background="@drawable/onoffpopupsuspend"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:layout_below="@id/image_suspend_off_clickable"
+        android:layout_above="@id/image_music"
         android:layout_alignRight="@id/image_navigation"
         android:layout_alignEnd="@id/image_navigation" />
     <!-- cross image in corner -->
@@ -68,9 +68,9 @@
     <!-- music image -->
     <ImageView android:id="@id/image_music" android:focusable="true" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content"
         android:src="@layout/image_music_selector"
-        android:layout_alignTop="@id/image_navigation"
-        android:layout_alignLeft="@id/image_suspend_off_clickable"
-        android:layout_alignStart="@id/image_suspend_off_clickable" />
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@id/image_suspend_off"
+        android:layout_toStartOf="@id/image_suspend_off" />
     <!-- navigation image -->
     <ImageView android:id="@id/image_navigation" android:focusable="true" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="10.0dip" android:layout_marginBottom="10.0dip" android:src="@layout/image_navigation_selector" android:layout_alignParentRight="true" android:layout_alignParentBottom="true" />
 </RelativeLayout>
