@@ -2,34 +2,29 @@ package unahhennessy.com.suspend.activity;
 /**
  * Created by unahe_000 on 21/05/2015.
  */
+
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.support.v4.app.DialogFragment;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import unahhennessy.com.suspend.R;
 import unahhennessy.com.suspend.R.id;
-import unahhennessy.com.suspend.R.layout;
-import unahhennessy.com.suspend.R.menu;
-import unahhennessy.com.suspend.R.raw;
 import unahhennessy.com.suspend.constants.AppConstants;
 import unahhennessy.com.suspend.listener.PhoneListener;
 import unahhennessy.com.suspend.util.ProjectUtil;
@@ -37,9 +32,6 @@ import unahhennessy.com.suspend.util.ProjectUtil;
 
 public class SuspendOn  extends Activity
 {
-  private final int EMERGENCY_DIALOG = 3;
-  private final int MUSIC_DIALOG = 1;
-  private final int NAVIGATION_DIALOG = 2;
   private AudioManager mAudioManager;
   private ImageView mCross;
   private Context mContext;
@@ -49,20 +41,23 @@ public class SuspendOn  extends Activity
   private ImageView mNavigation;
   private ImageView mPopup;
   private TextView mPopupText;
+  private int mParamInt;
   private SharedPreferences pref;
+    private static final String TAG = "SuspendOn Activity";
 
   private void SuspendOff()
   {
     try
     {
-      Editor localEditor = pref.edit();
+        this.log("entered SuspendOff() within SuspendOn.java");
+      SharedPreferences.Editor localEditor = this.pref.edit();
       localEditor.putBoolean("is_suspend_on", false);
       localEditor.commit();
-        mAudioManager.setRingerMode(2);
+        this.mAudioManager.setRingerMode(2);
       if ( PhoneListener.telephonymanager != null) {
         PhoneListener.removeListener();
       }
-        this.stopService(new Intent(this, PhoneListener.class));
+        stopService(new Intent(this, PhoneListener.class));
       //stopService(new Intent(this, AppTrackingService.class));
 
       ProjectUtil.notifyIcon(this);
@@ -74,25 +69,28 @@ public class SuspendOn  extends Activity
     }
   }
 
-  private void SuspendOn()
+
+
+    private void SuspendOn()
   {
     try
     {
-        this.removeSavedSms();
-      Editor localEditor = pref.edit();
+        this.log("entered SuspendOnf() within SuspendOn.java");
+        removeSavedSms();
+      SharedPreferences.Editor localEditor = this.pref.edit();
       localEditor.putBoolean("is_suspend_on", true);
       localEditor.commit();
 
         // need to check for bluetooth here and if driver has bluetooth then phone can be answered otherwise send a message
 
-        mAudioManager.setRingerMode(0);
+        this.mAudioManager.setRingerMode(0);
 
       for (;;)
       {
 
         ProjectUtil.notifyIcon(this);
         //startService(new Intent(this, AppTrackingService.class));
-          this.startService(new Intent(this, PhoneListener.class));
+          startService(new Intent(this, PhoneListener.class));
         return;
       }
 
@@ -105,12 +103,14 @@ public class SuspendOn  extends Activity
 
   private void playSound()
   {
-    MediaPlayer.create(this, raw.beep).start();
+      this.log("entered playSound() within SuspendOn.java");
+    MediaPlayer.create(this, R.raw.beep).start();
   }
 
   private void removeSavedSms()
   {
-    Editor localEditor = pref.edit();
+      this.log("entered removeSavedSms() within SuspendOn.java");
+    SharedPreferences.Editor localEditor = this.pref.edit();
     localEditor.remove("last_sms_received_no");
     localEditor.remove("last_sms_received_msg");
     localEditor.remove("last_sms_received_time");
@@ -119,7 +119,8 @@ public class SuspendOn  extends Activity
 
   private void vibrate()
   {
-     Vibrator mVibrator = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
+      this.log("entered vibrate() within SuspendOn.java");
+     Vibrator mVibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
       // Get instance of Vibrator from current Context
     // Vibrate for 500 milliseconds
       mVibrator.vibrate(500L);
@@ -127,180 +128,239 @@ public class SuspendOn  extends Activity
 
   public boolean dispatchKeyEvent(KeyEvent paramKeyEvent)
   {
-    if (82 == paramKeyEvent.getKeyCode() || 21 == paramKeyEvent.getKeyCode() || 20 == paramKeyEvent.getKeyCode() || 22 == paramKeyEvent.getKeyCode() || 19 == paramKeyEvent.getKeyCode() || 23 == paramKeyEvent.getKeyCode()) {
-      return false;
-    }
+      this.log("entereddispatchKeyEvent() within SuspendOn.java");
+  /* these constants are used to represent key events, 19 equals KEYCODE_DPAD_UP,
+  **20 equals KEYCODE_DPAD_DOWN, 21 equals KEYCODE_DPAD_LEFT,
+  **22 equals KEYCODE_DPAD_RIGHT, 23 equals KEYCODE_DPAD_CENTRE, 82 equals KEYCODE_MENU
+  */
+      if (19 == paramKeyEvent.getKeyCode() ||
+                20 == paramKeyEvent.getKeyCode() ||
+                21 == paramKeyEvent.getKeyCode() ||
+                22 == paramKeyEvent.getKeyCode() ||
+                23 == paramKeyEvent.getKeyCode() ||
+                82 == paramKeyEvent.getKeyCode())
+        {
+          return false;
+        }
       return false;
     }
 
   protected void onActivityResult(int paramInt1, int paramInt2, Intent paramIntent)
   {
+      this.log("entered onActivityResult within SuspendOn.java");
     super.onActivityResult(paramInt1, paramInt2, paramIntent);
     if (-1 == paramInt2 && paramIntent.getExtras().getBoolean("exit"))
     {
-        this.SuspendOff();
-        this.finish();
+        SuspendOff();
+        finish();
       System.exit(0);
     }
   }
 
   protected void onCreate(Bundle paramBundle)
   {
+      this.log("entered onCreate() within SuspendOn.java");
     super.onCreate(paramBundle);
-      this.setContentView(layout.suspendon);
-      pref = this.getSharedPreferences(AppConstants.SUSPEND_PREF, 0);
-      mAudioManager = (AudioManager) this.getSystemService(Context.AUDIO_SERVICE);
-      this.SuspendOn();
-      mMusic = (ImageView) this.findViewById(R.id.image_music);
-      mNavigation = (ImageView) this.findViewById(R.id.image_navigation);
-      mCross = (ImageView) this.findViewById(R.id.image_cross);
-      mPopup = (ImageView) this.findViewById(R.id.image_popup);
-      mSuspendOff = (ImageView) this.findViewById(id.image_suspend_on_clickable);
-      mEmergency = (ImageView) this.findViewById(R.id.image_emergency);
-      mPopupText = (TextView) this.findViewById(R.id.text_popup);
-    if (pref.getBoolean("is_suspend_on_popup_shown", false))
+      setContentView(R.layout.suspendon);
+      this.pref = getSharedPreferences(AppConstants.SUSPEND_PREF, 0);
+      this.mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+      this.mMusic = (ImageView) findViewById(id.image_music);
+      this.mNavigation = (ImageView) findViewById(id.image_navigation);
+      this.mCross = (ImageView) findViewById(id.image_cross);
+      this.mPopup = (ImageView) findViewById(id.image_popup);
+      this.mSuspendOff = (ImageView) findViewById(R.id.image_suspend_on_clickable);
+      this.mEmergency = (ImageView) findViewById(id.image_emergency);
+      this.mPopupText = (TextView) findViewById(id.text_popup);
+      SuspendOn();
+    if (this.pref.getBoolean("is_suspend_on_popup_shown", false))
     {
-        mCross.setVisibility(View.INVISIBLE);
-        mPopup.setVisibility(View.INVISIBLE);
-        mPopupText.setVisibility(View.INVISIBLE);
+        this.mCross.setVisibility(View.INVISIBLE);
+        this.mPopup.setVisibility(View.INVISIBLE);
+        this.mPopupText.setVisibility(View.INVISIBLE);
     }
-      mEmergency.setOnClickListener(new OnClickListener() {
+
+     // set mParamInt to 3 if mEmergency clicked
+      this.mEmergency.setOnClickListener(new View.OnClickListener() {
+
           public void onClick(View paramAnonymousView) {
-              showDialog(3);
+              SuspendOn.this.log("entered mEmergency.setOnClickListener() within SuspendOn.java");
+              SuspendOn.this.mParamInt = 3;
+
           }
       });
-      mCross.setOnClickListener(new OnClickListener() {
+      this.mCross.setOnClickListener(new View.OnClickListener() {
           public void onClick(View paramAnonymousView) {
-              Editor localEditor = pref.edit();
+              SuspendOn.this.log("entered mCross.setOnClickListener() within SuspendOn.java");
+              SharedPreferences.Editor localEditor = SuspendOn.this.pref.edit();
               localEditor.putBoolean("is_suspend_on_popup_shown", true);
               localEditor.commit();
-              mCross.setVisibility(View.INVISIBLE);
-              mPopup.setVisibility(View.INVISIBLE);
-              mPopupText.setVisibility(View.INVISIBLE);
+              SuspendOn.this.mCross.setVisibility(View.INVISIBLE);
+              SuspendOn.this.mPopup.setVisibility(View.INVISIBLE);
+              SuspendOn.this.mPopupText.setVisibility(View.INVISIBLE);
           }
       });
-      this.mSuspendOff.setOnClickListener(new OnClickListener() {
+      mSuspendOff.setOnClickListener(new View.OnClickListener() {
           public void onClick(View paramAnonymousView) {
-              vibrate();
-              SuspendOff();
-              startActivity(new Intent(SuspendOn.this, SuspendOff.class));
-              finish();
+              SuspendOn.this.log("entered mSuspendOff.setOnClickListener() within SuspendOn.java");
+              SuspendOn.this.vibrate();
+              SuspendOn.this.SuspendOff();
+              SuspendOn.this.startActivity(new Intent(SuspendOn.this, SuspendOff.class));
+              SuspendOn.this.finish();
           }
       });
-      mMusic.setOnClickListener(new OnClickListener() {
+      this.mMusic.setOnClickListener(new View.OnClickListener() {
           public void onClick(View paramAnonymousView) {
-              String str = pref.getString("music_pkg", "");
+              SuspendOn.this.log("entered mMusic.setOnClickListener() within SuspendOn.java");
+              String str = SuspendOn.this.pref.getString("music_pkg", "");
               if (str != null && str.length() > 0) {
                   ProjectUtil.launchApp(SuspendOn.this, str);
                   return;
               }
-              showDialog(1);
+              SuspendOn.this.mParamInt = 1;
           }
       });
-      mNavigation.setOnClickListener(new OnClickListener() {
+      this.mNavigation.setOnClickListener(new View.OnClickListener() {
           public void onClick(View paramAnonymousView) {
-              String str = pref.getString("navigation_pkg", "");
+              SuspendOn.this.log("entered mNavigation.setOnClickListener() within SuspendOn.java");
+              String str = SuspendOn.this.pref.getString("navigation_pkg", "");
               if (str != null && str.length() > 0) {
                   ProjectUtil.launchApp(SuspendOn.this, str);
                   return;
               }
-              showDialog(2);
+              SuspendOn.this.mParamInt = 2;
           }
       });
   }
 
-  protected Dialog onCreateDialog(int paramInt) {
-      AlertDialog localAlertDialog1 = null;
-      if (paramInt == 1) {
-          View localView3 = LayoutInflater.from(this).inflate(layout.music_dialog, null);
-          Button localButton5 = (Button) localView3.findViewById(id.button_cancel);
-          Button localButton6 = (Button) localView3.findViewById(id.button_off);
-          localButton5.setOnClickListener(new OnClickListener() {
-              public void onClick(View paramAnonymousView) {
-                  removeDialog(1);
-              }
-          });
-          localButton6.setOnClickListener(new OnClickListener() {
-              public void onClick(View paramAnonymousView) {
-                  removeDialog(1);
-                  vibrate();
-                  SuspendOff();
-                  startActivity(new Intent(SuspendOn.this, SuspendOff.class));
-                  finish();
-              }
-          });
-          localAlertDialog1 = new Builder(this).create();
-          localAlertDialog1.setView(localView3);
-      } else if (paramInt == 2) {
+    public DialogFragment  DialogFragment(int mParamInt)
+    {
+        DialogFragment dialogFragment = new DialogFragment();
+        this.log("entered DialogFragment() within SuspendOn.java");
+        Bundle args = new Bundle();
+        args.putInt("mParamInt", mParamInt);
+        dialogFragment.setArguments(args);
+
+        return dialogFragment;
+    }
+    public View onCreateView(Bundle args)
+
+    {
+        if (this.mParamInt == 1)
+        {
+            this.log("entered mParamInt==1 within SuspendOn.java");
+            DialogFragment dialogFragmentMusic = new DialogFragment();
+            View localView3 = LayoutInflater.from(this).inflate(R.layout.music_dialog, null);
+            Button localButton5 = (Button) localView3.findViewById(R.id.button_cancel);
+            Button localButton6 = (Button) localView3.findViewById(R.id.button_off);
+            localButton5.setOnClickListener(new View.OnClickListener()
+            {
+                public void onClick(View paramAnonymousView)
+                {
+                    SuspendOn.this.finish();
+                }
+            });
+            localButton6.setOnClickListener(new View.OnClickListener()
+            {
+                public void onClick(View paramAnonymousView) {
+                    SuspendOn.this.vibrate();
+                    SuspendOn.this.SuspendOff();
+                    SuspendOn.this.startActivity(new Intent(SuspendOn.this, SuspendOff.class));
+                    SuspendOn.this.finish();
+                }
+            });
+            dialogFragmentMusic = new DialogFragment();
+            localView3 = LayoutInflater.from(this).inflate(R.layout.music_dialog, null);
+            return localView3;
+        }
+        else if (this.mParamInt == 2)
+        {
+            this.log("entered mParamInt==2 within SuspendOn.java");
+            DialogFragment dialogFragmentNavigation = new DialogFragment();
+            View localView2 = LayoutInflater.from(this).inflate(R.layout.navigation_dialog, null);
+            Button localButton3 = (Button) localView2.findViewById(R.id.button_cancel);
+            Button localButton4 = (Button) localView2.findViewById(R.id.button_off);
+            localButton3.setOnClickListener(new View.OnClickListener()
+            {
+                public void onClick(View paramAnonymousView) {
+                    SuspendOn.this.finish();
+                }
+            });
+            localButton4.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View paramAnonymousView) {
+                    SuspendOn.this.vibrate();
+                    SuspendOn.this.SuspendOff();
+                    SuspendOn.this.startActivity(new Intent(SuspendOn.this, SuspendOff.class));
+                    SuspendOn.this.finish();
+                }
+            });
+           dialogFragmentNavigation = new DialogFragment();
+            localView2 = LayoutInflater.from(this).inflate(R.layout.navigation_dialog, null);
+            return localView2;
 
 
-          View localView2 = LayoutInflater.from(this).inflate(layout.navigation_dialog, null);
-          Button localButton3 = (Button) localView2.findViewById(id.button_cancel);
-          Button localButton4 = (Button) localView2.findViewById(id.button_off);
-          localButton3.setOnClickListener(new OnClickListener() {
-              public void onClick(View paramAnonymousView) {
-                  removeDialog(2);
-              }
-          });
-          localButton4.setOnClickListener(new OnClickListener() {
-              public void onClick(View paramAnonymousView) {
-                  removeDialog(2);
-                  vibrate();
-                  SuspendOff();
-                  startActivity(new Intent(SuspendOn.this, SuspendOff.class));
-                  finish();
-              }
-          });
-          AlertDialog localAlertDialog3 = new Builder(this).create();
-          localAlertDialog3.setView(localView2);
-          return localAlertDialog3;
+        }
+        else
+        {
+            this.log("entered mParamInt==3 within SuspendOn.java");
+            DialogFragment dialogFragmentEmergency = new DialogFragment();
+            View localView1 = LayoutInflater.from(this).inflate(R.layout.emergency_dialog, null);
+            Button localButton1 = (Button) localView1.findViewById(R.id.button_No);
+            Button localButton2 = (Button) localView1.findViewById(R.id.button_yes);
+            localButton1.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View paramAnonymousView) {
+                    SuspendOn.this.finish();
+                }
+            });
+            localButton2.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View paramAnonymousView) {
+                    SuspendOn.this.SuspendOff();
+                    Intent localIntent = new Intent("android.intent.action.CALL");
+                    localIntent.addFlags(268435456);
+                    localIntent.setData(Uri.parse("tel:112"));
+                    SuspendOn.this.startActivity(localIntent);
+                    SuspendOn.this.finish();
+                    System.exit(0);
+                }
+            });
 
+            dialogFragmentEmergency = new DialogFragment();
+            localView1 = LayoutInflater.from(this).inflate(R.layout.emergency_dialog, null);
+            return localView1;
 
-      } else {
-          View localView1 = LayoutInflater.from(this).inflate(layout.emergency_dialog, null);
-          Button localButton1 = (Button) localView1.findViewById(id.button_No);
-          Button localButton2 = (Button) localView1.findViewById(id.button_yes);
-          localButton1.setOnClickListener(new OnClickListener() {
-              public void onClick(View paramAnonymousView) {
-                  removeDialog(3);
-              }
-          });
-          localButton2.setOnClickListener(new OnClickListener() {
-              public void onClick(View paramAnonymousView) {
-                  SuspendOff();
-                  Intent localIntent = new Intent("android.intent.action.CALL");
-                  localIntent.addFlags(268435456);
-                  localIntent.setData(Uri.parse("tel:112"));
-                  startActivity(localIntent);
-                  removeDialog(3);
-                  System.exit(0);
-              }
-          });
-
-      }
-      AlertDialog localAlertDialog2 = new Builder(this).create();
-      localAlertDialog2.setView(LayoutInflater.from(this).inflate(layout.emergency_dialog, null));
-
-      return localAlertDialog2;
-  }
+          }
+    }
 
   public boolean onCreateOptionsMenu(Menu paramMenu)
   {
+      this.log("entered onCreateOptionsMenu within SuspendOn.java");
     super.onCreateOptionsMenu(paramMenu);
-      this.getMenuInflater().inflate(menu.on_options, paramMenu);
+      getMenuInflater().inflate(R.menu.on_options, paramMenu);
     return true;
   }
 
   public boolean onOptionsItemSelected(MenuItem paramMenuItem)
   {
+      this.log("entered onOptionsItemSelected within SuspendOn.java");
     switch (paramMenuItem.getItemId())
     {
     default:
       return false;
-    case layout.help:
-        this.startActivity(new Intent(this, Help.class));
+    case R.layout.help:
+        startActivity(new Intent(this, Help.class));
       return true;
     }
 
   }
+  private void log(String msg)
+  {
+      try {
+          Thread.sleep(500);
+      }
+      catch (InterruptedException e) {
+          e.printStackTrace();
+      }
+      Log.i(SuspendOn.TAG, msg);
+
+  }
+
 }
