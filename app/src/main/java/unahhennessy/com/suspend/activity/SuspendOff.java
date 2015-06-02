@@ -5,11 +5,9 @@ package unahhennessy.com.suspend.activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
 import android.app.Fragment;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -17,16 +15,11 @@ import android.os.CountDownTimer;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import unahhennessy.com.suspend.R;
-import unahhennessy.com.suspend.R.drawable;
-import unahhennessy.com.suspend.R.id;
-import unahhennessy.com.suspend.R.layout;
-import unahhennessy.com.suspend.R.menu;
 import unahhennessy.com.suspend.constants.AppConstants;
 import unahhennessy.com.suspend.util.ProjectUtil;
 public class SuspendOff   extends Activity {
@@ -55,7 +48,7 @@ public class SuspendOff   extends Activity {
     {
       Intent localIntent = new Intent(this, SuspendOn.class);
       localIntent.addFlags(67108864);
-        this.startActivity(localIntent);
+        startActivity(localIntent);
       return;
     } catch (Exception localException) {
       ProjectUtil.writeErrorLog(this, localException.getMessage());
@@ -63,57 +56,57 @@ public class SuspendOff   extends Activity {
   }
 
   private void handlePopup() {
-      mCross.setVisibility(View.GONE);
-      mPopup.setVisibility(View.GONE);
-      mPopupText.setVisibility(View.GONE);
-    Editor localEditor = pref.edit();
+      this.mCross.setVisibility(View.GONE);
+      this.mPopup.setVisibility(View.GONE);
+      this.mPopupText.setVisibility(View.GONE);
+    SharedPreferences.Editor localEditor = this.pref.edit();
     localEditor.putBoolean("is_suspend_off_popup_shown", true);
     localEditor.commit();
   }
 
   private void setAppIcon() {
-      mMusicApp = pref.getString("music_pkg", "");
-      mNavigationApp = pref.getString("navigation_pkg", "");
-    if (mMusicApp == null || mMusicApp.trim().length() == 0) {
-        mMusic.setBackgroundResource(drawable.musicdisablesuspend);
+      this.mMusicApp = this.pref.getString("music_pkg", "");
+      this.mNavigationApp = this.pref.getString("navigation_pkg", "");
+    if (this.mMusicApp == null || this.mMusicApp.trim().length() == 0) {
+        this.mMusic.setBackgroundResource(R.drawable.musicdisablesuspend);
     }
-    if (mNavigationApp == null || mNavigationApp.trim().length() == 0) {
-        mNavigation.setBackgroundResource(drawable.navigationdisablesuspend);
+    if (this.mNavigationApp == null || this.mNavigationApp.trim().length() == 0) {
+        this.mNavigation.setBackgroundResource(R.drawable.navigationdisablesuspend);
     }
-      mMusic.setBackgroundResource(drawable.image_music_selector);
-      mNavigation.setBackgroundResource(drawable.image_navigation_selector);
+      this.mMusic.setBackgroundResource(R.drawable.image_music_selector);
+      this.mNavigation.setBackgroundResource(R.drawable.image_navigation_selector);
     return;
   }
 
   protected void onActivityResult(int paramInt1, int paramInt2, Intent paramIntent) {
     super.onActivityResult(paramInt1, paramInt2, paramIntent);
     if (paramInt2 == -1 && paramIntent.getExtras().getBoolean("emergency")) {
-        this.finish();
+        finish();
     }
   }
 
   protected void onCreate(Bundle paramBundle) {
     super.onCreate(paramBundle);
-      this.setContentView(layout.suspendoff);
+      setContentView(R.layout.suspendoff);
 
-      mPkgManager = this.getPackageManager();
-      pref = this.getSharedPreferences(AppConstants.SUSPEND_PREF, 0);
-      mMusic = (ImageView) this.findViewById(id.image_music);
-      mNavigation = (ImageView) this.findViewById(id.image_navigation);
-      mEmergency = (ImageView) this.findViewById(id.image_emergency);
-      mSetting = (ImageView) this.findViewById(id.image_setting);
-      mCross = (ImageView) this.findViewById(id.image_cross);
-      mPopup = (ImageView) this.findViewById(id.image_popup);
-      mSuspendOn = (ImageView) this.findViewById(id.image_suspend_off_clickable);
-      mPopupText = (TextView) this.findViewById(id.text_popup);
-    if (pref.getBoolean("is_suspend_on", false)) {
-        this.activate();
-        this.finish();
+      this.mPkgManager = getPackageManager();
+      this.pref = getSharedPreferences(AppConstants.SUSPEND_PREF, 0);
+      this.mMusic = (ImageView) findViewById(R.id.image_music);
+      this.mNavigation = (ImageView) findViewById(R.id.image_navigation);
+      this.mEmergency = (ImageView) findViewById(R.id.image_emergency);
+      this.mSetting = (ImageView) findViewById(R.id.image_setting);
+      this.mCross = (ImageView) findViewById(R.id.image_cross);
+      this.mPopup = (ImageView) findViewById(R.id.image_popup);
+      this.mSuspendOn = (ImageView) findViewById(R.id.image_suspend_off_clickable);
+      this.mPopupText = (TextView) findViewById(R.id.text_popup);
+    if (this.pref.getBoolean("is_suspend_on", false)) {
+        activate();
+        finish();
     }
-    if (!pref.getBoolean("is_suspend_off_popup_shown", false)) {
+    if (!this.pref.getBoolean("is_suspend_off_popup_shown", false)) {
       new CountDownTimer(4000L, 500L) {
         public void onFinish() {
-            handlePopup();
+            SuspendOff.this.handlePopup();
         }
 
         public void onTick(long paramAnonymousLong) {
@@ -122,60 +115,61 @@ public class SuspendOff   extends Activity {
     }
     for (; ; )
     {
-        mEmergency.setOnClickListener(new OnClickListener() {
+        this.mEmergency.setOnClickListener(new View.OnClickListener() {
             public void onClick(View paramAnonymousView) {
-                onCreateDialog(1);
+                SuspendOff.this.onCreateDialog(1);
             }
         });
-        mSetting.setOnClickListener(new OnClickListener() {
+        this.mSetting.setOnClickListener(new View.OnClickListener() {
             public void onClick(View paramAnonymousView) {
-                startActivity(new Intent(SuspendOff.this, Settings.class));
+                SuspendOff.this.startActivity(new Intent(SuspendOff.this, Settings.class));
             }
         });
-        mCross.setOnClickListener(new OnClickListener() {
+        this.mCross.setOnClickListener(new View.OnClickListener() {
             public void onClick(View paramAnonymousView) {
-                handlePopup();
-            }
-        });
-        mSuspendOn.setOnClickListener(new OnClickListener() {
-            public void onClick(View paramAnonymousView) {
-                isSMS = pref.getBoolean("is_sms_enabled", false);
-                isMMS = pref.getBoolean("is_mms_enabled", false);
-                isWHATSAPP = pref.getBoolean("is_whatsapp_enabled", false);
-                isPhone = pref.getBoolean("is_phone_enabled", false);
-                if (!isSMS && !isMMS && !isWHATSAPP && !isPhone) {
-                    onCreateDialog(2);
-                    return;
-                }
-                activate();
-                finish();
+                SuspendOff.this.handlePopup();
             }
         });
 
-        mMusic.setOnClickListener(new OnClickListener() {
+        this.mSuspendOn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View paramAnonymousView) {
-                if (mMusicApp != null && mMusicApp.length() > 0) {
-                    ProjectUtil.launchApp(SuspendOff.this, mMusicApp);
+                SuspendOff.this.isSMS = SuspendOff.this.pref.getBoolean("is_sms_enabled", false);
+                SuspendOff.this.isMMS = SuspendOff.this.pref.getBoolean("is_mms_enabled", false);
+                SuspendOff.this.isWHATSAPP = SuspendOff.this.pref.getBoolean("is_whatsapp_enabled", false);
+                SuspendOff.this.isPhone = SuspendOff.this.pref.getBoolean("is_phone_enabled", false);
+                if (!SuspendOff.this.isSMS && !SuspendOff.this.isMMS && !SuspendOff.this.isWHATSAPP && !SuspendOff.this.isPhone) {
+                    SuspendOff.this.onCreateDialog(2);
+                    return;
+                }
+                SuspendOff.this.activate();
+                SuspendOff.this.finish();
+            }
+        });
+
+        this.mMusic.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View paramAnonymousView) {
+                if (SuspendOff.this.mMusicApp != null && SuspendOff.this.mMusicApp.length() > 0) {
+                    ProjectUtil.launchApp(SuspendOff.this, SuspendOff.this.mMusicApp);
                 }
             }
         });
-        mNavigation.setOnClickListener(new OnClickListener() {
+        this.mNavigation.setOnClickListener(new View.OnClickListener() {
             public void onClick(View paramAnonymousView) {
-                if (mNavigationApp != null && mNavigationApp.length() > 0) {
-                    ProjectUtil.launchApp(SuspendOff.this, mNavigationApp);
+                if (SuspendOff.this.mNavigationApp != null && SuspendOff.this.mNavigationApp.length() > 0) {
+                    ProjectUtil.launchApp(SuspendOff.this, SuspendOff.this.mNavigationApp);
                 }
             }
         });
-        isSMS = pref.getBoolean("is_sms_enabled", false);
-        isMMS = pref.getBoolean("is_mms_enabled", false);
-        isWHATSAPP = pref.getBoolean("is_whatsapp_enabled", false);
-        isPhone = pref.getBoolean("is_phone_enabled", false);
-      if (!isSMS && !isMMS && !isWHATSAPP && !isPhone) {
-          this.onCreateDialog(2);
+        this.isSMS = this.pref.getBoolean("is_sms_enabled", false);
+        this.isMMS = this.pref.getBoolean("is_mms_enabled", false);
+        this.isWHATSAPP = this.pref.getBoolean("is_whatsapp_enabled", false);
+        this.isPhone = this.pref.getBoolean("is_phone_enabled", false);
+      if (!this.isSMS && !this.isMMS && !this.isWHATSAPP && !this.isPhone) {
+          onCreateDialog(2);
       }
-        mCross.setVisibility(View.INVISIBLE);
-        mPopup.setVisibility(View.INVISIBLE);
-        mPopupText.setVisibility(View.INVISIBLE);
+        this.mCross.setVisibility(View.INVISIBLE);
+        this.mPopup.setVisibility(View.INVISIBLE);
+        this.mPopupText.setVisibility(View.INVISIBLE);
       return;
 
     }
@@ -184,44 +178,44 @@ public class SuspendOff   extends Activity {
   protected Fragment fragmentCreateDialog(int paramInt)
 
   {
-    AlertDialog myalert = new Builder(this).create();
+    AlertDialog myalert = new AlertDialog.Builder(this).create();
     if (paramInt == 1)
-    { myalert.findViewById(id.option1_layout);
+    { myalert.findViewById(R.id.option1_layout);
 
-      Button button2 = (Button) this.findViewById(id.button_No);
-      Button button3 = (Button) this.findViewById(id.button_yes);
-      button2.setOnClickListener(new OnClickListener()
+      Button button2 = (Button) findViewById(R.id.button_No);
+      Button button3 = (Button) findViewById(R.id.button_yes);
+      button2.setOnClickListener(new View.OnClickListener()
       {
         public void onClick(View paramAnonymousView)
         {
 
 
-            removeDialog(1);
+            SuspendOff.this.removeDialog(1);
         }
       });
-     button3.setOnClickListener(new OnClickListener()
+     button3.setOnClickListener(new View.OnClickListener()
       {
         public void onClick(View paramAnonymousView)
         {
           Intent localIntent = new Intent("android.intent.action.CALL");
           localIntent.addFlags(268435456);
           localIntent.setData(Uri.parse("tel:112"));
-            startActivity(localIntent);
-            removeDialog(1);
+            SuspendOff.this.startActivity(localIntent);
+            SuspendOff.this.removeDialog(1);
           System.exit(0);
         }
       });
-      myalert.setView(myalert.findViewById(id.option1_layout));
+      myalert.setView(myalert.findViewById(R.id.option1_layout));
     }
-    myalert.setView(myalert.findViewById(id.option1_layout));
+    myalert.setView(myalert.findViewById(R.id.option1_layout));
 
-    return this.fragmentCreateDialog(1);
+    return fragmentCreateDialog(1);
   }
 
   public boolean onCreateOptionsMenu(Menu paramMenu)
   {
     super.onCreateOptionsMenu(paramMenu);
-      this.getMenuInflater().inflate(menu.off_options, paramMenu);
+      getMenuInflater().inflate(R.menu.off_options, paramMenu);
     return true;
   }
 
@@ -231,11 +225,11 @@ public class SuspendOff   extends Activity {
     {
     default:
       return false;
-    case id.help:
-        this.startActivity(new Intent(this, Help.class));
+    case R.id.help:
+        startActivity(new Intent(this, Help.class));
       return true;
-    case id.about:
-        this.startActivity(new Intent(this, About.class));
+    case R.id.about:
+        startActivity(new Intent(this, About.class));
       return true;
     }
 
@@ -245,6 +239,6 @@ public class SuspendOff   extends Activity {
   protected void onResume()
   {
     super.onResume();
-      this.setAppIcon();
+      setAppIcon();
   }
 }

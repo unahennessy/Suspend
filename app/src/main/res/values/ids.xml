@@ -75,10 +75,12 @@
     <item type="id" name="msg">false</item>
     <item type="id" name="url">false</item>
     <item type="id" name="music_list">false</item>
+    <item type="id" name="music_text">false</item>
     <item type="id" name="button_off">false</item>
     <item type="id" name="image_icon">false</item>
     <item type="id" name="item_check">false</item>
     <item type="id" name="navigation_list">false</item>
+    <item type="id" name="navigation_text">false</item>
     <item type="id" name="logo">false</item>
     <item type="id" name="image_logo">false</item>
     <item type="id" name="app_logo">false</item>
