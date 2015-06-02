@@ -42,7 +42,7 @@ public class SuspendOn  extends Activity
   private final int NAVIGATION_DIALOG = 2;
   private AudioManager mAudioManager;
   private ImageView mCross;
-  private ImageView mSuspendOff;
+  private ImageView mSuspendOn;
   private ImageView mEmergency;
   private ImageView mMusic;
   private ImageView mNavigation;
@@ -151,7 +151,7 @@ public class SuspendOn  extends Activity
       mNavigation = (ImageView) this.findViewById(R.id.image_navigation);
       mCross = (ImageView) this.findViewById(R.id.image_cross);
       mPopup = (ImageView) this.findViewById(R.id.image_popup);
-      mSuspendOff = (ImageView) this.findViewById(R.id.image_suspend_off);
+      mSuspendOn = (ImageView) this.findViewById(id.image_suspend_off_clickable);
       mEmergency = (ImageView) this.findViewById(R.id.image_emergency);
       mPopupText = (TextView) this.findViewById(R.id.text_popup);
     if (pref.getBoolean("is_suspend_on_popup_shown", false))
@@ -175,7 +175,7 @@ public class SuspendOn  extends Activity
               mPopupText.setVisibility(View.INVISIBLE);
           }
       });
-      mSuspendOff.setOnClickListener(new OnClickListener() {
+      this.mSuspendOn.setOnClickListener(new OnClickListener() {
           public void onClick(View paramAnonymousView) {
               vibrate();
               SuspendOff();

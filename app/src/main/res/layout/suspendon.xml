@@ -4,6 +4,7 @@
 <!-- xml to display Suspend On screen -->
 <RelativeLayout android:background="@color/white" android:layout_width="fill_parent" android:layout_height="fill_parent"
   xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- emergency image -->
     <ImageView android:id="@id/image_emergency"
         android:focusable="true"
         android:clickable="true"
@@ -11,12 +12,14 @@
         android:layout_height="wrap_content"
         android:src="@layout/image_emergency_selector"
         android:layout_alignTop="@id/image_setting"/>
+    <!-- onsuspend image -->
     <ImageView android:id="@id/image_setting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/settingdisablesuspend"
         android:layout_toLeftOf="@id/image_navigation"
         android:layout_toStartOf="@id/image_navigation" />
+    <!-- onsuspend image -->
     <ImageView
         android:id="@id/image_suspend_on"
         android:layout_width="fill_parent"
@@ -24,20 +27,23 @@
         android:layout_marginTop="20.0dip"
         android:src="@drawable/on_onsuspend"
         android:layout_centerInParent="true" />
+    <!-- onsuspend image clickable -->
     <ImageView android:id="@id/image_suspend_on_clickable"
         android:background="@layout/image_on_suspend_selector"
         android:focusable="true"
         android:clickable="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/text_popup"
+        android:layout_alignTop="@id/image_suspend_on"
         android:layout_centerHorizontal="true" />
+    <!-- popup image -->
     <ImageView android:id="@id/image_popup"
         android:background="@drawable/suspend_on_popup"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/image_music"
         android:layout_centerHorizontal="true" />
+    <!-- cross image -->
     <ImageView android:id="@id/image_cross"
         android:focusable="true"
         android:clickable="true"
@@ -47,25 +53,26 @@
         android:layout_alignTop="@id/image_setting"
         android:layout_alignRight="@id/image_navigation"
         android:layout_alignEnd="@id/image_navigation" />
+    <!-- text for popup -->
     <TextView android:textSize="14.0dip"
         android:textColor="@color/settingFontColour"
         android:id="@id/text_popup" android:paddingLeft="15.0dip"
         android:paddingTop="20.0dip" android:paddingRight="15.0dip"
         android:layout_width="wrap_content" android:layout_height="wrap_content"
         android:text="@string/on_popup_message"
-        android:layout_toRightOf="@id/image_emergency"
-        android:layout_toStartOf="@id/image_cross"
-        android:layout_alignTop="@id/image_popup"
-        android:layout_toLeftOf="@id/image_cross" />
+        android:layout_below="@id/image_suspend_on"
+        android:layout_centerHorizontal="true" />
+    <!-- music image -->
        <ImageView android:id="@id/image_music"
            android:focusable="true"
            android:clickable="true"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
         android:src="@layout/image_music_selector"
-        android:layout_alignTop="@id/image_navigation"
-        android:layout_alignLeft="@id/image_suspend_on_clickable"
-        android:layout_alignStart="@id/image_suspend_on_clickable" />
+           android:layout_alignBottom="@id/image_navigation"
+           android:layout_toLeftOf="@id/image_suspend_on_clickable"
+           android:layout_toStartOf="@id/image_suspend_on_clickable" />
+    <!-- navigation image -->
     <ImageView android:id="@id/image_navigation"
         android:focusable="true"
         android:clickable="true"

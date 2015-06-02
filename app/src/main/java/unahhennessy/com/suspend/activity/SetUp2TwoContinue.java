@@ -20,16 +20,13 @@ public class SetUp2TwoContinue extends Activity
   {
     super.onCreate(paramBundle);
     setContentView(R.layout.setuptwocontinue);
-    this.mContinue = ((Button)findViewById(R.id.button_continue));
-    this.mContinue.setOnClickListener(new View.OnClickListener()
-    {
-      public void onClick(View paramAnonymousView)
-      {
+    this.mContinue = (Button) findViewById(R.id.button_continue);
+    this.mContinue.setOnClickListener(new View.OnClickListener() {
+      public void onClick(View paramAnonymousView) {
 
-        SetUp2TwoContinue.this.startActivity(new Intent(SetUp2TwoContinue.this, SuspendOn.class));
+        SetUp2TwoContinue.this.startActivity(new Intent(SetUp2TwoContinue.this, SuspendOff.class));
         SetUp2TwoContinue.this.finish();
       }
     });
   }
 }
-
