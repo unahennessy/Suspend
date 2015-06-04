@@ -1,6 +1,7 @@
 package unahhennessy.com.suspend.activity;
 /**
  * Created by unahe_000 on 21/05/2015.
+ *
  */
 import android.app.Activity;
 import android.content.Intent;
@@ -46,9 +47,11 @@ public class About extends Activity
             default:
                 return false;
             case R.id.button_close:
+                // leave when close button pressed
                 About.this.finish();
                 return true;
             case R.id.button_back:
+                // go back to previous activity when back button pressed
                 startActivity(new Intent(this, HomeScreen.class));
                 About.this.finish();
                 return true;
