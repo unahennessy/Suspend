@@ -1,13 +1,17 @@
 package unahhennessy.com.suspend.taskmanager;
+/**
+ * Created by unahe_000 on 21/05/2015 ${PACKAGE_NAME} Suspend.
+ *
+ */
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-
 import java.util.Iterator;
 import java.util.List;
 
 public class IntentList
+    // get a list of all intents in Suspend
 {
   private static List<ResolveInfo> infoList = null;
 

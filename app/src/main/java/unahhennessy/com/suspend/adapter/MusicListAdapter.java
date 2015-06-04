@@ -1,4 +1,7 @@
 package unahhennessy.com.suspend.adapter;
+/**
+ * Created by unahe_000 on 01/06/2015.
+ */
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -97,7 +100,7 @@ public class MusicListAdapter
         MusicListAdapter.this.mCheckedValue = MusicListAdapter.this.getItem(paramInt).toString().trim();
         if (AppConstants.MUSIC_NAVIGATION == 1)
         {
-          MusicListAdapter.this.mEdit.putString("music_pkg", ((PackageInfo)MusicListAdapter.this.mPackageInfoList.get(paramInt)).packageName);
+          MusicListAdapter.this.mEdit.putString("music_pkg", (MusicListAdapter.this.mPackageInfoList.get(paramInt)).packageName);
           MusicListAdapter.this.mEdit.putString("music_app", MusicListAdapter.this.getItem(paramInt).toString());
         }
         for (;;)

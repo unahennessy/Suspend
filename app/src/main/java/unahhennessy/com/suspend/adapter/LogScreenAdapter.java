@@ -1,16 +1,23 @@
 package unahhennessy.com.suspend.adapter;
 
+/**
+ * Created by unahe_000 on 01/06/2015.
+ */
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
 import java.util.List;
 
-public class LogScreenAdapter
-  extends BaseAdapter
+import unahhennessy.com.suspend.R;
+
+public class LogScreenAdapter   extends BaseAdapter
 {
+    // Log screen adapter to display logs
   private Context mContext;
   private List<String> mValuestoBeShown;
   
@@ -46,9 +53,9 @@ public class LogScreenAdapter
     ViewHolder localViewHolder = null;
     if (paramView == null)
     {
-      paramView = ((LayoutInflater)this.mContext.getSystemService("layout_inflater")).inflate(2130903069, null);
+      paramView = ((LayoutInflater)this.mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.log_list_item, null);
       localViewHolder = new ViewHolder();
-      localViewHolder.log_text = ((TextView)paramView.findViewById(2131296348));
+      localViewHolder.log_text = ((TextView)paramView.findViewById(R.id.text_log));
       paramView.setTag(localViewHolder);
     }
     for (;;)

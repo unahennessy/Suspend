@@ -1,4 +1,8 @@
 package unahhennessy.com.suspend.receiver;
+/**
+ * Created by unahe_000 on 21/05/2015 ${PACKAGE_NAME} Suspend.
+ *
+ */
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -10,7 +14,8 @@ import unahhennessy.com.suspend.app.SuspendApplication;
 import unahhennessy.com.suspend.constants.AppConstants;
 
 public class PhoneStateReceiver  extends BroadcastReceiver
-{
+{ // this is a phone state receiver class for Suspend
+  // i want this used only when there is no bluetooth
   private SharedPreferences pref;
   
   public void onReceive(final Context paramContext, Intent paramIntent)

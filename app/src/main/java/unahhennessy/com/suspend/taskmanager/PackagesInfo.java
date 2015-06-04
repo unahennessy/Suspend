@@ -1,4 +1,8 @@
 package unahhennessy.com.suspend.taskmanager;
+/**
+ * Created by unahe_000 on 21/05/2015 ${PACKAGE_NAME} Suspend.
+ *
+ */
 
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
@@ -11,7 +15,7 @@ public class PackagesInfo
 
   public PackagesInfo(Context paramContext)
   {
-    //ths gets all the apps on the drivers phone including deleted apps using flag 8192which is  GET_UNINSTALLED_PACKAGES
+    //this gets all the apps on the drivers phone including deleted apps using flag 8192which is  GET_UNINSTALLED_PACKAGES
     this.appList = paramContext.getApplicationContext().getPackageManager().getInstalledApplications(8192);
   }
 

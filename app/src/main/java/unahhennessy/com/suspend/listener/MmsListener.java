@@ -9,9 +9,8 @@ import unahhennessy.com.suspend.constants.AppConstants;
 import unahhennessy.com.suspend.util.ProjectUtil;
 import unahhennessy.com.suspend.R;
 
-public class MmsListener
-  extends BroadcastReceiver
-{
+public class MmsListener   extends BroadcastReceiver
+{ //a listener for mms received - gonna just send back a text
   private final String DEFAULT_MSG = "Driving so cant reply. I will have a look later when I'm not driving.";
   private final String TAG = "SuspendReply: ";
   private SharedPreferences preferences;

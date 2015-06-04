@@ -1,4 +1,8 @@
 package unahhennessy.com.suspend.listener;
+/**
+ * Created by unahe_000 on 21/05/2015 ${PACKAGE_NAME} Suspend.
+ *
+ */
 
 import android.app.Service;
 import android.content.Intent;
@@ -15,7 +19,7 @@ import unahhennessy.com.suspend.constants.AppConstants;
 import unahhennessy.com.suspend.util.ProjectUtil;
 
 public class PhoneListener extends Service
-{
+{ // a listener for calls received
   public static StateListener phoneStateListener = null;
   public static TelephonyManager telephonymanager = null;
   private final String DEFAULT_MSG = "Driving at the mo. Talk later";

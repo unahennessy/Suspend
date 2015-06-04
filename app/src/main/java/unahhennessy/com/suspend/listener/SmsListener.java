@@ -1,4 +1,8 @@
 package unahhennessy.com.suspend.listener;
+/**
+ * Created by unahe_000 on 21/05/2015 ${PACKAGE_NAME} Suspend.
+ *
+ */
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -12,7 +16,7 @@ import unahhennessy.com.suspend.constants.AppConstants;
 import unahhennessy.com.suspend.util.ProjectUtil;
 
 public class SmsListener  extends BroadcastReceiver
-{
+{ // the smslistener i am using to send texts back to people who text the driver
   private final String DEFAULT_MSG = "Driving so can't text. Will text when I'm stopped!";
   private final String TAG = "Suspend Reply: ";
   private SharedPreferences preferences;

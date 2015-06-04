@@ -1,6 +1,7 @@
 package unahhennessy.com.suspend.activity;
 /**
- * Created by unahe_000 on 21/05/2015.
+ * Created by unahe_000 on 21/05/2015 ${PACKAGE_NAME} Suspend.
+ *
  */
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -14,17 +15,20 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import unahhennessy.com.suspend.R;
-import unahhennessy.com.suspend.util.ProjectUtil;
-import unahhennessy.com.suspend.util.SuspendDbHelper;
+
 import java.util.List;
+
+import unahhennessy.com.suspend.R;
 import unahhennessy.com.suspend.adapter.LogScreenAdapter;
 import unahhennessy.com.suspend.constants.AppConstants;
 import unahhennessy.com.suspend.emailclient.GMailSender;
-import unahhennessy.com.suspend.R;
+import unahhennessy.com.suspend.util.ProjectUtil;
+import unahhennessy.com.suspend.util.SuspendDbHelper;
 
 public class LogScreen   extends Activity
 {
+
+//this is a log activity for errors I want errors emailed to myself so I can trace the faults and fix them.
   Runnable dismissDialogWithFailure = new Runnable()
   {
     public void run()
@@ -37,7 +41,10 @@ public class LogScreen   extends Activity
         Toast.makeText(LogScreen.this, "Logs sending failed.", Toast.LENGTH_LONG).show();
         return;
       }
-      catch (Exception localException) {}
+      catch (Exception localException)
+      {
+          localException.printStackTrace();
+      }
     }
   };
   Runnable dismissDialogWithSuccess = new Runnable()
@@ -55,7 +62,10 @@ public class LogScreen   extends Activity
         LogScreen.this.mAdapter.notifyDataSetChanged();
         return;
       }
-      catch (Exception localException) {}
+      catch (Exception localException)
+      {
+          localException.printStackTrace();
+      }
     }
   };
   private List<String> logs;
@@ -84,48 +94,49 @@ public class LogScreen   extends Activity
 
   protected void onCreate(Bundle paramBundle)
   {
-    super.onCreate(paramBundle);
-    setContentView(R.layout.logscreen);
-    this.mList = ((ListView)findViewById(R.id.log_list));
-    this.mList.setCacheColorHint(0);
-    this.memptyView = new TextView(this);
-    this.memptyView.setLayoutParams(new ViewGroup.LayoutParams(-1, -1));
-    this.memptyView.setText("No Log Found.");
-    this.memptyView.setTextColor(getResources().getColor(R.color.black));
-    this.memptyView.setTextSize(18.0F);
-    this.memptyView.setTextColor(getResources().getColor(R.color.white));
-    this.memptyView.setVisibility(View.VISIBLE);
-    this.memptyView.setGravity(1);
-    ((ViewGroup)this.mList.getParent()).addView(this.memptyView);
-    if (AppConstants.SUSPEND_DB == null) {
-      AppConstants.SUSPEND_DB = new SuspendDbHelper(this);
-    }
-    this.logs = AppConstants.SUSPEND_DB.fetchAllLogs();
-    this.mAdapter = new LogScreenAdapter(this, this.logs);
-    this.mList.setAdapter(this.mAdapter);
-    this.mList.setEmptyView(this.memptyView);
+        super.onCreate(paramBundle);
+        setContentView(R.layout.logscreen);
+        this.mList = ((ListView)findViewById(R.id.log_list));
+        this.mList.setCacheColorHint(0);
+        this.memptyView = new TextView(this);
+        this.memptyView.setLayoutParams(new ViewGroup.LayoutParams(-1, -1));
+        this.memptyView.setText("No Log Found.");
+        this.memptyView.setTextColor(getResources().getColor(R.color.black));
+        this.memptyView.setTextSize(18.0F);
+        this.memptyView.setTextColor(getResources().getColor(R.color.white));
+        this.memptyView.setVisibility(View.VISIBLE);
+        this.memptyView.setGravity(1);
+        ((ViewGroup)this.mList.getParent()).addView(this.memptyView);
+        if (AppConstants.SUSPEND_DB == null)
+        {
+          AppConstants.SUSPEND_DB = new SuspendDbHelper(this);
+        }
+        this.logs = AppConstants.SUSPEND_DB.fetchAllLogs();
+        this.mAdapter = new LogScreenAdapter(this, this.logs);
+        this.mList.setAdapter(this.mAdapter);
+        this.mList.setEmptyView(this.memptyView);
   }
 
-  public boolean onCreateOptionsMenu(Menu paramMenu)
-  {
-    super.onCreateOptionsMenu(paramMenu);
-    getMenuInflater().inflate(R.menu.log_menu, paramMenu);
-    return true;
-  }
-
-  public boolean onOptionsItemSelected(MenuItem paramMenuItem)
-  {
-    switch (paramMenuItem.getItemId())
-    {  default:  return false;
-        case 1: {
-    this.mProgressDialog = ProgressDialog.show(this, "", "Please wait, Log Sending..");
-    new Thread(new Runnable()
-    {
-      public void run()
+      public boolean onCreateOptionsMenu(Menu paramMenu)
       {
-        LogScreen.this.sendLog();
+        super.onCreateOptionsMenu(paramMenu);
+        getMenuInflater().inflate(R.menu.log_menu, paramMenu);
+        return true;
       }
-    }).start();
-    return true;}
-  }}
+
+      public boolean onOptionsItemSelected(MenuItem paramMenuItem)
+      {
+        switch (paramMenuItem.getItemId())
+        {  default:  return false;
+            case 1: {
+        this.mProgressDialog = ProgressDialog.show(this, "", "Please wait, Log Sending..");
+        new Thread(new Runnable()
+        {
+          public void run()
+          {
+            LogScreen.this.sendLog();
+          }
+        }).start();
+        return true;}
+      }}
 }

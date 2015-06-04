@@ -16,17 +16,14 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import java.util.ArrayList;
-
 import unahhennessy.com.suspend.R;
 import unahhennessy.com.suspend.adapter.MusicListAdapter;
 import unahhennessy.com.suspend.constants.AppConstants;
 import unahhennessy.com.suspend.taskmanager.GetInstalledApps;
 import unahhennessy.com.suspend.util.ProjectUtil;
 
-public class Music
-  extends Activity
+public class Music extends Activity
 {
   private MusicListAdapter mAdapter;
   private ArrayList<PackageInfo> mAdapterValue;

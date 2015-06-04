@@ -1,5 +1,8 @@
 package unahhennessy.com.suspend.adapter;
-
+/**
+ * Created by unahe_000 on 01/06/2015 ${PACKAGE_NAME} Suspend.
+ *
+ */
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -56,31 +59,25 @@ public class SetUp3ThreeScreenListAdapter  extends BaseAdapter
   public View getView(int paramInt, View paramView, ViewGroup paramViewGroup)
   {
     ViewHolder localViewHolder = null;
-    if (paramView == null)
-    {
-      paramView = ((LayoutInflater)this.mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.setup3_list_items, null);
-      localViewHolder = new ViewHolder();
-      localViewHolder.name = ((TextView)paramView.findViewById(R.id.text_name));
-      localViewHolder.num = ((TextView)paramView.findViewById(R.id.text_num));
-      localViewHolder.arrow = ((ImageView)paramView.findViewById(R.id.arrow));
-      paramView.setTag(localViewHolder);
-      if (!this.mName.get(paramInt).toString().equalsIgnoreCase("Emergency"))
-      {
-        // do someething break; //label162;
-      }
-      localViewHolder.arrow.setVisibility(View.GONE);
-    }
-    for (;;)
-    {
-      localViewHolder.name.setText(this.mName.get(paramInt).toString());
-      localViewHolder.num.setText(this.mNumber.get(paramInt).toString());
-      localViewHolder = (ViewHolder)paramView.getTag();
-
-      localViewHolder.arrow.setVisibility(View.VISIBLE);
-      return paramView;
-
-
-    }
+        if (paramView == null)
+        {
+          paramView = ((LayoutInflater)this.mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.setup3_list_items, null);
+          localViewHolder = new ViewHolder();
+          localViewHolder.name = ((TextView)paramView.findViewById(R.id.text_name));
+          localViewHolder.num = ((TextView)paramView.findViewById(R.id.text_num));
+          localViewHolder.arrow = ((ImageView)paramView.findViewById(R.id.arrow));
+          paramView.setTag(localViewHolder);
+          if (this.mName.get(paramInt).toString().equalsIgnoreCase("Emergency"))
+            localViewHolder.arrow.setVisibility(View.GONE);
+        }
+        for (;;)
+        {
+          localViewHolder.name.setText(this.mName.get(paramInt).toString());
+          localViewHolder.num.setText(this.mNumber.get(paramInt).toString());
+          localViewHolder = (ViewHolder)paramView.getTag();
+          localViewHolder.arrow.setVisibility(View.VISIBLE);
+          return paramView;
+        }
 
   }
   
