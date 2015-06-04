@@ -48,9 +48,11 @@ public class Agree_Setup extends Activity
             default:
                 return false;
             case R.id.button_cancel:
+                // person does not want to accept terms and conditions so they cancel and leave the app
                 Agree_Setup.this.finish();
                 return true;
             case R.id.button_accept:
+                // person accepts terms and conditions and the welcomescreen class loads
                 startActivity(new Intent(this, WelcomeScreen.class));
                 Agree_Setup.this.finish();
                 return true;

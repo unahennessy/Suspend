@@ -15,6 +15,7 @@ import unahhennessy.com.suspend.constants.AppConstants;
 
 public class Help extends Activity
 {
+  // variables declared that are used in the help screen
   private Button mClose;
   private TextView mMusicUrl;
   private TextView mNavigationUrl;
@@ -43,17 +44,20 @@ public class Help extends Activity
       this.mClose.setOnClickListener(new View.OnClickListener()
       {
         public void onClick(View paramAnonymousView)
-        {
+        { // close the help screen by leaving
           Help.this.finish();
         }
       });
       this.mMusicUrl.setOnClickListener(new View.OnClickListener() {
         public void onClick(View paramAnonymousView) {
+            // google play for music
           Help.this.launchUrl("http://www.googleplay.com");
         }
       });
-      this.mNavigationUrl.setOnClickListener(new View.OnClickListener() {
+      this.mNavigationUrl.setOnClickListener(
+              new View.OnClickListener() {
         public void onClick(View paramAnonymousView) {
+            // google maps for navigation
           Help.this.launchUrl("http://www.googlemaps.com");
         }
       });

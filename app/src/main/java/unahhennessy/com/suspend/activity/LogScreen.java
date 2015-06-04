@@ -23,8 +23,7 @@ import unahhennessy.com.suspend.constants.AppConstants;
 import unahhennessy.com.suspend.emailclient.GMailSender;
 import unahhennessy.com.suspend.R;
 
-public class LogScreen
-  extends Activity
+public class LogScreen   extends Activity
 {
   Runnable dismissDialogWithFailure = new Runnable()
   {
@@ -35,7 +34,7 @@ public class LogScreen
         if (LogScreen.this.mProgressDialog != null) {
           LogScreen.this.mProgressDialog.dismiss();
         }
-        Toast.makeText(LogScreen.this, "Logs sending failed.", 0).show();
+        Toast.makeText(LogScreen.this, "Logs sending failed.", Toast.LENGTH_LONG).show();
         return;
       }
       catch (Exception localException) {}
@@ -50,7 +49,7 @@ public class LogScreen
         if (LogScreen.this.mProgressDialog != null) {
           LogScreen.this.mProgressDialog.dismiss();
         }
-        Toast.makeText(LogScreen.this, "Logs sent successfully.", 0).show();
+        Toast.makeText(LogScreen.this, "Logs sent successfully.", Toast.LENGTH_LONG).show();
         AppConstants.SUSPEND_DB.deleteAllLogs();
         LogScreen.this.logs.clear();
         LogScreen.this.mAdapter.notifyDataSetChanged();
@@ -70,11 +69,11 @@ public class LogScreen
   {
     try
     {
-      /*GMailSender localGMailSender = new GMailSender("unahennessy@gmail.com", "unahennessy");
+      GMailSender localGMailSender = new GMailSender("unahennessy@gmail.com", "unahennessy");
       String str = "DeviceOS: " + Build.VERSION.RELEASE + ", DeviceModel: " + Build.MODEL + ", DeviceBrand: " + Build.BRAND + ", DeviceHost: " + Build.HOST + ", Application Version: " + ProjectUtil.getAppVersion(this);
       localGMailSender.sendMail("Android Suspend Logs " + ProjectUtil.currentTime(), this.logs.toString() + "\n\n" + str, "unahennessy@gmail.com", "suspend@gmail.com");
       this.mHandler.post(this.dismissDialogWithSuccess);
-      return;*/
+      return;
     }
     catch (Exception localException)
     {

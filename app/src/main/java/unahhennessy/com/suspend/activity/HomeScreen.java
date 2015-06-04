@@ -1,6 +1,7 @@
 package unahhennessy.com.suspend.activity;
 /**
- * Created by unahe_000 on 21/05/2015.
+ * Created by unahe_000 on 21/05/2015 ${PACKAGE_NAME} Suspend.
+ *
  */
 import android.app.Activity;
 import android.content.Intent;
@@ -15,7 +16,14 @@ import unahhennessy.com.suspend.R;
 import unahhennessy.com.suspend.util.SystemUiHider;
 
 public class HomeScreen extends Activity {
+    /*
+    *  The HomeScreen is the 1st activity in Suspend, It has 3 buttons About(when you press it you get more information about this app)
+    *  it has the Agree button which launches the Terms and Condtions Screen which have to be accepted by the driver
+    *  and it has a cancel button, so if a driver choses not to setup suspend they can leave.
 
+    */
+
+    // declare variables to be used in this activity
     private static final boolean AUTO_HIDE = true;
     private static final int AUTO_HIDE_DELAY_MILLIS = 3000;
     private static final boolean TOGGLE_ON_CLICK = true;
@@ -30,7 +38,7 @@ public class HomeScreen extends Activity {
 
 
     private void initializeCheckedValue()
-    {
+    {   // I want to use this to avoid going through all the settings everytime and instead go straight to SuspendOn
         this.mIsSettingsCheckbox_checked = this.pref.getBoolean("is_settings_checked", true);
         this.mSettingsCheck.setChecked(this.mIsSettingsCheckbox_checked);
        
@@ -62,7 +70,7 @@ public class HomeScreen extends Activity {
         super.onCreate(paramBundle);
         setContentView(R.layout.home);
         this.mSettingsCheck = ((CheckBox)findViewById(R.id.settingsok_checkbox));
-        //initialize listener
+        //initialize listener for settings checkbox
         this.mSettingsCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
         {
             public void onCheckedChanged(CompoundButton paramAnonymousCompoundButton, boolean paramAnonymousBoolean)
@@ -73,17 +81,19 @@ public class HomeScreen extends Activity {
         if (!mIsSettingsCheckbox_checked)
         {    HomeScreen.this.mSettingsCheck.setVisibility(View.INVISIBLE);
             this.mAbout = ((Button)findViewById(R.id.button_about));
-            this.mAbout.setOnClickListener(new View.OnClickListener() {
+            this.mAbout.setOnClickListener(new View.OnClickListener()
+            {
                 public void onClick(View paramAnonymousView)
-                {
+                { // call method onOptionsItemSelected using mAbout value
                     onOptionsItemSelected(mAbout);
                 }
             });
-            // set up listener on the settings button
+            // set up listener on the agree button
             this.mAgree = ((Button)findViewById(R.id.btn_agree));
             this.mAgree.setOnClickListener(new View.OnClickListener() {
+
                 public void onClick(View paramAnonymousView)
-                {
+                {// call method onOptionsItemSelected using mAgree value
                     onOptionsItemSelected(mAgree);
                 }
             });
@@ -92,6 +102,7 @@ public class HomeScreen extends Activity {
             this.mCancel.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View paramAnonymousView)
                 {
+                    // call method onOptionsItemSelected using mCancel value
                     onOptionsItemSelected(mCancel);
                 }
 
@@ -99,7 +110,8 @@ public class HomeScreen extends Activity {
         }
 
         if (mIsSettingsCheckbox_checked)
-        {
+        {  // this is what i hope to use when settings have been saved
+            //go directly to Suspend screen
             startActivity(new Intent(this, SuspendOff.class));
             HomeScreen.this.finish();
         }
@@ -112,7 +124,7 @@ public class HomeScreen extends Activity {
             this.mAbout = ((Button)findViewById(R.id.button_about));
             this.mAbout.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View paramAnonymousView)
-                {
+                {// call method onOptionsItemSelected using mAbout value
                     onOptionsItemSelected(mAbout);
                 }
             });
@@ -120,7 +132,7 @@ public class HomeScreen extends Activity {
             this.mAgree = ((Button)findViewById(R.id.btn_agree));
             this.mAgree.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View paramAnonymousView)
-                {
+                {// call method onOptionsItemSelected using mAgree value
                     onOptionsItemSelected(mAgree);
                 }
             });
@@ -128,14 +140,12 @@ public class HomeScreen extends Activity {
             this.mCancel = ((Button)findViewById(R.id.button_cancel));
             this.mCancel.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View paramAnonymousView)
-                {
+                {// call method onOptionsItemSelected using mCancel value
                     onOptionsItemSelected(mCancel);
                 }
 
             });
-
-    }
-        
+        }
 
 
     }
@@ -147,13 +157,16 @@ public class HomeScreen extends Activity {
             default:
                 return false;
             case R.id.button_cancel:
+                // cancel user ends session and we close this activity
                 HomeScreen.this.finish();
                 return true;
             case R.id.button_about:
+                // about user ends session and we close this activity and starts up activity About.class
             startActivity(new Intent(this, About.class));
                 HomeScreen.this.finish();
             return true;
             case R.id.btn_agree:
+                // agree user ends session and we close this activity and starts up activity Agree.class
                 startActivity(new Intent(this, Agree_Setup.class));
                 HomeScreen.this.finish();
                 return true;
