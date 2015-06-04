@@ -24,12 +24,12 @@
     <ImageView android:id="@id/image_bottom" android:background="@drawable/editmessagebottombackgroundsuspend"
         android:layout_width="fill_parent" android:layout_height="wrap_content"
         android:layout_below="@id/edit_message" />
-    <Button android:id="@id/button_save" android:background="@layout/btn_edit_save_selector"
+    <Button android:id="@id/button_save" android:background="@drawable/btn_edit_save_selector"
         android:layout_width="wrap_content" android:layout_height="wrap_content"
         android:layout_alignTop="@id/image_bottom"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
-    <Button android:id="@id/button_cancel" android:background="@layout/btn_edit_cancel_selector"
+    <Button android:id="@id/button_cancel" android:background="@drawable/btn_edit_cancel_selector"
         android:layout_width="wrap_content" android:layout_height="wrap_content"
         android:layout_marginRight="28dp"
         android:layout_alignTop="@id/image_bottom"

@@ -6,7 +6,7 @@
   xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- emergency image -->
     <ImageView android:id="@id/image_emergency" android:focusable="true" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:src="@layout/image_emergency_selector"
+        android:src="@drawable/image_emergency_selector"
         android:layout_alignBottom="@id/image_cross"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -16,7 +16,7 @@
         android:clickable="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@layout/image_setting_selector"
+        android:src="@drawable/image_setting_selector"
         android:layout_alignParentTop="true"
         android:layout_toLeftOf="@id/image_cross"
         android:layout_toStartOf="@id/image_cross" />
@@ -31,7 +31,7 @@
         android:layout_toStartOf="@id/image_navigation" />
     <!-- clickable off suspend image -->
     <ImageView android:id="@id/image_suspend_off_clickable"
-        android:background="@layout/image_off_suspend_selector"
+        android:background="@drawable/image_off_suspend_selector"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/image_suspend_off"
@@ -48,29 +48,38 @@
         android:layout_alignEnd="@id/image_navigation" />
     <!-- cross image in corner -->
     <ImageView android:id="@id/image_cross"
-        android:focusable="true" android:clickable="true"
+        android:focusable="true"
+        android:clickable="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@layout/image_cross_selector"
+        android:src="@drawable/image_cross_selector"
         android:layout_alignParentTop="true"
         android:layout_alignRight="@id/image_navigation"
         android:layout_alignEnd="@id/image_navigation" />
     <!-- text that goes into the popup -->
-    <TextView android:textSize="14.0dip" android:textColor="@color/topHeadFontColour" android:id="@+id/text_popup" android:paddingLeft="15.0dip" android:paddingTop="15.0dip" android:paddingRight="15.0dip" android:paddingBottom="15.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content"
+    <TextView
+        android:textSize="14.0dip"
+        android:textColor="@color/topHeadFontColour"
+        android:id="@+id/text_popup"
+        android:paddingLeft="15.0dip"
+        android:paddingTop="15.0dip"
+        android:paddingRight="15.0dip"
+        android:paddingBottom="15.0dip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/off_popup_message"
         android:layout_alignTop="@id/image_popup"
         android:layout_marginTop="33dp"
         android:layout_alignRight="@id/image_setting"
         android:layout_alignEnd="@id/image_setting"
-        android:layout_alignBottom="@id/image_suspend_on"
         android:layout_toRightOf="@id/image_emergency"
         android:layout_toEndOf="@id/image_emergency" />
     <!-- music image -->
     <ImageView android:id="@id/image_music" android:focusable="true" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:src="@layout/image_music_selector"
+        android:src="@drawable/image_music_selector"
         android:layout_alignParentBottom="true"
         android:layout_toLeftOf="@id/image_suspend_off"
         android:layout_toStartOf="@id/image_suspend_off" />
     <!-- navigation image -->
-    <ImageView android:id="@id/image_navigation" android:focusable="true" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="10.0dip" android:layout_marginBottom="10.0dip" android:src="@layout/image_navigation_selector" android:layout_alignParentRight="true" android:layout_alignParentBottom="true" />
+    <ImageView android:id="@id/image_navigation" android:focusable="true" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="10.0dip" android:layout_marginBottom="10.0dip" android:src="@drawable/image_navigation_selector" android:layout_alignParentRight="true" android:layout_alignParentBottom="true" />
 </RelativeLayout>

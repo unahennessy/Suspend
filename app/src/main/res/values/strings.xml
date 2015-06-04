@@ -28,8 +28,8 @@
     <string name="settingOption2">Reply On/Off</string>
     <string name="settingOption3">Reply On/Off</string>
     <string name="settingOption4">Reply On/Off</string>
-    <string name="on_popup_message">Suspend! status: <b>ON</b>" To exit the app and use your phone functions, turn off Suspend! by tapping the S! above."</string>
-    <string name="off_popup_message">"Suspend! is now ready to use. Tap the S! to turn it on. Obviously phone functionality will be limited while app is enabled."</string>
+    <string name="on_popup_message">Suspend! status: <b>ON</b>" To exit the app and use your phone functions, turn off Suspend! by tapping On above."</string>
+    <string name="off_popup_message">"Suspend! is now ready to use. Tap Off to turn it on. Obviously phone functionality will be limited while app is enabled."</string>
     <string name="emergencyNo"><b>112 Emergency</b>" Are you sure you want to make an emergency call?"</string>
     <string name="music_selection">Select your Music source for Quick Access.</string>
     <string name="navigation_selection">Select your Navigation source for Quick Access.</string>

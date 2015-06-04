@@ -10,7 +10,7 @@
         android:clickable="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@layout/image_emergency_selector"
+        android:src="@drawable/image_emergency_selector"
         android:layout_alignTop="@id/image_setting"/>
     <!-- onsuspend image -->
     <ImageView android:id="@id/image_setting"
@@ -30,7 +30,7 @@
         android:layout_alignStart="@id/image_suspend_on_clickable" />
     <!-- onsuspend image clickable -->
     <ImageView android:id="@id/image_suspend_on_clickable"
-        android:background="@layout/image_on_suspend_selector"
+        android:background="@drawable/image_on_suspend_selector"
         android:focusable="true"
         android:clickable="true"
         android:layout_width="wrap_content"
@@ -51,7 +51,7 @@
         android:clickable="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@layout/image_cross_selector"
+        android:src="@drawable/image_cross_selector"
         android:layout_alignTop="@id/image_setting"
         android:layout_alignRight="@id/image_navigation"
         android:layout_alignEnd="@id/image_navigation" />
@@ -71,7 +71,7 @@
            android:clickable="true"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-        android:src="@layout/image_music_selector"
+        android:src="@drawable/image_music_selector"
            android:layout_alignBottom="@id/image_navigation"
            android:layout_toLeftOf="@id/image_suspend_on_clickable"
            android:layout_toStartOf="@id/image_suspend_on_clickable" />
@@ -83,7 +83,7 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="10.0dip"
         android:layout_marginBottom="10.0dip"
-        android:src="@layout/image_navigation_selector"
+        android:src="@drawable/image_navigation_selector"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true" />
 </RelativeLayout>

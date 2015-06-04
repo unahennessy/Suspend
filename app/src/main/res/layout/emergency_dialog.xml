@@ -2,11 +2,39 @@
 <!-- Una Hennessy d02126371@mydit.ie Semester 2 2015 -->
 <!-- use design to see changes to this screen -->
 <!-- xml to display drawables -->
-<RelativeLayout android:orientation="vertical" android:background="@drawable/discussionbackgroundsuspend" android:padding="20.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content"
+<RelativeLayout
+    android:orientation="vertical"
+    android:background="@drawable/discussionbackgroundsuspend"
+    android:padding="20.0dip"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
   xmlns:android="http://schemas.android.com/apk/res/android">
-    <TextView android:textSize="15.0dip" android:textColor="@color/settingFontColour" android:gravity="center_horizontal" android:id="@id/text_emergency" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/emergencyNo" android:layout_centerHorizontal="true" />
-    <RelativeLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="50.0dip" android:layout_below="@id/text_emergency" android:layout_centerHorizontal="true">
-        <Button android:id="@id/button_No" android:background="@layout/btn_no_selector" android:focusable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" />
-        <Button android:id="@id/button_yes" android:background="@layout/btn_yes_selector" android:focusable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:layout_toRightOf="@id/button_No" />
+    <TextView android:textSize="15.0dip"
+        android:textColor="@color/settingFontColour"
+        android:gravity="center_horizontal"
+        android:id="@id/text_emergency"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/emergencyNo"
+        android:layout_centerHorizontal="true" />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50.0dip"
+        android:layout_below="@id/text_emergency"
+        android:layout_centerHorizontal="true">
+        <Button
+            android:id="@id/button_No"
+            android:background="@drawable/btn_no_selector"
+            android:focusable="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Button android:id="@id/button_yes"
+            android:background="@drawable/btn_yes_selector"
+            android:focusable="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10.0dip"
+            android:layout_toRightOf="@id/button_No" />
     </RelativeLayout>
 </RelativeLayout>

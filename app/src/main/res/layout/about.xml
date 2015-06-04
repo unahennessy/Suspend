@@ -7,6 +7,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
   xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- two buttons back and close plus a few textviews with info about the app -->
     <TextView
         android:textSize="20.0dip"
         android:textColor="@color/topHeadFontColour"
@@ -45,7 +46,7 @@
             android:text="@string/aboutInfo"
             android:layout_below="@id/text_aboutmore" />
         <Button android:id="@id/button_close"
-            android:background="@layout/btn_help_close_selector"
+            android:background="@drawable/btn_help_close_selector"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="15.0dip"
@@ -53,7 +54,7 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true" />
         <Button android:id="@id/button_back"
-            android:background="@layout/btn_back_selector"
+            android:background="@drawable/btn_back_selector"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15.0dip"
