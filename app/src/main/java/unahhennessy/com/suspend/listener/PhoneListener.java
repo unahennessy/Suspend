@@ -14,7 +14,7 @@ import android.telephony.TelephonyManager;
 import java.util.Vector;
 
 import unahhennessy.com.suspend.R;
-import unahhennessy.com.suspend.application.SuspendApplication;
+import unahhennessy.com.suspend.other.SuspendApplication;
 import unahhennessy.com.suspend.factors.FactorsInThisApp;
 import unahhennessy.com.suspend.other.NotificationStopOtherApps;
 

@@ -10,7 +10,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.CountDownTimer;
 import unahhennessy.com.suspend.activity.SplashScreen;
-import unahhennessy.com.suspend.app.SuspendApplication;
+import unahhennessy.com.suspend.other.SuspendApplication;
 import unahhennessy.com.suspend.factors.FactorsInThisApp;
 
 public class PhoneStateReceiver  extends BroadcastReceiver

@@ -141,7 +141,7 @@ public class NotificationStopOtherApps
           FactorsInThisApp.mSUSPEND_DB.insertLog(currentTime() + " Send SmsMessage", "Information");
           FactorsInThisApp.mSUSPEND_DB.insertLog(currentTime() + " Number: " + paramString1 + ", Body: " + paramString2, "Info");
           FactorsInThisApp.mSUSPEND_DB.insertLog(currentTime() + " Sent SmsMessage Successfully.", "Info");
-         
+
         }
         catch (Exception localException)
         {
