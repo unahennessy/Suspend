@@ -5,27 +5,24 @@ package unahhennessy.com.suspend.activity;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import unahhennessy.com.suspend.adapter.MusicListAdapter;
-import unahhennessy.com.suspend.constants.AppConstants;
-import unahhennessy.com.suspend.taskmanager.GetInstalledApps;
-import unahhennessy.com.suspend.util.SuspendDbHelper;
-import unahhennessy.com.suspend.util.ProjectUtil;
-import unahhennessy.com.suspend.R;
+
 import java.util.ArrayList;
+
+import unahhennessy.com.suspend.R;
+import unahhennessy.com.suspend.adapter.MusicListAdapter;
+import unahhennessy.com.suspend.factors.FactorsInThisApp;
+import unahhennessy.com.suspend.other.GetInstalledApps;
+import unahhennessy.com.suspend.other.NotificationStopOtherApps;
 public class Navigation
   extends Activity
 {
@@ -59,10 +56,10 @@ public class Navigation
       this.mListView.setAdapter(this.mAdapter);
       if ((this.mAdapterValue == null) || (this.mAdapterValue.size() == 0))
       {
-        this.mHeader_text.setVisibility(8);
-        this.mCompLayout.setVisibility(0);
+        this.mHeader_text.setVisibility(View.GONE);
+        this.mCompLayout.setVisibility(View.VISIBLE);
       }
-      AppConstants.SUSPEND_DB.insertLog(ProjectUtil.currentTime() + " Navigation app list to launch - " + this.mAdapterValue, "Info");
+      FactorsInThisApp.mSUSPEND_DB.insertLog(NotificationStopOtherApps.currentTime() + " Navigation app list to launch - " + this.mAdapterValue, "Info");
       return;
     }
     catch (Exception localException) {}
@@ -71,7 +68,7 @@ public class Navigation
   private void validateApp()
   {
     this.mAllowedApp = getResources().getStringArray(R.array.navigation_app);
-    AppConstants.SUSPEND_DB.insertLog(ProjectUtil.currentTime() + " Allowed navigation apps - " + this.mAllowedApp, "Info");
+    FactorsInThisApp.mSUSPEND_DB.insertLog(NotificationStopOtherApps.currentTime() + " Allowed navigation apps - " + this.mAllowedApp, "Info");
     this.mAdapterValue = new ArrayList();
     int i = 0;
     if (i >= this.mAllowedApp.length)
@@ -96,7 +93,7 @@ public class Navigation
   {
     super.onCreate(paramBundle);
     setContentView(R.layout.navigation);
-    AppConstants.MUSIC_NAVIGATION = 2;
+    FactorsInThisApp.mMUSIC_NAVIGATION = 2;
     this.mPkgManager = getPackageManager();
     this.mListView = ((ListView)findViewById(R.id.navigation_list));
     this.mHeader_text = ((TextView)findViewById(R.id.header_text));
@@ -138,7 +135,7 @@ public class Navigation
       for (;;)
       {
         this.mHandler.post(this.mRunnable);
-        ProjectUtil.writeErrorLog(this, localException.getMessage());
+        NotificationStopOtherApps.writeErrorLog(this, localException.getMessage());
       }
     }
   }

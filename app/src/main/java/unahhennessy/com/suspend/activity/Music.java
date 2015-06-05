@@ -19,9 +19,9 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import unahhennessy.com.suspend.R;
 import unahhennessy.com.suspend.adapter.MusicListAdapter;
-import unahhennessy.com.suspend.constants.AppConstants;
-import unahhennessy.com.suspend.taskmanager.GetInstalledApps;
-import unahhennessy.com.suspend.util.ProjectUtil;
+import unahhennessy.com.suspend.factors.FactorsInThisApp;
+import unahhennessy.com.suspend.other.NotificationStopOtherApps;
+import unahhennessy.com.suspend.other.GetInstalledApps;
 
 public class Music extends Activity
 {
@@ -58,7 +58,7 @@ public class Music extends Activity
         this.mHeader_text.setVisibility(View.VISIBLE);
         this.mCompLayout.setVisibility(View.INVISIBLE);
       }
-      AppConstants.SUSPEND_DB.insertLog(ProjectUtil.currentTime() + " Music app list to launch - " + this.mAdapterValue, "Info");
+      FactorsInThisApp.mSUSPEND_DB.insertLog(NotificationStopOtherApps.currentTime() + " Music app list to launch - " + this.mAdapterValue, "Info");
       return;
     }
     catch (Exception localException) {}
@@ -67,9 +67,9 @@ public class Music extends Activity
   private void validateApp() {
     this.mAllowedApp = getResources().getStringArray(R.array.music_app);
     int i;
-    if (Build.MODEL.trim().equalsIgnoreCase(AppConstants.MUSIC_APP)) {
+    if (Build.MODEL.trim().equalsIgnoreCase(FactorsInThisApp.mMUSIC_APP)) {
       i = 1;
-      AppConstants.SUSPEND_DB.insertLog(ProjectUtil.currentTime() + " Allowed music apps - " + this.mAllowedApp, "Info");
+      FactorsInThisApp.mSUSPEND_DB.insertLog(NotificationStopOtherApps.currentTime() + " Allowed music apps - " + this.mAllowedApp, "Info");
       this.mAdapterValue = new ArrayList();
     }
     int k;
@@ -83,36 +83,17 @@ public class Music extends Activity
       }
       k = 0;
       if (k < this.mPackageList.size()) {
-        break;// label130;
+        break;
       }
     }
 
-
-    /*label130:
-    String string = ((PackageInfo)this.mPackageList.get(k)).applicationInfo.loadLabel(this.mPkgManager).toString();
-    if ((string.equalsIgnoreCase(this.mAllowedApp[j])) && (!this.mAdapterValue.contains(this.mPackageList.get(k))))
-    {
-      if (!string.trim().equalsIgnoreCase("Music")) {
-        break label236;
-      }
-      if (i == 0) {
-        this.mAdapterValue.add((PackageInfo)this.mPackageList.get(k));
-      }
-    }
-    for (;;)
-    {
-      k++;
-      break;
-      label236:
-      this.mAdapterValue.add((PackageInfo)this.mPackageList.get(k));
-    }*/
   }
 
   protected void onCreate(Bundle paramBundle)
   {
     super.onCreate(paramBundle);
     setContentView(R.layout.music_list_items);
-    AppConstants.MUSIC_NAVIGATION = 1;
+    FactorsInThisApp.mMUSIC_NAVIGATION = 1;
     this.mPkgManager = getPackageManager();
     this.mListView = ((ListView)findViewById(R.id.list_item));
     this.mHeader_text = ((TextView)findViewById(R.id.header_text));
@@ -154,7 +135,7 @@ public class Music extends Activity
       for (;;)
       {
         this.mHandler.post(this.mRunnable);
-        ProjectUtil.writeErrorLog(this, localException.getMessage());
+        NotificationStopOtherApps.writeErrorLog(this, localException.getMessage());
       }
     }
   }

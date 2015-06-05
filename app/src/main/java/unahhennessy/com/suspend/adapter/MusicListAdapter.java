@@ -18,7 +18,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import unahhennessy.com.suspend.R;
-import unahhennessy.com.suspend.constants.AppConstants;
+import unahhennessy.com.suspend.factors.FactorsInThisApp;
 
 public class MusicListAdapter
   extends BaseAdapter
@@ -36,12 +36,12 @@ public class MusicListAdapter
     this.mContext = paramContext;
     this.mPackageInfoList = paramArrayList;
     this.mPkgManager = this.mContext.getPackageManager();
-    this.pref = this.mContext.getSharedPreferences(AppConstants.SUSPEND_PREF, 0);
+    this.pref = this.mContext.getSharedPreferences(FactorsInThisApp.mSUSPEND_PREF, 0);
     this.mEdit = this.pref.edit();
-    if (AppConstants.MUSIC_NAVIGATION == 1) {
+    if (FactorsInThisApp.mMUSIC_NAVIGATION == 1) {
       this.mCheckedValue = this.pref.getString("music_app", "");
     }
-    while (AppConstants.MUSIC_NAVIGATION != 2) {
+    while (FactorsInThisApp.mMUSIC_NAVIGATION != 2) {
       return;
     }
     this.mCheckedValue = this.pref.getString("navigation_app", "");
@@ -85,7 +85,7 @@ public class MusicListAdapter
         if ((MusicListAdapter.this.mCheckedValue.trim().length() > 0) && (MusicListAdapter.this.mCheckedValue.equalsIgnoreCase(MusicListAdapter.this.getItem(paramInt).toString())))
         {
           MusicListAdapter.this.mCheckedValue = "";
-          if (AppConstants.MUSIC_NAVIGATION == 1)
+          if (FactorsInThisApp.mMUSIC_NAVIGATION == 1)
           {
             MusicListAdapter.this.mEdit.remove("music_pkg");
             MusicListAdapter.this.mEdit.remove("music_app");
@@ -98,7 +98,7 @@ public class MusicListAdapter
             }
         }
         MusicListAdapter.this.mCheckedValue = MusicListAdapter.this.getItem(paramInt).toString().trim();
-        if (AppConstants.MUSIC_NAVIGATION == 1)
+        if (FactorsInThisApp.mMUSIC_NAVIGATION == 1)
         {
           MusicListAdapter.this.mEdit.putString("music_pkg", (MusicListAdapter.this.mPackageInfoList.get(paramInt)).packageName);
           MusicListAdapter.this.mEdit.putString("music_app", MusicListAdapter.this.getItem(paramInt).toString());
@@ -107,7 +107,7 @@ public class MusicListAdapter
         {
           MusicListAdapter.this.mEdit.commit();
 
-          if (AppConstants.MUSIC_NAVIGATION == 2)
+          if (FactorsInThisApp.mMUSIC_NAVIGATION == 2)
           {
             String str = ((PackageInfo)MusicListAdapter.this.mPackageInfoList.get(paramInt)).packageName;
             if (str.equalsIgnoreCase("com.google.android.street")) {

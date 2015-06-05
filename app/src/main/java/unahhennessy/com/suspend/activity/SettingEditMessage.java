@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import unahhennessy.com.suspend.R;
-import unahhennessy.com.suspend.constants.AppConstants;
+import unahhennessy.com.suspend.factors.FactorsInThisApp;
 
 public class SettingEditMessage extends Activity
 {
@@ -23,7 +23,7 @@ public class SettingEditMessage extends Activity
   {
     super.onCreate(paramBundle);
     setContentView(R.layout.settingeditmsg);
-    this.pref = getSharedPreferences(AppConstants.SUSPEND_PREF, 0);
+    this.pref = getSharedPreferences(FactorsInThisApp.mSUSPEND_PREF, 0);
     this.mEdittext = ((EditText)findViewById(R.id.edit_message));
     String str1 = this.pref.getString("custom_msg", getResources().getString(R.string.default_message_to_reply));
     if (str1.length() > 0)

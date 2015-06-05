@@ -14,31 +14,27 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import java.util.Vector;
+
 import unahhennessy.com.suspend.R;
 import unahhennessy.com.suspend.adapter.SetUp3ThreeScreenListAdapter;
-import unahhennessy.com.suspend.constants.AppConstants;
+import unahhennessy.com.suspend.factors.FactorsInThisApp;
 
 public class Settings extends Activity
 {
   private SetUp3ThreeScreenListAdapter mAdapter;
-  private Button mAddContact;
   private CheckBox mCheckMMS;
   private CheckBox mCheckWHATSAPP;
   private CheckBox mCheckPhone;
   private CheckBox mCheckSMS;
   private Button mDone;
-  private TextView mEdittxt;
-  private int[] mID;
+  private TextView mEditText;
   private boolean mIsMMSChecked;
   private boolean mIsWHATSAPPChecked;
   private boolean mIsPhoneChecked;
   private boolean mIsSMSChecked;
   private ListView mListView;
   private ImageView mMusic;
-  private Vector mName;
   private ImageView mNavigation;
-  private Vector mNumber;
   private TextView mOption1;
   private TextView mOption2;
   private TextView mOption3;
@@ -47,50 +43,9 @@ public class Settings extends Activity
   private RelativeLayout mRelativeLayoutOption2;
   private RelativeLayout mRelativeLayoutOption3;
   private RelativeLayout mRelativeLayoutOption4;
-  private Vector mType;
   private SharedPreferences pref;
 
-  private String formatNumber(String paramString)
-  {
-    String string1 = "";
-    int i = paramString.indexOf("+");
-    int j = paramString.length();
-    if (i == 0)
-    {
-      paramString = paramString.substring(1, j);
-      j--;
-    }
-    if (j <= 6)
-    {
-      if (i == 0) {
-        return "+" + paramString;
-      }
-      return paramString;
-    }
-    int k = j - 4;
-    String string2 = paramString;
-    for (;;)
-    {
-      if (j <= 3)
-      {
-        if (i != 0) {
-          break;
-        }
-        return "+" + string2 + string1;
-      }
-      string1 = "-" + string2.substring(k, j) + string1;
-      string2 = string2.substring(0, k);
-      j = string2.length();
-      if (j > 3) {
-        k = j - 3;
-      } else {
-        k = j;
-      }
-    }
-    return string2 + string1;
-  }
-
-   private void handleLayoutVisibility()
+  private void handleOptionsLayoutVisibility()
   {
     this.mRelativeLayoutOption1.setVisibility(View.GONE);
     this.mRelativeLayoutOption2.setVisibility(View.GONE);
@@ -130,34 +85,12 @@ public class Settings extends Activity
 
     if (string.trim().length() > 0)
     {
-      this.mEdittxt.setText(string);
+      this.mEditText.setText(string);
       return;
     }
-    this.mEdittxt.setText(getResources().getString(R.string.default_message_to_reply));
+    this.mEditText.setText(getResources().getString(R.string.default_message_to_reply));
   }
 
-
-  private String unFormatNumber(String paramString)
-  {
-    int i = paramString.indexOf("-");
-    String string1 = "";
-    String string2 = paramString;
-    int j = paramString.length();
-    if ((paramString.indexOf("+") == 0) && (j == 7)) {
-      return paramString;
-    }
-    if (j <= 6) {
-      return paramString;
-    }
-    while (i > 0)
-    {
-      string1 = string1 + string2.substring(0, i);
-      string2 = string2.substring(i + 1, j);
-      j = string2.length();
-      i = string2.indexOf("-");
-    }
-    return string1 + string2.substring(j - 4, j);
-  }
 
   protected void onActivityResult(int paramInt1, int paramInt2, Intent paramIntent)
   {
@@ -172,7 +105,7 @@ public class Settings extends Activity
   {
     super.onCreate(paramBundle);
     setContentView(R.layout.settings);
-    this.pref = getSharedPreferences(AppConstants.SUSPEND_PREF, 0);
+    this.pref = getSharedPreferences(FactorsInThisApp.mSUSPEND_PREF, 0);
 
     this.mRelativeLayoutOption1 = (RelativeLayout)findViewById(R.id.option1_layout);
     this.mRelativeLayoutOption2 = ((RelativeLayout)findViewById(R.id.option2_layout));
@@ -180,7 +113,7 @@ public class Settings extends Activity
     this.mRelativeLayoutOption4 = ((RelativeLayout)findViewById(R.id.option4_layout));
     this.mListView = ((ListView)findViewById(R.id.listMode));
     this.mDone = ((Button)findViewById(R.id.button_done));
-    this.mEdittxt = ((TextView)findViewById(R.id.edit_message));
+    this.mEditText = ((TextView)findViewById(R.id.edit_message));
     this.mOption1 = ((TextView)findViewById(R.id.option1));
     this.mOption2 = ((TextView)findViewById(R.id.option2));
     this.mOption3 = ((TextView)findViewById(R.id.option3));
@@ -192,18 +125,21 @@ public class Settings extends Activity
     this.mMusic = ((ImageView)findViewById(R.id.image_music));
     this.mNavigation = ((ImageView)findViewById(R.id.image_navigation));
 
-    handleLayoutVisibility();
+    handleOptionsLayoutVisibility();
     initializeCheckedValue();
     setMessage();
-    this.mListView.setCacheColorHint(0);
-    this.mDone.setOnClickListener(new View.OnClickListener() {
-      public void onClick(View paramAnonymousView) {
+    this.mListView.setCacheColorHint(R.color.abc_background_cache_hint_selector_material_light);
+    this.mDone.setOnClickListener(new View.OnClickListener()
+    {
+      public void onClick(View paramAnonymousView)
+      {
         Settings.this.saveCheckedValue();
         Settings.this.finish();
       }
     });
 
-    this.mCheckSMS.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+    this.mCheckSMS.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
+    {
       public void onCheckedChanged(CompoundButton paramAnonymousCompoundButton, boolean paramAnonymousBoolean) {
         Settings.this.mIsSMSChecked = paramAnonymousBoolean;
       }
@@ -223,7 +159,7 @@ public class Settings extends Activity
             Settings.this.mIsPhoneChecked = paramAnonymousBoolean;
         }
     });
-    this.mEdittxt.setOnClickListener(new View.OnClickListener() {
+    this.mEditText.setOnClickListener(new View.OnClickListener() {
       public void onClick(View paramAnonymousView) {
         Settings.this.startActivity(new Intent(Settings.this, SettingEditMessage.class));
       }
@@ -234,7 +170,7 @@ public class Settings extends Activity
       {
         if (Settings.this.mRelativeLayoutOption1.getVisibility() == View.GONE)
         {
-          Settings.this.handleLayoutVisibility();
+          Settings.this.handleOptionsLayoutVisibility();
           Settings.this.mRelativeLayoutOption1.setVisibility(View.VISIBLE);
           Settings.this.mOption1.setTextColor(Settings.this.getResources().getColor(R.color.settingSelectedColour));
           return;
@@ -249,7 +185,7 @@ public class Settings extends Activity
       {
         if (Settings.this.mRelativeLayoutOption2.getVisibility() == View.GONE)
         {
-          Settings.this.handleLayoutVisibility();
+          Settings.this.handleOptionsLayoutVisibility();
           Settings.this.mRelativeLayoutOption2.setVisibility(View.VISIBLE);
           Settings.this.mOption2.setTextColor(Settings.this.getResources().getColor(R.color.settingSelectedColour));
           return;
@@ -264,7 +200,7 @@ public class Settings extends Activity
       {
         if (Settings.this.mRelativeLayoutOption3.getVisibility() == View.GONE)
         {
-          Settings.this.handleLayoutVisibility();
+          Settings.this.handleOptionsLayoutVisibility();
           Settings.this.mRelativeLayoutOption3.setVisibility(View.VISIBLE);
           Settings.this.mOption3.setTextColor(Settings.this.getResources().getColor(R.color.settingSelectedColour));
           return;
@@ -279,7 +215,7 @@ public class Settings extends Activity
       {
         if (Settings.this.mRelativeLayoutOption4.getVisibility() == View.GONE)
         {
-          Settings.this.handleLayoutVisibility();
+          Settings.this.handleOptionsLayoutVisibility();
           Settings.this.mRelativeLayoutOption4.setVisibility(View.VISIBLE);
           Settings.this.mOption4.setTextColor(Settings.this.getResources().getColor(R.color.settingSelectedColour));
           return;
@@ -310,7 +246,6 @@ public class Settings extends Activity
     super.onResume();
     setMessage();
 
-    this.mAdapter = new SetUp3ThreeScreenListAdapter(this, this.mName, this.mNumber);
     this.mListView.setAdapter(this.mAdapter);
 
   }

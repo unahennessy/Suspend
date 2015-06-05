@@ -15,8 +15,8 @@ import java.util.Vector;
 
 import unahhennessy.com.suspend.R;
 import unahhennessy.com.suspend.application.SuspendApplication;
-import unahhennessy.com.suspend.constants.AppConstants;
-import unahhennessy.com.suspend.util.ProjectUtil;
+import unahhennessy.com.suspend.factors.FactorsInThisApp;
+import unahhennessy.com.suspend.other.NotificationStopOtherApps;
 
 public class PhoneListener extends Service
 { // a listener for calls received
@@ -98,7 +98,7 @@ public class PhoneListener extends Service
       int j = 0;
       try
       {
-        this.pref = getSharedPreferences(AppConstants.SUSPEND_PREF, 0);
+        this.pref = getSharedPreferences(FactorsInThisApp.mSUSPEND_PREF, 0);
         i = this.pref.getInt("contact_count", 0);
         this.mEdit = this.pref.edit();
         String str1 = this.pref.getString("custom_msg", getResources().getString(R.string.default_message_to_reply));
@@ -192,7 +192,7 @@ public class PhoneListener extends Service
                 }
               PhoneListener.this.mEdit.putBoolean("is_suspend_call_active", true);
               PhoneListener.this.mEdit.commit();
-              ProjectUtil.silentMode(PhoneListener.this.getApplicationContext());
+              NotificationStopOtherApps.silentMode(PhoneListener.this.getApplicationContext());
 
             } while ((!PhoneListener.this.pref.getBoolean("is_suspend_on", false)) || (!PhoneListener.this.isNumberValid(paramString)));
 

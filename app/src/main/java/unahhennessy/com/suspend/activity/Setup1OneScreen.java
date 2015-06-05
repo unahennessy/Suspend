@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import unahhennessy.com.suspend.constants.AppConstants;
+import unahhennessy.com.suspend.factors.FactorsInThisApp;
 import unahhennessy.com.suspend.R;
 
 public class Setup1OneScreen   extends Activity
@@ -23,7 +23,7 @@ public class Setup1OneScreen   extends Activity
     super.onCreate(paramBundle);
     setContentView(R.layout.setuponescreen);
 
-    this.pref = getSharedPreferences(AppConstants.SUSPEND_PREF, 0);
+    this.pref = getSharedPreferences(FactorsInThisApp.mSUSPEND_PREF, 0);
     this.mEditMsg = ((TextView)findViewById(R.id.edit_message));
     this.mSave = ((Button)findViewById(R.id.button_save));
     this.mEditMsg.setOnClickListener(new View.OnClickListener()

@@ -5,7 +5,6 @@ package unahhennessy.com.suspend.activity;
  */
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,7 +12,6 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 
 import unahhennessy.com.suspend.R;
-import unahhennessy.com.suspend.util.SystemUiHider;
 
 public class HomeScreen extends Activity {
     /*
@@ -24,39 +22,12 @@ public class HomeScreen extends Activity {
     */
 
     // declare variables to be used in this activity
-    private static final boolean AUTO_HIDE = true;
-    private static final int AUTO_HIDE_DELAY_MILLIS = 3000;
-    private static final boolean TOGGLE_ON_CLICK = true;
-    private static final int HIDER_FLAGS = SystemUiHider.FLAG_HIDE_NAVIGATION;
-    private SystemUiHider mSystemUiHider;
     private Button mAbout;
     private Button mAgree;
     private Button mCancel;
     private boolean mIsSettingsCheckbox_checked;
     private CheckBox mSettingsCheck;
-    private SharedPreferences pref;
 
-
-    private void initializeCheckedValue()
-    {   // I want to use this to avoid going through all the settings everytime and instead go straight to SuspendOn
-        this.mIsSettingsCheckbox_checked = this.pref.getBoolean("is_settings_checked", true);
-        this.mSettingsCheck.setChecked(this.mIsSettingsCheckbox_checked);
-       
-    }
-
-    private void saveCheckedValue()
-    {       
-        this.mIsSettingsCheckbox_checked = this.mSettingsCheck.isChecked();
-        SharedPreferences.Editor localEditor = this.pref.edit();
-        localEditor.putBoolean("is_whatsapp_enabled", this.mIsSettingsCheckbox_checked);
-        localEditor.commit();
-    }
-
-    private void saveEdit()
-    {
-        SharedPreferences.Editor localEditor = this.pref.edit();
-
-    }
 
     protected void onActivityResult(int paramInt1, int paramInt2, Intent paramIntent)
     {

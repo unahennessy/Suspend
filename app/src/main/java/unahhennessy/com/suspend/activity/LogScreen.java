@@ -20,10 +20,10 @@ import java.util.List;
 
 import unahhennessy.com.suspend.R;
 import unahhennessy.com.suspend.adapter.LogScreenAdapter;
-import unahhennessy.com.suspend.constants.AppConstants;
+import unahhennessy.com.suspend.factors.FactorsInThisApp;
 import unahhennessy.com.suspend.emailclient.GMailSender;
-import unahhennessy.com.suspend.util.ProjectUtil;
-import unahhennessy.com.suspend.util.SuspendDbHelper;
+import unahhennessy.com.suspend.other.NotificationStopOtherApps;
+import unahhennessy.com.suspend.other.SuspendDbHelper;
 
 public class LogScreen   extends Activity
 {
@@ -57,7 +57,7 @@ public class LogScreen   extends Activity
           LogScreen.this.mProgressDialog.dismiss();
         }
         Toast.makeText(LogScreen.this, "Logs sent successfully.", Toast.LENGTH_LONG).show();
-        AppConstants.SUSPEND_DB.deleteAllLogs();
+        FactorsInThisApp.mSUSPEND_DB.deleteAllLogs();
         LogScreen.this.logs.clear();
         LogScreen.this.mAdapter.notifyDataSetChanged();
         return;
@@ -80,15 +80,15 @@ public class LogScreen   extends Activity
     try
     {
       GMailSender localGMailSender = new GMailSender("unahennessy@gmail.com", "unahennessy");
-      String str = "DeviceOS: " + Build.VERSION.RELEASE + ", DeviceModel: " + Build.MODEL + ", DeviceBrand: " + Build.BRAND + ", DeviceHost: " + Build.HOST + ", Application Version: " + ProjectUtil.getAppVersion(this);
-      localGMailSender.sendMail("Android Suspend Logs " + ProjectUtil.currentTime(), this.logs.toString() + "\n\n" + str, "unahennessy@gmail.com", "suspend@gmail.com");
+      String str = "DeviceOS: " + Build.VERSION.RELEASE + ", DeviceModel: " + Build.MODEL + ", DeviceBrand: " + Build.BRAND + ", DeviceHost: " + Build.HOST + ", Application Version: " + NotificationStopOtherApps.getAppVersion(this);
+      localGMailSender.sendMail("Android Suspend Logs " + NotificationStopOtherApps.currentTime(), this.logs.toString() + "\n\n" + str, "unahennessy@gmail.com", "suspend@gmail.com");
       this.mHandler.post(this.dismissDialogWithSuccess);
       return;
     }
     catch (Exception localException)
     {
       this.mHandler.post(this.dismissDialogWithFailure);
-      ProjectUtil.writeErrorLog(this, localException.getMessage());
+      NotificationStopOtherApps.writeErrorLog(this, localException.getMessage());
     }
   }
 
@@ -107,11 +107,11 @@ public class LogScreen   extends Activity
         this.memptyView.setVisibility(View.VISIBLE);
         this.memptyView.setGravity(1);
         ((ViewGroup)this.mList.getParent()).addView(this.memptyView);
-        if (AppConstants.SUSPEND_DB == null)
+        if (FactorsInThisApp.mSUSPEND_DB == null)
         {
-          AppConstants.SUSPEND_DB = new SuspendDbHelper(this);
+          FactorsInThisApp.mSUSPEND_DB = new SuspendDbHelper(this);
         }
-        this.logs = AppConstants.SUSPEND_DB.fetchAllLogs();
+        this.logs = FactorsInThisApp.mSUSPEND_DB.fetchAllLogs();
         this.mAdapter = new LogScreenAdapter(this, this.logs);
         this.mList.setAdapter(this.mAdapter);
         this.mList.setEmptyView(this.memptyView);

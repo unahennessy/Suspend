@@ -4,7 +4,7 @@ package unahhennessy.com.suspend.app;
  */
 import android.app.Application;
 import android.content.SharedPreferences;
-import unahhennessy.com.suspend.constants.AppConstants;
+import unahhennessy.com.suspend.factors.FactorsInThisApp;
 
 public class SuspendApplication  extends Application
 {
@@ -18,7 +18,7 @@ public class SuspendApplication  extends Application
   
   public SharedPreferences getSharedPreferences()
   {
-    return getSharedPreferences(AppConstants.SUSPEND_PREF, 0);
+    return getSharedPreferences(FactorsInThisApp.mSUSPEND_PREF, 0);
   }
   
   public void onCreate()

@@ -1,40 +1,41 @@
-package unahhennessy.com.suspend.util;
+package unahhennessy.com.suspend.other;
 /**
  * Created by unahe_000 on 23/05/2015.
  */
 public class Logs
 {
-  private String flag = "";
-  private long id = -1L;
-  private String log = "";
+  // getters and setters for class Logs
+  private String mFlag = "";
+  private long mId = -1L;
+  private String mLog = "";
 
   public String getFlag()
   {
-    return this.flag;
+    return this.mFlag;
   }
 
   public long getId()
   {
-    return this.id;
+    return this.mId;
   }
 
   public String getLog()
   {
-    return this.log;
+    return this.mLog;
   }
 
   public void setFlag(String paramString)
   {
-    this.flag = paramString;
+    this.mFlag = paramString;
   }
 
   public void setId(long paramLong)
   {
-    this.id = paramLong;
+    this.mId = paramLong;
   }
 
   public void setLog(String paramString)
   {
-    this.log = paramString;
+    this.mLog = paramString;
   }
 }

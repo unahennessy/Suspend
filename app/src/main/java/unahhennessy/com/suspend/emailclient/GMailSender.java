@@ -22,22 +22,22 @@ import javax.mail.internet.MimeMessage;
 
 
 public class GMailSender extends javax.mail.Authenticator {
-    private String mailhost = "smtp.gmail.com";
-    private String user;
-    private String password;
-    private Session session;
+    private String mMailHost = "smtp.gmail.com";
+    private String mUser;
+    private String mPassword;
+    private Session mSession;
 
     static {
         Security.addProvider(new unahhennessy.com.suspend.emailclient.JSSEProvider());
     }
 
-    public GMailSender(String user, String password) {
-        this.user = user;
-        this.password = password;
+    public GMailSender(String mUser, String mPassword) {
+        this.mUser = mUser;
+        this.mPassword = mPassword;
 
         Properties props = new Properties();
         props.setProperty("mail.transport.protocol", "smtp");
-        props.setProperty("mail.host", mailhost);
+        props.setProperty("mail.host", mMailHost);
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.port", "465");
         props.put("mail.smtp.socketFactory.port", "465");
@@ -46,16 +46,16 @@ public class GMailSender extends javax.mail.Authenticator {
         props.put("mail.smtp.socketFactory.fallback", "false");
         props.setProperty("mail.smtp.quitwait", "false");
 
-        session = Session.getDefaultInstance(props, this);
+        mSession = Session.getDefaultInstance(props, this);
     }
 
     protected PasswordAuthentication getPasswordAuthentication() {
-        return new PasswordAuthentication(user, password);
+        return new PasswordAuthentication(mUser, mPassword);
     }
 
     public synchronized void sendMail(String subject, String body, String sender, String recipients) throws Exception {
         try{
-            MimeMessage message = new MimeMessage(session);
+            MimeMessage message = new MimeMessage(mSession);
             DataHandler handler = new DataHandler(new ByteArrayDataSource(body.getBytes(), "text/plain"));
             message.setSender(new InternetAddress(sender));
             message.setSubject(subject);

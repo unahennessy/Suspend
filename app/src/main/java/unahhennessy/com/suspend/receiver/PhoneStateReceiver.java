@@ -11,7 +11,7 @@ import android.content.SharedPreferences;
 import android.os.CountDownTimer;
 import unahhennessy.com.suspend.activity.SplashScreen;
 import unahhennessy.com.suspend.app.SuspendApplication;
-import unahhennessy.com.suspend.constants.AppConstants;
+import unahhennessy.com.suspend.factors.FactorsInThisApp;
 
 public class PhoneStateReceiver  extends BroadcastReceiver
 { // this is a phone state receiver class for Suspend
@@ -20,7 +20,7 @@ public class PhoneStateReceiver  extends BroadcastReceiver
   
   public void onReceive(final Context paramContext, Intent paramIntent)
   {
-    this.pref = paramContext.getSharedPreferences(AppConstants.SUSPEND_PREF, 0);
+    this.pref = paramContext.getSharedPreferences(FactorsInThisApp.mSUSPEND_PREF, 0);
     if (paramIntent.getAction().equals("android.intent.action.BOOT_COMPLETED")) {
       if (this.pref.getBoolean("is_suspend_on", false)) {
         new CountDownTimer(3000L, 1000L)

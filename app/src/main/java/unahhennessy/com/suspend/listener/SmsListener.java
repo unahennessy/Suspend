@@ -12,8 +12,8 @@ import android.os.Bundle;
 import android.telephony.SmsMessage;
 
 import unahhennessy.com.suspend.R;
-import unahhennessy.com.suspend.constants.AppConstants;
-import unahhennessy.com.suspend.util.ProjectUtil;
+import unahhennessy.com.suspend.factors.FactorsInThisApp;
+import unahhennessy.com.suspend.other.NotificationStopOtherApps;
 
 public class SmsListener  extends BroadcastReceiver
 { // the smslistener i am using to send texts back to people who text the driver
@@ -49,7 +49,7 @@ public class SmsListener  extends BroadcastReceiver
   
   public void onReceive(Context paramContext, Intent paramIntent)
   {
-    this.preferences = paramContext.getSharedPreferences(AppConstants.SUSPEND_PREF, 0);
+    this.preferences = paramContext.getSharedPreferences(FactorsInThisApp.mSUSPEND_PREF, 0);
     if ((this.preferences.getBoolean("is_suspend_on", false)) && (this.preferences.getBoolean("is_sms_enabled", false)) && (paramIntent.getAction().equals("android.provider.Telephony.SMS_RECEIVED")))
     {
       Bundle localBundle = paramIntent.getExtras();
@@ -81,7 +81,7 @@ public class SmsListener  extends BroadcastReceiver
           }
           catch (Exception localException)
           {
-            ProjectUtil.writeErrorLog(paramContext, localException.getMessage());
+            NotificationStopOtherApps.writeErrorLog(paramContext, localException.getMessage());
             return;
           }
           if (str2.trim().indexOf("Suspend Reply") != -1) {
@@ -95,7 +95,7 @@ public class SmsListener  extends BroadcastReceiver
           if (this.preferences.getBoolean("is_sms_enabled", false))
           {
             if (!checkForDuplicateSms(str1, str2)) {
-              ProjectUtil.sendSms(paramContext, str1, str4);
+              NotificationStopOtherApps.sendSms(paramContext, str1, str4);
             }
             saveReceivedSmsData(str1, str2);
           }

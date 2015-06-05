@@ -1,4 +1,4 @@
-package unahhennessy.com.suspend.util;
+package unahhennessy.com.suspend.other;
 /**
  * Created by unahe_000 on 23/05/2015.
  */

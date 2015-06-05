@@ -5,8 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import unahhennessy.com.suspend.constants.AppConstants;
-import unahhennessy.com.suspend.util.ProjectUtil;
+import unahhennessy.com.suspend.factors.FactorsInThisApp;
+import unahhennessy.com.suspend.other.NotificationStopOtherApps;
 import unahhennessy.com.suspend.R;
 
 public class MmsListener   extends BroadcastReceiver
@@ -17,7 +17,7 @@ public class MmsListener   extends BroadcastReceiver
   
   public void onReceive(Context paramContext, Intent paramIntent)
   {
-    this.preferences = paramContext.getSharedPreferences(AppConstants.SUSPEND_PREF, 0);
+    this.preferences = paramContext.getSharedPreferences(FactorsInThisApp.mSUSPEND_PREF, 0);
     Bundle localBundle = null;
     if ((this.preferences.getBoolean("is_suspend_on", false)) && (this.preferences.getBoolean("is_mms_enabled", false)) && (paramIntent.getAction().equals("android.provider.Telephony.WAP_PUSH_RECEIVED")))
     {
@@ -45,7 +45,7 @@ public class MmsListener   extends BroadcastReceiver
             }
             String str5 = "Suspend Reply: " + str4;
             if (this.preferences.getBoolean("is_mms_enabled", false)) {
-              ProjectUtil.sendSms(paramContext, str3, str5);
+              NotificationStopOtherApps.sendSms(paramContext, str3, str5);
             }
           }
         }
@@ -54,7 +54,7 @@ public class MmsListener   extends BroadcastReceiver
     }
     catch (Exception localException)
     {
-      ProjectUtil.writeErrorLog(paramContext, localException.getMessage());
+      NotificationStopOtherApps.writeErrorLog(paramContext, localException.getMessage());
     }
   }
 }

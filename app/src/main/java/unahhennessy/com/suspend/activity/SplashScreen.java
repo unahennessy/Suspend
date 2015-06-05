@@ -6,16 +6,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 
-import java.util.List;
-
 import unahhennessy.com.suspend.R;
-import unahhennessy.com.suspend.constants.AppConstants;
-import unahhennessy.com.suspend.util.ProjectUtil;
+import unahhennessy.com.suspend.factors.FactorsInThisApp;
+import unahhennessy.com.suspend.other.NotificationStopOtherApps;
 
 public class SplashScreen
   extends Activity
@@ -23,33 +19,13 @@ public class SplashScreen
   private CountDownTimer mCountDownTimer;
   private SharedPreferences pref;
 
-  public void getInstalledApps()
-  {
-    PackageManager localPackageManager = getApplicationContext().getPackageManager();
-    List localList = localPackageManager.getInstalledPackages(0);
-    for (int i = 0;; i++)
-    {
-      if (i >= localList.size()) {
-        return;
-      }
-      PackageInfo localPackageInfo = (PackageInfo)localList.get(i);
-      System.out.println("##############    Start ####################");
-      System.out.println("Description: " + (String)localPackageInfo.applicationInfo.loadDescription(localPackageManager));
-      System.out.println("App's Name: " + localPackageInfo.applicationInfo.loadLabel(localPackageManager).toString());
-      System.out.println("App's Package Name: " + localPackageInfo.packageName);
-      System.out.println("App's Version Name: " + localPackageInfo.versionName);
-      System.out.println("App's Version Codee: " + localPackageInfo.versionCode);
-      System.out.println("##############    End ####################");
-    }
-  }
-
   protected void onCreate(Bundle paramBundle)
   {
     super.onCreate(paramBundle);
     setContentView(R.layout.splashscreen);
-    ProjectUtil.writeInfoLog(this, "Splash Screen");
-    this.pref = getSharedPreferences(AppConstants.SUSPEND_PREF, 0);
-    if (!this.pref.getBoolean(AppConstants.IS_SETUP_COMPLETE, false)) {}
+    NotificationStopOtherApps.writeInfoLog(this, "Splash Screen");
+    this.pref = getSharedPreferences(FactorsInThisApp.mSUSPEND_PREF, 0);
+    if (!this.pref.getBoolean(FactorsInThisApp.mIS_SETUP_COMPLETE, false)) {}
     for (;;) {
         Editor localEditor;
         try {
@@ -63,14 +39,14 @@ public class SplashScreen
         } catch (Exception localException1) {
             int k;
             Intent localIntent;
-            ProjectUtil.writeErrorLog(this, localException1.getMessage());
+            NotificationStopOtherApps.writeErrorLog(this, localException1.getMessage());
             continue;
 
            }
 
         this.mCountDownTimer = new CountDownTimer(2000L, 1000L) {
             public void onFinish() {
-                if (SplashScreen.this.pref.getBoolean(AppConstants.IS_SETUP_COMPLETE, false))
+                if (SplashScreen.this.pref.getBoolean(FactorsInThisApp.mIS_SETUP_COMPLETE, false))
                 {
 
 

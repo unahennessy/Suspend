@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.Button;
 
 import unahhennessy.com.suspend.R;
-import unahhennessy.com.suspend.util.SystemUiHider;
+import unahhennessy.com.suspend.other.SystemUiHider;
 
 public class WelcomeScreen extends Activity {
 

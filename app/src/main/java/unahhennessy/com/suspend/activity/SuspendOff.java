@@ -21,8 +21,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import unahhennessy.com.suspend.R;
-import unahhennessy.com.suspend.constants.AppConstants;
-import unahhennessy.com.suspend.util.ProjectUtil;
+import unahhennessy.com.suspend.factors.FactorsInThisApp;
+import unahhennessy.com.suspend.other.NotificationStopOtherApps;
+
 public class SuspendOff   extends Activity {
    // declare and initialize variables
 
@@ -55,7 +56,7 @@ public class SuspendOff   extends Activity {
         startActivity(localIntent);
       return;
     } catch (Exception localException) {
-      ProjectUtil.writeErrorLog(this, localException.getMessage());
+      NotificationStopOtherApps.writeErrorLog(this, localException.getMessage());
     }
   }
 
@@ -99,7 +100,7 @@ public class SuspendOff   extends Activity {
       setContentView(R.layout.suspendoff);
 
       this.mPkgManager = getPackageManager();
-      this.pref = getSharedPreferences(AppConstants.SUSPEND_PREF, 0);
+      this.pref = getSharedPreferences(FactorsInThisApp.mSUSPEND_PREF, 0);
       this.mMusic = (ImageView) findViewById(R.id.image_music);
       this.mNavigation = (ImageView) findViewById(R.id.image_navigation);
       this.mEmergency = (ImageView) findViewById(R.id.image_emergency);
@@ -169,14 +170,14 @@ public class SuspendOff   extends Activity {
         this.mMusic.setOnClickListener(new View.OnClickListener() {
             public void onClick(View paramAnonymousView) {
                 if (SuspendOff.this.mMusicApp != null && SuspendOff.this.mMusicApp.length() > 0) {
-                    ProjectUtil.launchApp(SuspendOff.this, SuspendOff.this.mMusicApp);
+                    NotificationStopOtherApps.launchApp(SuspendOff.this, SuspendOff.this.mMusicApp);
                 }
             }
         });
         this.mNavigation.setOnClickListener(new View.OnClickListener() {
             public void onClick(View paramAnonymousView) {
                 if (SuspendOff.this.mNavigationApp != null && SuspendOff.this.mNavigationApp.length() > 0) {
-                    ProjectUtil.launchApp(SuspendOff.this, SuspendOff.this.mNavigationApp);
+                    NotificationStopOtherApps.launchApp(SuspendOff.this, SuspendOff.this.mNavigationApp);
                 }
             }
         });

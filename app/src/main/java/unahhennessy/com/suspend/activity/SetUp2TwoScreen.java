@@ -13,7 +13,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 
 import unahhennessy.com.suspend.R;
-import unahhennessy.com.suspend.constants.AppConstants;
+import unahhennessy.com.suspend.factors.FactorsInThisApp;
 
 public class SetUp2TwoScreen  extends Activity
 {
@@ -70,7 +70,7 @@ public class SetUp2TwoScreen  extends Activity
   {
     super.onCreate(paramBundle);
     setContentView(R.layout.setuptwoscreen);
-    this.pref = getSharedPreferences(AppConstants.SUSPEND_PREF, 0);
+    this.pref = getSharedPreferences(FactorsInThisApp.mSUSPEND_PREF, 0);
     this.mBack = ((Button)findViewById(R.id.button_back));
     this.mSave = ((Button)findViewById(R.id.button_save));
     this.mSMSCheck = ((CheckBox)findViewById(R.id.checkbox_text));

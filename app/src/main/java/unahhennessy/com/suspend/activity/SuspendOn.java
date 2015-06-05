@@ -25,9 +25,9 @@ import android.widget.TextView;
 
 import unahhennessy.com.suspend.R;
 import unahhennessy.com.suspend.R.id;
-import unahhennessy.com.suspend.constants.AppConstants;
+import unahhennessy.com.suspend.factors.FactorsInThisApp;
 import unahhennessy.com.suspend.listener.PhoneListener;
-import unahhennessy.com.suspend.util.ProjectUtil;
+import unahhennessy.com.suspend.other.NotificationStopOtherApps;
 
 
 public class SuspendOn  extends Activity
@@ -60,12 +60,12 @@ public class SuspendOn  extends Activity
         stopService(new Intent(this, PhoneListener.class));
       //stopService(new Intent(this, AppTrackingService.class));
 
-      ProjectUtil.notifyIcon(this);
+      NotificationStopOtherApps.notifyIcon(this);
       return;
     }
     catch (Exception localException)
     {
-      ProjectUtil.writeErrorLog(this, localException.getMessage());
+      NotificationStopOtherApps.writeErrorLog(this, localException.getMessage());
     }
   }
 
@@ -88,7 +88,7 @@ public class SuspendOn  extends Activity
       for (;;)
       {
 
-        ProjectUtil.notifyIcon(this);
+        NotificationStopOtherApps.notifyIcon(this);
         //startService(new Intent(this, AppTrackingService.class));
           startService(new Intent(this, PhoneListener.class));
         return;
@@ -97,7 +97,7 @@ public class SuspendOn  extends Activity
     }
     catch (Exception localException)
     {
-      ProjectUtil.writeErrorLog(this, localException.getMessage());
+      NotificationStopOtherApps.writeErrorLog(this, localException.getMessage());
     }
   }
 
@@ -162,7 +162,7 @@ public class SuspendOn  extends Activity
       this.log("entered onCreate() within SuspendOn.java");
     super.onCreate(paramBundle);
       setContentView(R.layout.suspendon);
-      this.pref = getSharedPreferences(AppConstants.SUSPEND_PREF, 0);
+      this.pref = getSharedPreferences(FactorsInThisApp.mSUSPEND_PREF, 0);
       this.mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
       this.mMusic = (ImageView) findViewById(id.image_music);
       this.mNavigation = (ImageView) findViewById(id.image_navigation);
@@ -213,7 +213,7 @@ public class SuspendOn  extends Activity
               SuspendOn.this.log("entered mMusic.setOnClickListener() within SuspendOn.java");
               String str = SuspendOn.this.pref.getString("music_pkg", "");
               if (str != null && str.length() > 0) {
-                  ProjectUtil.launchApp(SuspendOn.this, str);
+                  NotificationStopOtherApps.launchApp(SuspendOn.this, str);
                   return;
               }
               SuspendOn.this.mParamInt = 1;
@@ -224,7 +224,7 @@ public class SuspendOn  extends Activity
               SuspendOn.this.log("entered mNavigation.setOnClickListener() within SuspendOn.java");
               String str = SuspendOn.this.pref.getString("navigation_pkg", "");
               if (str != null && str.length() > 0) {
-                  ProjectUtil.launchApp(SuspendOn.this, str);
+                  NotificationStopOtherApps.launchApp(SuspendOn.this, str);
                   return;
               }
               SuspendOn.this.mParamInt = 2;

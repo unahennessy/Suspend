@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import unahhennessy.com.suspend.R;
-import unahhennessy.com.suspend.constants.AppConstants;
+import unahhennessy.com.suspend.factors.FactorsInThisApp;
 
 public class Help extends Activity
 {
@@ -30,7 +30,7 @@ public class Help extends Activity
   {
     super.onCreate(paramBundle);
     setContentView(R.layout.help);
-    this.mPref = getSharedPreferences(AppConstants.SUSPEND_PREF, 0);
+    this.mPref = getSharedPreferences(FactorsInThisApp.mSUSPEND_PREF, 0);
     this.mClose = ((Button)findViewById(R.id.button_close));
     this.mMusicUrl = ((TextView)findViewById(R.id.music_url));
     this.mNavigationUrl = ((TextView)findViewById(R.id.navigation_url));
