@@ -55,16 +55,16 @@ public class GMailSender extends javax.mail.Authenticator {
     public synchronized void sendMail(String subject, String body, String sender, String recipients) throws Exception
     {   this.log("entered sendMail() within GMailSender.java");
         try{
-            MimeMessage message = new MimeMessage(mSession);
-            DataHandler handler = new DataHandler(new ByteArrayDataSource(body.getBytes(), "text/plain"));
-            message.setSender(new InternetAddress(sender));
-            message.setSubject(subject);
-            message.setDataHandler(handler);
+            MimeMessage mMimeMessage = new MimeMessage(mSession);
+            DataHandler mDataHandler = new DataHandler(new ByteArrayDataSource(body.getBytes(), "text/plain"));
+            mMimeMessage.setSender(new InternetAddress(sender));
+            mMimeMessage.setSubject(subject);
+            mMimeMessage.setDataHandler(mDataHandler);
             if (recipients.indexOf(',') > 0)
-                message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipients));
+                mMimeMessage.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipients));
             else
-                message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipients));
-            Transport.send(message);
+                mMimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(recipients));
+            Transport.send(mMimeMessage);
         }catch(Exception e)
         {
              e.printStackTrace();
