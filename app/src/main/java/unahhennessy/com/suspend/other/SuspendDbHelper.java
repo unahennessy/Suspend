@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,10 +20,12 @@ public class SuspendDbHelper
   private long mToBeReturned = 0;
   private Context mContext;
   private SQLiteDatabase mDB;
+  private static final String TAG = "SuspendDbHelper";
   
 
   public SuspendDbHelper(Context paramContext)
   {
+      this.log("entered SuspendDbHelper() within SuspendDbHelper.java");
     this.mContext = paramContext;
     this.mDB = new OpenHelper(this.mContext).getWritableDatabase();
   }
@@ -33,6 +36,7 @@ public class SuspendDbHelper
 
   public List<String> fetchAllLogs()
   {
+      this.log("entered fetchAllLogs() within SuspendDbHelper.java");
     ArrayList mArrayList = new ArrayList();
     Cursor mCursor = this.mDB.query(mLOG_TABLE_NAME, new String[] { "id", "log", "flag" }, null, null, null, null, "id asc");
     if (mCursor.moveToFirst()) {
@@ -48,6 +52,7 @@ public class SuspendDbHelper
   }
    public long insertLog(String paramString1, String paramString2)
   {
+      this.log("entered insertLog() within SuspendDbHelper.java");
     Cursor mCursor = this.mDB.query(mLOG_TABLE_NAME, new String[] { "id" }, null, null, null, null, "id asc");
     long l;
     if ((mCursor != null) && (mCursor.getCount() >= 200) && (mCursor.moveToFirst())) {
@@ -71,11 +76,12 @@ public class SuspendDbHelper
   }
 
 
-  private static class OpenHelper
-    extends SQLiteOpenHelper
+  private static class OpenHelper  extends SQLiteOpenHelper
   {
+
     OpenHelper(Context paramContext)
     {
+
       super(paramContext,mDATABASE_NAME, null, mDATABASE_VERSION);
     }
 
@@ -89,4 +95,17 @@ public class SuspendDbHelper
      onCreate(paramSQLiteDatabase);
     }
   }
+
+    private void log(String msg)
+    {
+        try {
+            Thread.sleep(500);
+        }
+        catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Log.i(SuspendDbHelper.TAG, msg);
+
+    }
+
 }

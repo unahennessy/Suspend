@@ -15,6 +15,7 @@ import android.media.AudioManager;
 import android.os.Vibrator;
 import android.support.v4.app.NotificationCompat;
 import android.telephony.SmsManager;
+import android.util.Log;
 import android.widget.RemoteViews;
 
 import java.util.Calendar;
@@ -32,7 +33,7 @@ public class NotificationStopOtherApps
     private Context mParamContext;
     private static int mNumberMessages = 0;
     private static Notification mNotification;
-
+    private static final String TAG = "NotifyStopApps";
   public static String currentTime()
   {
     return new Date(Calendar.getInstance().getTimeInMillis()).toString();
@@ -40,7 +41,9 @@ public class NotificationStopOtherApps
 
 
   public static String getAppVersion(Context paramContext)
-  { mString = "";
+  {  log("entered getAppVersion() within NotificationStopOtherApps.java");
+
+      mString = "";
     try
     {
        mString = paramContext.getPackageManager().getPackageInfo(paramContext.getPackageName(), 0).versionName;
@@ -56,7 +59,7 @@ public class NotificationStopOtherApps
 
 
   public static void launchApp(Context mParamContext, String mParamString)
-  {
+  { log("entered launchApp() within NotificationStopOtherApps.java");
     Intent localIntent = mParamContext.getPackageManager().getLaunchIntentForPackage(mParamString);
     if (localIntent != null) {
     try
@@ -95,6 +98,7 @@ public class NotificationStopOtherApps
     }
   public static void notifyIcon(Context mParamContext)
   {
+      log("entered notifyIcon() within NotificationStopOtherApps.java");
         SharedPreferences mParamContextSharedPreferencesPreferences = mParamContext.getSharedPreferences(FactorsInThisApp.mSUSPEND_PREF, 0);
         NotificationManager mNotificationManager = (NotificationManager)mParamContext.getSystemService(Context.NOTIFICATION_SERVICE);
 
@@ -133,7 +137,7 @@ public class NotificationStopOtherApps
       }
 
       public static void sendSms(Context paramContext, String paramString1, String paramString2)
-      {
+      { log("entered sendSms() within NotificationStopOtherApps.java");
         try
         {
           PendingIntent localPendingIntent = PendingIntent.getActivity(paramContext, 0, new Intent(paramContext, NotificationStopOtherApps.class), 0);
@@ -152,7 +156,7 @@ public class NotificationStopOtherApps
       }
 
       public static void silentMode(Context paramContext)
-      {
+      { log("entered silentMode() within NotificationStopOtherApps.java");
         try
         {
           SharedPreferences localSharedPreferences = paramContext.getSharedPreferences(FactorsInThisApp.mSUSPEND_PREF, 0);
@@ -175,12 +179,12 @@ public class NotificationStopOtherApps
       }
 
       public static void startVibration(Context paramContext)
-      {
+      { log("entered startVibration() within NotificationStopOtherApps.java");
         ((Vibrator)paramContext.getSystemService(Context.VIBRATOR_SERVICE)).vibrate(600L);
       }
 
       public static void writeErrorLog(Context paramContext, String paramString)
-      {
+      { log("entered writeErrorLog() within NotificationStopOtherApps.java");
         if (FactorsInThisApp.mSUSPEND_DB == null) {
           FactorsInThisApp.mSUSPEND_DB = new SuspendDbHelper(paramContext);
         }
@@ -188,10 +192,21 @@ public class NotificationStopOtherApps
       }
 
       public static void writeInfoLog(Context paramContext, String paramString)
-      {
+      { log("entered writeInfoLog() within NotificationStopOtherApps.java");
         if (FactorsInThisApp.mSUSPEND_DB == null) {
           FactorsInThisApp.mSUSPEND_DB = new SuspendDbHelper(paramContext);
         }
         FactorsInThisApp.mSUSPEND_DB.insertLog(currentTime() + " " + paramString, "Info");
       }
+    private static void log(String msg)
+    {
+        try {
+            Thread.sleep(500);
+        }
+        catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Log.i(NotificationStopOtherApps.TAG, msg);
+
+    }
     } //end of NotificationStopOtherApps.java

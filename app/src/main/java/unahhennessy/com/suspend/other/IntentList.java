@@ -7,6 +7,8 @@ package unahhennessy.com.suspend.other;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.util.Log;
+
 import java.util.Iterator;
 import java.util.List;
 
@@ -14,10 +16,12 @@ public class IntentList
     // get a list of all intents in Suspend
 {
   private static List<ResolveInfo> mInfoList = null;
+  private static final String TAG = "IntentList";
 
   public static Intent getIntent(String paramString, PackageManager paramPackageManager)
   {
-    Iterator mIterator = getRunableList(paramPackageManager, false).iterator();
+      log("entered getIntent() within IntentList.java");
+    Iterator mIterator = getRunnableList(paramPackageManager, false).iterator();
     ResolveInfo mResolveInfo;
     do
     {
@@ -32,8 +36,9 @@ public class IntentList
     return mIntent;
   }
 
-  public static List<ResolveInfo> getRunableList(PackageManager paramPackageManager, boolean paramBoolean)
+  public static List<ResolveInfo> getRunnableList(PackageManager paramPackageManager, boolean paramBoolean)
   {
+      log("entered getRunnableList() within IntentList.java");
     try
     {
       if ((mInfoList == null) || (paramBoolean))
@@ -47,4 +52,17 @@ public class IntentList
     }
     finally {}
   }
+
+  private static void log(String msg)
+  {
+    try {
+      Thread.sleep(500);
+    }
+    catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+    Log.i(IntentList.TAG, msg);
+
+  }
+
 }
