@@ -9,6 +9,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.CountDownTimer;
+import android.util.Log;
+
 import unahhennessy.com.suspend.activity.SplashScreen;
 import unahhennessy.com.suspend.other.SuspendApplication;
 import unahhennessy.com.suspend.factors.FactorsInThisApp;
@@ -17,9 +19,11 @@ public class PhoneStateReceiver  extends BroadcastReceiver
 { // this is a phone state receiver class for Suspend
   // i want this used only when there is no bluetooth
   private SharedPreferences pref;
+  private static final String TAG = "PhoneStateReceiver";
   
   public void onReceive(final Context paramContext, Intent paramIntent)
   {
+      this.log("entered onReceive() within PhoneStateReceiver");
     this.pref = paramContext.getSharedPreferences(FactorsInThisApp.mSUSPEND_PREF, 0);
     if (paramIntent.getAction().equals("android.intent.action.BOOT_COMPLETED")) {
       if (this.pref.getBoolean("is_suspend_on", false)) {
@@ -42,4 +46,18 @@ public class PhoneStateReceiver  extends BroadcastReceiver
     String str = paramIntent.getStringExtra("android.intent.extra.PHONE_NUMBER");
     ((SuspendApplication)paramContext.getApplicationContext()).setOutGoingNumber(str);
   }
+
+    private void log(String msg)
+    {
+        try {
+            Thread.sleep(500);
+        }
+        catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Log.i(PhoneStateReceiver.TAG, msg);
+
+    }
+
+
 }

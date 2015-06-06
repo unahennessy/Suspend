@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.IBinder;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -17,20 +18,23 @@ import unahhennessy.com.suspend.other.TelephonyUtil;
 
 public class AppTrackingService extends Service
 {
-          private Context mContext;
-          private boolean mIsContinue;
-          private String mMusic = "";
-          private String mNavigation = "";
-          private ArrayList<String> mPackageList = new ArrayList();
-          private SharedPreferences pref;
+     private Context mContext;
+     private boolean mIsContinue;
+     private String mMusic = "";
+     private String mNavigation = "";
+     private ArrayList<String> mPackageList = new ArrayList();
+     private SharedPreferences pref;
+     private static final String TAG = "AppTrackingService";
 
           public IBinder onBind(Intent paramIntent)
           {
+              this.log("entered onBind() within AppTrackingService.java");
             return null;
           }
 
           public void onCreate()
           {
+              this.log("entered onCreate() within AppTrackingService.java");
             super.onCreate();
             this.mContext = this;
             this.pref = getSharedPreferences(FactorsInThisApp.mSUSPEND_PREF, 0);
@@ -42,7 +46,7 @@ public class AppTrackingService extends Service
           }
 
     protected void launchApp(String paramString)
-    {
+    { this.log("entered launchApp() within AppTrackingService.java");
         Intent localIntent = AppTrackingService.this.getPackageManager().getLaunchIntentForPackage(paramString);
         localIntent.addFlags(67108864);
         localIntent.addFlags(2097152);
@@ -60,6 +64,7 @@ public class AppTrackingService extends Service
 
             public void run()
             {
+                this.log("entered run() within AppTrackingService.java");
               ActivityManager localActivityManager = (ActivityManager)AppTrackingService.this.getSystemService(ACTIVITY_SERVICE);
               for (;;)
               {
@@ -74,13 +79,13 @@ public class AppTrackingService extends Service
                   {
                     if ((!AppTrackingService.this.pref.getBoolean("is_suspend_call_active", false)) && (!AppTrackingService.this.pref.getBoolean("is_suspend_call_out_active", false)))
                     {
-                      ActivityManager.RunningTaskInfo string = ((ActivityManager.RunningTaskInfo)localActivityManager.getRunningAppProcesses());
-                        String string2 = (AppTrackingService.this.mMusic);
-                        String string3 = (AppTrackingService.this.mNavigation);
-                        String string1 = string.toString().toLowerCase();
+                      ActivityManager.RunningTaskInfo mString = ((ActivityManager.RunningTaskInfo)localActivityManager.getRunningAppProcesses());
+                        String mString2 = (AppTrackingService.this.mMusic);
+                        String mString3 = (AppTrackingService.this.mNavigation);
+                        String mString1 = mString.toString().toLowerCase();
 
 
-                      if ((!string.equals(AppTrackingService.this.mContext.getPackageName())) && (!string1.equalsIgnoreCase(string2) && (!string1.equalsIgnoreCase(string3))))
+                      if ((!mString.equals(AppTrackingService.this.mContext.getPackageName())) && (!mString1.equalsIgnoreCase(mString2) && (!mString1.equalsIgnoreCase(mString3))))
                       {
                         launchApp("com.suspend");
                       }
@@ -103,7 +108,17 @@ public class AppTrackingService extends Service
                 }
               }
             }
+    private void log(String msg)
+    {
+        try {
+            Thread.sleep(500);
+        }
+        catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Log.i(AppTrackingService.TAG, msg);
 
+    }
 
  }
 
