@@ -18,7 +18,7 @@ public class SetUp1OneScreen extends Activity
       private TextView mEditMsg;
       private Button mSave;
       private SharedPreferences pref;
-      private static final String TAG = "SetUp1OneScreen Activity";
+      private static final String TAG = "SetUp1Screen Activity";
 
 
       protected void onCreate(Bundle paramBundle)
