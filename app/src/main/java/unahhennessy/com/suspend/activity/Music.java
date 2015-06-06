@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
@@ -45,26 +46,29 @@ public class Music extends Activity
   };
   private TextView mUrlText;
   private TextView memptyView;
+  private static final String TAG = "Music Activity";
 
   private void updateUI()
-  {
-    try
-    {
-      this.mProgressDialog.dismiss();
-      this.mAdapter = new MusicListAdapter(this, this.mAdapterValue);
-      this.mListView.setAdapter(this.mAdapter);
-      if ((this.mAdapterValue == null) || (this.mAdapterValue.size() == 0))
       {
-        this.mHeader_text.setVisibility(View.VISIBLE);
-        this.mCompLayout.setVisibility(View.INVISIBLE);
+          this.log("entered updateUI() within Music.java");
+        try
+        {
+          this.mProgressDialog.dismiss();
+          this.mAdapter = new MusicListAdapter(this, this.mAdapterValue);
+          this.mListView.setAdapter(this.mAdapter);
+          if ((this.mAdapterValue == null) || (this.mAdapterValue.size() == 0))
+          {
+            this.mHeader_text.setVisibility(View.VISIBLE);
+            this.mCompLayout.setVisibility(View.INVISIBLE);
+          }
+          FactorsInThisApp.mSUSPEND_DB.insertLog(NotificationStopOtherApps.currentTime() + " Music app list to launch - " + this.mAdapterValue, "Info");
+          return;
+        }
+        catch (Exception localException) {}
       }
-      FactorsInThisApp.mSUSPEND_DB.insertLog(NotificationStopOtherApps.currentTime() + " Music app list to launch - " + this.mAdapterValue, "Info");
-      return;
-    }
-    catch (Exception localException) {}
-  }
 
   private void validateApp() {
+      this.log("entered validateApp() within Music.java");
     this.mAllowedApp = getResources().getStringArray(R.array.music_app);
     int i;
     if (Build.MODEL.trim().equalsIgnoreCase(FactorsInThisApp.mMUSIC_APP)) {
@@ -91,6 +95,7 @@ public class Music extends Activity
 
   protected void onCreate(Bundle paramBundle)
   {
+      this.log("entered onCreate() within Music.java");
     super.onCreate(paramBundle);
     setContentView(R.layout.music_list_items);
     FactorsInThisApp.mMUSIC_NAVIGATION = 1;
@@ -138,5 +143,16 @@ public class Music extends Activity
         NotificationStopOtherApps.writeErrorLog(this, localException.getMessage());
       }
     }
+  }
+  private void log(String msg)
+  {
+    try {
+      Thread.sleep(500);
+    }
+    catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+    Log.i(Music.TAG, msg);
+
   }
 }

@@ -10,6 +10,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
@@ -46,9 +47,11 @@ public class Navigation
   };
   private TextView mUrlText;
   private TextView memptyView;
+    private static final String TAG = "Navigation Activity";
 
   private void updateUI()
   {
+      this.log("entered updateUI() within Navigation.java");
     try
     {
       this.mProgressDialog.dismiss();
@@ -67,6 +70,7 @@ public class Navigation
 
   private void validateApp()
   {
+      this.log("entered validateApp() within Navigation.java");
     this.mAllowedApp = getResources().getStringArray(R.array.navigation_app);
     FactorsInThisApp.mSUSPEND_DB.insertLog(NotificationStopOtherApps.currentTime() + " Allowed navigation apps - " + this.mAllowedApp, "Info");
     this.mAdapterValue = new ArrayList();
@@ -90,7 +94,7 @@ public class Navigation
   }
 
   protected void onCreate(Bundle paramBundle)
-  {
+  { this.log("entered onCreate() within Navigation.java");
     super.onCreate(paramBundle);
     setContentView(R.layout.navigation);
     FactorsInThisApp.mMUSIC_NAVIGATION = 2;
@@ -138,5 +142,16 @@ public class Navigation
         NotificationStopOtherApps.writeErrorLog(this, localException.getMessage());
       }
     }
+  }
+  private void log(String msg)
+  {
+    try {
+      Thread.sleep(500);
+    }
+    catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+    Log.i(Navigation.TAG, msg);
+
   }
 }

@@ -8,89 +8,107 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 
 import unahhennessy.com.suspend.R;
 import unahhennessy.com.suspend.factors.FactorsInThisApp;
 import unahhennessy.com.suspend.other.NotificationStopOtherApps;
 
-public class SplashScreen
-  extends Activity
+public class SplashScreen extends Activity
 {
-  private CountDownTimer mCountDownTimer;
-  private SharedPreferences pref;
+      private CountDownTimer mCountDownTimer;
+      private SharedPreferences pref;
+      private static final String TAG = "SplashScreen Activity";
 
-  protected void onCreate(Bundle paramBundle)
-  {
-    super.onCreate(paramBundle);
-    setContentView(R.layout.splashscreen);
-    NotificationStopOtherApps.writeInfoLog(this, "Splash Screen");
-    this.pref = getSharedPreferences(FactorsInThisApp.mSUSPEND_PREF, 0);
-    if (!this.pref.getBoolean(FactorsInThisApp.mIS_SETUP_COMPLETE, false)) {}
-    for (;;) {
-        Editor localEditor;
-        try {
-            localEditor = this.pref.edit();
-            localEditor.remove("custom_msg");
-            localEditor.putBoolean("is_sms_enabled", true);
-            localEditor.putBoolean("is_mms_enabled", true);
-            localEditor.putBoolean("is_whatsapp_enabled", true);
-            localEditor.putBoolean("is_phone_enabled", false);
+      protected void onCreate(Bundle paramBundle)
+      {
+          this.log("entered onCreate() within SplashScreen.java");
+            super.onCreate(paramBundle);
+            setContentView(R.layout.splashscreen);
 
-        } catch (Exception localException1) {
-            int k;
-            Intent localIntent;
-            NotificationStopOtherApps.writeErrorLog(this, localException1.getMessage());
-            continue;
+            NotificationStopOtherApps.writeInfoLog(this, "Splash Screen");
 
-           }
+            this.pref = getSharedPreferences(FactorsInThisApp.mSUSPEND_PREF, 0);
 
-        this.mCountDownTimer = new CountDownTimer(2000L, 1000L) {
-            public void onFinish() {
-                if (SplashScreen.this.pref.getBoolean(FactorsInThisApp.mIS_SETUP_COMPLETE, false))
-                {
+            if (!this.pref.getBoolean(FactorsInThisApp.mIS_SETUP_COMPLETE, false)) {}
+            for (;;) {
+                Editor localEditor;
+                try {
+                    localEditor = this.pref.edit();
+                    localEditor.remove("custom_msg");
+                    localEditor.putBoolean("is_sms_enabled", true);
+                    localEditor.putBoolean("is_mms_enabled", true);
+                    localEditor.putBoolean("is_whatsapp_enabled", true);
+                    localEditor.putBoolean("is_phone_enabled", false);
 
-
-                    boolean bool1 = SplashScreen.this.pref.getBoolean("is_sms_enabled", false);
-                    boolean bool2 = SplashScreen.this.pref.getBoolean("is_mms_enabled", false);
-                    boolean bool3 = SplashScreen.this.pref.getBoolean("is_whatapp_enabled", false);
-                    boolean bool4 = SplashScreen.this.pref.getBoolean("is_phone_enabled", false);
-                    if ((!bool1) && (!bool2) && (!bool3) && (!bool4)) {
-                        SplashScreen.this.startActivity(new Intent(SplashScreen.this, SuspendOff.class));
-                    }
-
-                }
-                for (; ;)
-                {
-                    SplashScreen.this.finish();
-
-                    SplashScreen.this.startActivity(new Intent(SplashScreen.this, SuspendOn.class));
-                    SplashScreen.this.startActivity(new Intent(SplashScreen.this, WelcomeScreen.class));
+                } catch (Exception localException1) {
+                    int k;
+                    Intent localIntent;
+                    NotificationStopOtherApps.writeErrorLog(this, localException1.getMessage());
                     continue;
 
+                   }
 
+                this.mCountDownTimer = new CountDownTimer(2000L, 1000L) {
+                    public void onFinish() {
+                        if (SplashScreen.this.pref.getBoolean(FactorsInThisApp.mIS_SETUP_COMPLETE, false))
+                        {
+
+
+                            boolean bool1 = SplashScreen.this.pref.getBoolean("is_sms_enabled", false);
+                            boolean bool2 = SplashScreen.this.pref.getBoolean("is_mms_enabled", false);
+                            boolean bool3 = SplashScreen.this.pref.getBoolean("is_whatapp_enabled", false);
+                            boolean bool4 = SplashScreen.this.pref.getBoolean("is_phone_enabled", false);
+                            if ((!bool1) && (!bool2) && (!bool3) && (!bool4)) {
+                                SplashScreen.this.startActivity(new Intent(SplashScreen.this, SuspendOff.class));
+                            }
+
+                        }
+                        for (; ;)
+                        {
+                            SplashScreen.this.finish();
+
+                            SplashScreen.this.startActivity(new Intent(SplashScreen.this, SuspendOn.class));
+                            SplashScreen.this.startActivity(new Intent(SplashScreen.this, WelcomeScreen.class));
+                            continue;
+
+
+                        }
+                    }
+
+                    public void onTick(long paramAnonymousLong) {
+                    }
+                }.start();
+                if (this.pref.getBoolean("is_suspend_on", false)) {
+                    this.mCountDownTimer.cancel();
+
+                    Intent localIntent = new Intent(this, SuspendOn.class);
+                    localIntent.addFlags(67108864);
+                    startActivity(localIntent);
+                    finish();
                 }
-            }
+                return;
 
-            public void onTick(long paramAnonymousLong) {
             }
-        }.start();
-        if (this.pref.getBoolean("is_suspend_on", false)) {
+          }
+
+          protected void onPause()
+          {
+              this.log("entered onPause() within SplashScreen.java");
+            super.onPause();
             this.mCountDownTimer.cancel();
-
-            Intent localIntent = new Intent(this, SuspendOn.class);
-            localIntent.addFlags(67108864);
-            startActivity(localIntent);
             finish();
-        }
-        return;
+          }
 
-    }
-  }
+          private void log(String msg)
+          {
+               try {
+                    Thread.sleep(500);
+                }
+                catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                Log.i(SplashScreen.TAG, msg);
 
-  protected void onPause()
-  {
-    super.onPause();
-    this.mCountDownTimer.cancel();
-    finish();
-  }
+          }
 }

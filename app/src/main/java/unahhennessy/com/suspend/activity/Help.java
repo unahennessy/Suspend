@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -20,6 +21,7 @@ public class Help extends Activity
   private TextView mMusicUrl;
   private TextView mNavigationUrl;
   private SharedPreferences mPref;
+  private static final String TAG = "Help Activity";
 
   private void launchUrl(String paramString)
   {
@@ -28,6 +30,7 @@ public class Help extends Activity
 
   protected void onCreate(Bundle paramBundle)
   {
+    this.log("entered onCreate() within Help.java");
     super.onCreate(paramBundle);
     setContentView(R.layout.help);
     this.mPref = getSharedPreferences(FactorsInThisApp.mSUSPEND_PREF, 0);
@@ -66,5 +69,16 @@ public class Help extends Activity
       return;
 
     }
+  }
+  private void log(String msg)
+  {
+    try {
+      Thread.sleep(500);
+    }
+    catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+    Log.i(Help.TAG, msg);
+
   }
 }

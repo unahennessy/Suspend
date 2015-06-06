@@ -21,7 +21,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import unahhennessy.com.suspend.R;
-import unahhennessy.com.suspend.activity.NotificationListScreen;
+import unahhennessy.com.suspend.activity.NoteListScrn;
 import unahhennessy.com.suspend.activity.SuspendOn;
 import unahhennessy.com.suspend.factors.FactorsInThisApp;
 
@@ -85,7 +85,7 @@ public class NotificationStopOtherApps
 
     {
         // Creates an explicit intent for an Activity in your app
-        Intent resultIntentList = new Intent(mParamContext, NotificationListScreen.class);
+        Intent resultIntentList = new Intent(mParamContext, NoteListScrn.class);
 
         NotificationCompat.Builder mBuilder;
         mBuilder = ((NotificationCompat.Builder)(mParamContext.getSystemService(Context.NOTIFICATION_SERVICE))).setSmallIcon(R.drawable.appnotificationsuspend)

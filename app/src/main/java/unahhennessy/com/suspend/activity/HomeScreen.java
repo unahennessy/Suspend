@@ -6,6 +6,7 @@ package unahhennessy.com.suspend.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -27,10 +28,11 @@ public class HomeScreen extends Activity {
     private Button mCancel;
     private boolean mIsSettingsCheckbox_checked;
     private CheckBox mSettingsCheck;
-
+    private static final String TAG = "HomeScreen Activity";
 
     protected void onActivityResult(int paramInt1, int paramInt2, Intent paramIntent)
     {
+        this.log("entered onActivityResult() within HomeScreen.java");
         super.onActivityResult(paramInt1, paramInt2, paramIntent);
     }
 
@@ -38,6 +40,7 @@ public class HomeScreen extends Activity {
 
     protected void onCreate(Bundle paramBundle)
     {   // set up the home screen
+        this.log("entered onCreate() within HomeScreen.java");
         super.onCreate(paramBundle);
         setContentView(R.layout.home);
         this.mSettingsCheck = ((CheckBox)findViewById(R.id.settingsok_checkbox));
@@ -122,7 +125,7 @@ public class HomeScreen extends Activity {
     }
 
     public boolean onOptionsItemSelected(Button button)
-    {
+    {  this.log("entered onOptionsItemsSelected() within HomeScreen.java");
         switch (button.getId())
         {
             default:
@@ -145,5 +148,18 @@ public class HomeScreen extends Activity {
 
 
 
-}}
+    }
+
+    private void log(String msg)
+    {
+        try {
+            Thread.sleep(500);
+        }
+        catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Log.i(HomeScreen.TAG, msg);
+
+    }
+}
 

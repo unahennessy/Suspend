@@ -43,7 +43,7 @@ public class SuspendOn  extends Activity
   private TextView mPopupText;
   private int mParamInt;
   private SharedPreferences pref;
-    private static final String TAG = "SuspendOn Activity";
+  private static final String TAG = "SuspendOn Activity";
 
   private void SuspendOff()
   {

@@ -36,16 +36,16 @@
         </activity>
         <activity android:name="unahhennessy.com.suspend.activity.WelcomeScreen" android:configChanges="orientation|keyboardHidden|screenSize" android:screenOrientation="portrait" />
         <activity android:theme="@style/FullscreenTheme" android:name=".activity.Agree_Setup" android:screenOrientation="portrait" />
-        <activity android:theme="@style/FullscreenTheme" android:name=".activity.Setup1OneScreen" android:screenOrientation="portrait" />
-        <activity android:theme="@style/FullscreenTheme" android:name=".activity.SetUp2TwoScreen" android:screenOrientation="portrait" />
-        <activity android:theme="@style/FullscreenTheme" android:name=".activity.SetUp2TwoContinue" android:screenOrientation="portrait" />
+        <activity android:theme="@style/FullscreenTheme" android:name=".activity.SetUp1Screen" android:screenOrientation="portrait" />
+        <activity android:theme="@style/FullscreenTheme" android:name=".activity.SetUp2Screen" android:screenOrientation="portrait" />
+        <activity android:theme="@style/FullscreenTheme" android:name=".activity.SetUp3Screen" android:screenOrientation="portrait" />
         <activity android:theme="@style/FullscreenTheme" android:name=".activity.SuspendOff" android:screenOrientation="portrait" />
         <activity android:theme="@style/FullscreenTheme" android:name=".activity.SuspendOn" android:launchMode="singleTask" android:screenOrientation="portrait" />
         <activity android:theme="@style/FullscreenTheme" android:name=".activity.Help" android:screenOrientation="portrait" />
         <activity android:theme="@style/FullscreenTheme" android:name=".activity.About" android:screenOrientation="portrait" />
         <activity android:theme="@style/FullscreenTheme" android:name=".activity.Settings" android:screenOrientation="portrait" />
-        <activity android:theme="@style/FullscreenTheme" android:name=".activity.SetUp1OneEditMessage" android:screenOrientation="portrait" />
-        <activity android:theme="@style/FullscreenTheme" android:name=".activity.SettingEditMessage" android:screenOrientation="portrait" />
+        <activity android:theme="@style/FullscreenTheme" android:name=".activity.SetUp1Message" android:screenOrientation="portrait" />
+        <activity android:theme="@style/FullscreenTheme" android:name=".activity.EditMessage" android:screenOrientation="portrait" />
         <activity android:theme="@style/FullscreenTheme" android:name=".activity.Music" android:screenOrientation="portrait" />
         <activity android:theme="@style/FullscreenTheme" android:name=".activity.Navigation" android:screenOrientation="portrait" />
         <activity android:theme="@style/FullscreenTheme" android:name=".activity.LogScreen" android:screenOrientation="portrait" />

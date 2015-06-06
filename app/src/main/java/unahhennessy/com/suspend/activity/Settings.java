@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -44,9 +45,11 @@ public class Settings extends Activity
   private RelativeLayout mRelativeLayoutOption3;
   private RelativeLayout mRelativeLayoutOption4;
   private SharedPreferences pref;
+  private static final String TAG = "Settings Activity";
 
   private void handleOptionsLayoutVisibility()
   {
+    this.log("entered handleOptionsLayoutVisibility() within Settings.java");
     this.mRelativeLayoutOption1.setVisibility(View.GONE);
     this.mRelativeLayoutOption2.setVisibility(View.GONE);
     this.mRelativeLayoutOption3.setVisibility(View.GONE);
@@ -59,6 +62,7 @@ public class Settings extends Activity
 
   private void initializeCheckedValue()
   {
+      this.log("entered initializeCheckedValue() within Settings.java");
     this.mIsSMSChecked = this.pref.getBoolean("is_sms_enabled", true);
     this.mIsMMSChecked = this.pref.getBoolean("is_mms_enabled", true);
     this.mIsWHATSAPPChecked = this.pref.getBoolean("is_whatsapp_enabled", true);
@@ -71,6 +75,7 @@ public class Settings extends Activity
 
   private void saveCheckedValue()
   {
+      this.log("entered saveCheckedValue() within Settings.java");
     SharedPreferences.Editor localEditor = this.pref.edit();
     localEditor.putBoolean("is_sms_enabled", this.mIsSMSChecked);
     localEditor.putBoolean("is_mms_enabled", this.mIsMMSChecked);
@@ -81,6 +86,7 @@ public class Settings extends Activity
 
   private void setMessage()
   {
+      this.log("entered setMessage() within Settings.java");
     String string = this.pref.getString("custom_msg", getResources().getString(R.string.default_message_to_reply));
 
     if (string.trim().length() > 0)
@@ -94,6 +100,7 @@ public class Settings extends Activity
 
   protected void onActivityResult(int paramInt1, int paramInt2, Intent paramIntent)
   {
+      this.log("entered onActivityResult() within Settings.java");
     super.onActivityResult(paramInt1, paramInt2, paramIntent);
     if (paramInt2 == -1)
     {
@@ -103,6 +110,7 @@ public class Settings extends Activity
 
   protected void onCreate(Bundle paramBundle)
   {
+      this.log("entered onCreate() within Settings.java");
     super.onCreate(paramBundle);
     setContentView(R.layout.settings);
     this.pref = getSharedPreferences(FactorsInThisApp.mSUSPEND_PREF, 0);
@@ -161,7 +169,7 @@ public class Settings extends Activity
     });
     this.mEditText.setOnClickListener(new View.OnClickListener() {
       public void onClick(View paramAnonymousView) {
-        Settings.this.startActivity(new Intent(Settings.this, SettingEditMessage.class));
+        Settings.this.startActivity(new Intent(Settings.this, EditMessage.class));
       }
     });
     this.mOption1.setOnClickListener(new View.OnClickListener()
@@ -243,10 +251,22 @@ public class Settings extends Activity
 
   protected void onResume()
   {
+      this.log("entered onResume() within Settings.java");
     super.onResume();
     setMessage();
 
     this.mListView.setAdapter(this.mAdapter);
+
+  }
+  private void log(String msg)
+  {
+    try {
+      Thread.sleep(500);
+    }
+    catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+    Log.i(Settings.TAG, msg);
 
   }
 }

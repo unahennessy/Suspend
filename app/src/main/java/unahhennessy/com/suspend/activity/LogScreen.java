@@ -8,6 +8,7 @@ import android.app.ProgressDialog;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,57 +27,65 @@ import unahhennessy.com.suspend.other.NotificationStopOtherApps;
 import unahhennessy.com.suspend.other.SuspendDbHelper;
 
 public class LogScreen   extends Activity
-{
-
+{   private List<String> logs;
+    private LogScreenAdapter mAdapter;
+    private Handler mHandler = new Handler();
+    private ListView mList;
+    private ProgressDialog mProgressDialog = null;
+    private TextView memptyView;
+   private static final String TAG = "LogScreen Activity";
 //this is a log activity for errors I want errors emailed to myself so I can trace the faults and fix them.
   Runnable dismissDialogWithFailure = new Runnable()
-  {
-    public void run()
-    {
-      try
       {
-        if (LogScreen.this.mProgressDialog != null) {
-          LogScreen.this.mProgressDialog.dismiss();
+        public void run()
+        {
+          try
+          {
+            if (LogScreen.this.mProgressDialog != null)
+            {
+              LogScreen.this.mProgressDialog.dismiss();
+            }
+            Toast.makeText(LogScreen.this, "Logs sending failed.", Toast.LENGTH_LONG).show();
+            return;
+          }
+          catch (Exception localException)
+          {
+              localException.printStackTrace();
+          }
         }
-        Toast.makeText(LogScreen.this, "Logs sending failed.", Toast.LENGTH_LONG).show();
-        return;
-      }
-      catch (Exception localException)
-      {
-          localException.printStackTrace();
-      }
-    }
-  };
+      };
+
   Runnable dismissDialogWithSuccess = new Runnable()
-  {
-    public void run()
-    {
-      try
       {
-        if (LogScreen.this.mProgressDialog != null) {
-          LogScreen.this.mProgressDialog.dismiss();
+
+
+
+        public void run()
+        {
+
+          try
+          {
+            if (LogScreen.this.mProgressDialog != null) {
+              LogScreen.this.mProgressDialog.dismiss();
+            }
+             
+            Toast.makeText(LogScreen.this, "Logs sent successfully.", Toast.LENGTH_LONG).show();
+            FactorsInThisApp.mSUSPEND_DB.deleteAllLogs();
+            LogScreen.this.logs.clear();
+            LogScreen.this.mAdapter.notifyDataSetChanged();
+            return;
+          }
+          catch (Exception localException)
+          {
+              localException.printStackTrace();
+          }
         }
-        Toast.makeText(LogScreen.this, "Logs sent successfully.", Toast.LENGTH_LONG).show();
-        FactorsInThisApp.mSUSPEND_DB.deleteAllLogs();
-        LogScreen.this.logs.clear();
-        LogScreen.this.mAdapter.notifyDataSetChanged();
-        return;
-      }
-      catch (Exception localException)
-      {
-          localException.printStackTrace();
-      }
-    }
-  };
-  private List<String> logs;
-  private LogScreenAdapter mAdapter;
-  private Handler mHandler = new Handler();
-  private ListView mList;
-  private ProgressDialog mProgressDialog = null;
-  private TextView memptyView;
+      };
+
 
   private void sendLog()
   {
+      this.log("entered sendLog() within LogScreen.java");
     try
     {
       GMailSender localGMailSender = new GMailSender("unahennessy@gmail.com", "unahennessy");
@@ -94,6 +103,7 @@ public class LogScreen   extends Activity
 
   protected void onCreate(Bundle paramBundle)
   {
+      this.log("entered onCreate() within LogScreen.java");
         super.onCreate(paramBundle);
         setContentView(R.layout.logscreen);
         this.mList = ((ListView)findViewById(R.id.log_list));
@@ -118,7 +128,7 @@ public class LogScreen   extends Activity
   }
 
       public boolean onCreateOptionsMenu(Menu paramMenu)
-      {
+      {  this.log("entered onCreateOptionsMenu() within LogScreen.java");
         super.onCreateOptionsMenu(paramMenu);
         getMenuInflater().inflate(R.menu.log_menu, paramMenu);
         return true;
@@ -126,6 +136,7 @@ public class LogScreen   extends Activity
 
       public boolean onOptionsItemSelected(MenuItem paramMenuItem)
       {
+          this.log("entered onOptionsItemSelected() within LogScreen.java");
         switch (paramMenuItem.getItemId())
         {  default:  return false;
             case 1: {
@@ -138,5 +149,17 @@ public class LogScreen   extends Activity
           }
         }).start();
         return true;}
-      }}
+        }
+      }
+    private void log(String msg)
+    {
+        try {
+            Thread.sleep(500);
+        }
+        catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Log.i(LogScreen.TAG, msg);
+
+    }
 }

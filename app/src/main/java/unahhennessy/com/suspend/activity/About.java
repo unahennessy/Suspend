@@ -6,6 +6,7 @@ package unahhennessy.com.suspend.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -15,10 +16,10 @@ public class About extends Activity
 { // About is a screen about the app and its aims with info on who to contact if problems
   private Button mClose;
   private Button mBack;
-
+  private static final String TAG = "About Activity";
   protected void onCreate(Bundle paramBundle)
   {
-
+      this.log("entered OnCreate() within About.java");
     super.onCreate(paramBundle);
     setContentView(R.layout.about);
       // go back to the screen before if back button clicked
@@ -42,6 +43,7 @@ public class About extends Activity
 
   public boolean onOptionsItemSelected(Button button)
     {
+        this.log("entered onOptionsitemSelected() within About.java");
         switch (button.getId())
         {
             default:
@@ -56,5 +58,16 @@ public class About extends Activity
                 About.this.finish();
                 return true;
         }
+    }
+    private void log(String msg)
+    {
+        try {
+            Thread.sleep(500);
+        }
+        catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Log.i(About.TAG, msg);
+
     }
 }

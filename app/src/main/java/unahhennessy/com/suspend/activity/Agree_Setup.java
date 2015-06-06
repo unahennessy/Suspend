@@ -5,6 +5,7 @@ package unahhennessy.com.suspend.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -14,12 +15,15 @@ public class Agree_Setup extends Activity
 { // About is a screen about the app and its aims with info on who to contact if problems
     private Button mCancel;
     private Button mAccept;
+    private static final String TAG = "Agree_Setup Activity";
 
 
 
 
     protected void onCreate(Bundle paramBundle)
-    {   super.onCreate(paramBundle);
+    {
+        this.log("entered onCreate() within Agree_Setup.java");
+        super.onCreate(paramBundle);
         setContentView(R.layout.agree_setup);
         // go to the welcome screen if accept button clicked
 
@@ -43,8 +47,10 @@ public class Agree_Setup extends Activity
 
     public boolean onOptionsItemSelected(Button button)
     {
+        this.log("entered onOptionsitemSelected() within Agree_Setup.java");
         switch (button.getId())
         {
+
             default:
                 return false;
             case R.id.button_cancel:
@@ -57,5 +63,16 @@ public class Agree_Setup extends Activity
                 Agree_Setup.this.finish();
                 return true;
         }
+    }
+    private void log(String msg)
+    {
+        try {
+            Thread.sleep(500);
+        }
+        catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Log.i(Agree_Setup.TAG, msg);
+
     }
 }
