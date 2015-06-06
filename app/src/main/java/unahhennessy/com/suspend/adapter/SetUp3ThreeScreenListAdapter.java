@@ -4,6 +4,7 @@ package unahhennessy.com.suspend.adapter;
  *
  */
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,16 +20,19 @@ public class SetUp3ThreeScreenListAdapter  extends BaseAdapter
   private Context mContext;
   private Vector mName;
   private Vector mNumber;
+  private static final String TAG = "SetUp3ListAdapter";
   
   public SetUp3ThreeScreenListAdapter(Context paramContext, Vector paramVector1, Vector paramVector2)
   {
+    this.log("entered SetUp3ThreeScreenListAdapter() within SetUp3ThreeScreenListAdapter.java");
+   
     this.mContext = paramContext;
     this.mName = paramVector1;
     this.mNumber = paramVector2;
   }
   
   public int getCount()
-  {
+  {this.log("entered getCount() within SetUp3ThreeScreenListAdapter.java");
     if ((this.mName != null) && (this.mName.size() > 0)) {
       return this.mName.size();
     }
@@ -36,7 +40,7 @@ public class SetUp3ThreeScreenListAdapter  extends BaseAdapter
   }
   
   public Object getItem(int paramInt)
-  {
+  {this.log("entered getItem() within SetUp3ThreeScreenListAdapter.java");
     if ((this.mName != null) && (this.mName.size() > 0)) {
       return this.mName.get(paramInt);
     }
@@ -45,37 +49,33 @@ public class SetUp3ThreeScreenListAdapter  extends BaseAdapter
   
   public long getItemId(int paramInt)
   {
-    return 0L;
+      this.log("entered getItemId() within SetUp3ThreeScreenListAdapter.java");
+      
+      return 0L;
   }
   
-  public String getNumber(int paramInt)
-  {
-    if ((this.mNumber != null) && (this.mNumber.size() > 0)) {
-      return this.mNumber.get(paramInt).toString();
-    }
-    return null;
-  }
-  
+    
   public View getView(int paramInt, View paramView, ViewGroup paramViewGroup)
   {
-    ViewHolder localViewHolder = null;
+      this.log("entered getView() within SetUp3ThreeScreenListAdapter.java");
+    ViewHolder mViewHolder = null;
         if (paramView == null)
         {
           paramView = ((LayoutInflater)this.mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.setup3_list_items, null);
-          localViewHolder = new ViewHolder();
-          localViewHolder.name = ((TextView)paramView.findViewById(R.id.text_name));
-          localViewHolder.num = ((TextView)paramView.findViewById(R.id.text_num));
-          localViewHolder.arrow = ((ImageView)paramView.findViewById(R.id.arrow));
-          paramView.setTag(localViewHolder);
+          mViewHolder = new ViewHolder();
+          mViewHolder.name = ((TextView)paramView.findViewById(R.id.text_name));
+          mViewHolder.num = ((TextView)paramView.findViewById(R.id.text_num));
+          mViewHolder.arrow = ((ImageView)paramView.findViewById(R.id.arrow));
+          paramView.setTag(mViewHolder);
           if (this.mName.get(paramInt).toString().equalsIgnoreCase("Emergency"))
-            localViewHolder.arrow.setVisibility(View.GONE);
+            mViewHolder.arrow.setVisibility(View.GONE);
         }
         for (;;)
         {
-          localViewHolder.name.setText(this.mName.get(paramInt).toString());
-          localViewHolder.num.setText(this.mNumber.get(paramInt).toString());
-          localViewHolder = (ViewHolder)paramView.getTag();
-          localViewHolder.arrow.setVisibility(View.VISIBLE);
+          mViewHolder.name.setText(this.mName.get(paramInt).toString());
+          mViewHolder.num.setText(this.mNumber.get(paramInt).toString());
+          mViewHolder = (ViewHolder)paramView.getTag();
+          mViewHolder.arrow.setVisibility(View.VISIBLE);
           return paramView;
         }
 
@@ -83,6 +83,7 @@ public class SetUp3ThreeScreenListAdapter  extends BaseAdapter
   
   public boolean isEnabled(int paramInt)
   {
+      this.log("entered isEnabled() within SetUp3ThreeScreenListAdapter.java");
     if (this.mName.get(paramInt).toString().equalsIgnoreCase("Emergency")) {
       return false;
     }
@@ -97,4 +98,19 @@ public class SetUp3ThreeScreenListAdapter  extends BaseAdapter
     
     ViewHolder() {}
   }
+    private void log(String msg)
+    {
+        //log(msg) to show TAG in every method
+        try {
+            Thread.sleep(500);
+        }
+        catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Log.i(SetUp3ThreeScreenListAdapter.TAG, msg);
+
+    }
+
+
+
 }

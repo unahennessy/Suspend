@@ -4,15 +4,12 @@ package unahhennessy.com.suspend.emailclient;
  *
  */
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import android.util.Log;
+
 import java.security.Security;
 import java.util.Properties;
 
 import javax.activation.DataHandler;
-import javax.activation.DataSource;
 import javax.mail.Message;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
@@ -26,12 +23,13 @@ public class GMailSender extends javax.mail.Authenticator {
     private String mUser;
     private String mPassword;
     private Session mSession;
-
+    private static final String TAG = "GMailSender";
     static {
         Security.addProvider(new unahhennessy.com.suspend.emailclient.JSSEProvider());
     }
 
     public GMailSender(String mUser, String mPassword) {
+        this.log("entered GMailSender() within GMailSender.java");
         this.mUser = mUser;
         this.mPassword = mPassword;
 
@@ -50,10 +48,12 @@ public class GMailSender extends javax.mail.Authenticator {
     }
 
     protected PasswordAuthentication getPasswordAuthentication() {
+        this.log("entered getPasswordAuthentication() within GMailSender.java");
         return new PasswordAuthentication(mUser, mPassword);
     }
 
-    public synchronized void sendMail(String subject, String body, String sender, String recipients) throws Exception {
+    public synchronized void sendMail(String subject, String body, String sender, String recipients) throws Exception
+    {   this.log("entered sendMail() within GMailSender.java");
         try{
             MimeMessage message = new MimeMessage(mSession);
             DataHandler handler = new DataHandler(new ByteArrayDataSource(body.getBytes(), "text/plain"));
@@ -71,42 +71,16 @@ public class GMailSender extends javax.mail.Authenticator {
         }
     }
 
-    public class ByteArrayDataSource implements DataSource {
-        private byte[] data;
-        private String type;
-
-        public ByteArrayDataSource(byte[] data, String type) {
-            super();
-            this.data = data;
-            this.type = type;
+    
+    private void log(String msg)
+    {
+        try {
+            Thread.sleep(500);
         }
-
-        public ByteArrayDataSource(byte[] data) {
-            super();
-            this.data = data;
+        catch (InterruptedException e) {
+            e.printStackTrace();
         }
+        Log.i(GMailSender.TAG, msg);
 
-        public void setType(String type) {
-            this.type = type;
-        }
-
-        public String getContentType() {
-            if (type == null)
-                return "application/octet-stream";
-            else
-                return type;
-        }
-
-        public InputStream getInputStream() throws IOException {
-            return new ByteArrayInputStream(data);
-        }
-
-        public String getName() {
-            return "ByteArrayDataSource";
-        }
-
-        public OutputStream getOutputStream() throws IOException {
-            throw new IOException("Not Supported");
-        }
     }
 }

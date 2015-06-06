@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,14 +15,12 @@ import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 
 import unahhennessy.com.suspend.R;
 import unahhennessy.com.suspend.factors.FactorsInThisApp;
 
-public class MusicListAdapter
-  extends BaseAdapter
+public class MusicListAdapter extends BaseAdapter
 {
   private String mCheckedValue = "";
   private Context mContext;
@@ -30,9 +29,11 @@ public class MusicListAdapter
   private PackageManager mPkgManager;
   private String mPkgName;
   private SharedPreferences pref;
+  private static final String TAG = "MusicListAdapter";
   
   public MusicListAdapter(Context paramContext, ArrayList<PackageInfo> paramArrayList)
   {
+    this.log("entered MusicListAdapter() within MusicListAdapter.java");
     this.mContext = paramContext;
     this.mPackageInfoList = paramArrayList;
     this.mPkgManager = this.mContext.getPackageManager();
@@ -49,6 +50,7 @@ public class MusicListAdapter
   
   public int getCount()
   {
+    this.log("entered getCount() within MusicListAdapter.java");
     if ((this.mPackageInfoList != null) && (this.mPackageInfoList.size() > 0)) {
       return this.mPackageInfoList.size();
     }
@@ -57,6 +59,7 @@ public class MusicListAdapter
   
   public Object getItem(int paramInt)
   {
+      this.log("entered getItem() within MusicListAdapter.java");
     if ((this.mPackageInfoList != null) && (this.mPackageInfoList.size() > 0)) {
       return ((PackageInfo)this.mPackageInfoList.get(paramInt)).applicationInfo.loadLabel(this.mPkgManager);
     }
@@ -65,20 +68,22 @@ public class MusicListAdapter
   
   public long getItemId(int paramInt)
   {
+      this.log("entered getItemId() within MusicListAdapter.java");
     return 0L;
   }
   
   public View getView(final int paramInt, View paramView, ViewGroup paramViewGroup)
   {
-    View localView = ((LayoutInflater)this.mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.music_list_items, null);
-    ViewHolder localViewHolder = new ViewHolder();
-    localViewHolder.imageIcon = ((ImageView)localView.findViewById(R.id.image_icon));
-    localViewHolder.appName = ((TextView)localView.findViewWithTag(R.string.app_name));
-    localViewHolder.checkBox = ((CheckBox)localView.findViewById(R.id.item_check));
-    localView.setTag(localViewHolder);
-    localViewHolder.imageIcon.setImageDrawable(((PackageInfo)this.mPackageInfoList.get(paramInt)).applicationInfo.loadIcon(this.mPkgManager));
-    localViewHolder.appName.setText(getItem(paramInt).toString());
-    localViewHolder.checkBox.setOnClickListener(new View.OnClickListener()
+      this.log("entered getView() within MusicListAdapter.java");
+    View mView = ((LayoutInflater)this.mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.music_list_items, null);
+    ViewHolder mViewHolder = new ViewHolder();
+    mViewHolder.imageIcon = ((ImageView)mView.findViewById(R.id.image_icon));
+    mViewHolder.appName = ((TextView)mView.findViewWithTag(R.string.app_name));
+    mViewHolder.checkBox = ((CheckBox)mView.findViewById(R.id.item_check));
+    mView.setTag(mViewHolder);
+    mViewHolder.imageIcon.setImageDrawable(((PackageInfo)this.mPackageInfoList.get(paramInt)).applicationInfo.loadIcon(this.mPkgManager));
+    mViewHolder.appName.setText(getItem(paramInt).toString());
+    mViewHolder.checkBox.setOnClickListener(new View.OnClickListener()
     {
       public void onClick(View paramAnonymousView)
       {
@@ -121,16 +126,18 @@ public class MusicListAdapter
     });
     if ((this.mCheckedValue.trim().length() > 0) && (this.mCheckedValue.equalsIgnoreCase(getItem(paramInt).toString())))
     {
-      localViewHolder.checkBox.setChecked(true);
-      return localView;
+      mViewHolder.checkBox.setChecked(true);
+      return mView;
     }
-    localViewHolder.checkBox.setChecked(false);
-    return localView;
+    mViewHolder.checkBox.setChecked(false);
+    return mView;
   }
   
   public void setMPkgName(String paramString)
   {
-    this.mPkgName = paramString;
+      this.log("entered setMPkgName() within MusicListAdapter.java");
+
+      this.mPkgName = paramString;
   }
   
   class ViewHolder
@@ -141,4 +148,20 @@ public class MusicListAdapter
     
     ViewHolder() {}
   }
+  private void log(String msg)
+  {
+    try {
+      Thread.sleep(500);
+    }
+    catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+    Log.i(MusicListAdapter.TAG, msg);
+
+  }
+  
+  
+  
+  
+  
 }
