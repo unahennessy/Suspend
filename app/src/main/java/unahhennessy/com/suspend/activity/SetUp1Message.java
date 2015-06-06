@@ -5,6 +5,7 @@ package unahhennessy.com.suspend.activity;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,15 +13,17 @@ import android.widget.EditText;
 import unahhennessy.com.suspend.R;
 import unahhennessy.com.suspend.factors.FactorsInThisApp;
 
-public class SetUp1OneEditMessage  extends Activity
+public class SetUp1Message extends Activity
 {
   private Button mCancel;
   private EditText mEdittext;
   private Button mSave;
   private SharedPreferences pref;
+  private static final String TAG = "SetUp1Message Activity";
 
   protected void onCreate(Bundle paramBundle)
   {
+      this.log("entered onCreate() within SetUp1Message.java");
     super.onCreate(paramBundle);
     setContentView(R.layout.setuponeeditmsg);
     this.pref = getSharedPreferences(FactorsInThisApp.mSUSPEND_PREF, 0);
@@ -35,19 +38,30 @@ public class SetUp1OneEditMessage  extends Activity
     {
       public void onClick(View paramAnonymousView)
       {
-        SetUp1OneEditMessage.this.finish();
+        SetUp1Message.this.finish();
       }
     });
     this.mSave.setOnClickListener(new View.OnClickListener()
     {
       public void onClick(View paramAnonymousView)
       {
-        SharedPreferences.Editor localEditor = SetUp1OneEditMessage.this.pref.edit();
-        localEditor.putString("custom_msg", SetUp1OneEditMessage.this.mEdittext.getText().toString().trim());
+        SharedPreferences.Editor localEditor = SetUp1Message.this.pref.edit();
+        localEditor.putString("custom_msg", SetUp1Message.this.mEdittext.getText().toString().trim());
         localEditor.commit();
-        SetUp1OneEditMessage.this.finish();
+        SetUp1Message.this.finish();
       }
     });
+  }
+  private void log(String msg)
+  {
+    try {
+      Thread.sleep(500);
+    }
+    catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+    Log.i(SetUp1Message.TAG, msg);
+
   }
 }
 

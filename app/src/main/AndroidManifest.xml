@@ -36,7 +36,7 @@
         </activity>
         <activity android:name="unahhennessy.com.suspend.activity.WelcomeScreen" android:configChanges="orientation|keyboardHidden|screenSize" android:screenOrientation="portrait" />
         <activity android:theme="@style/FullscreenTheme" android:name=".activity.Agree_Setup" android:screenOrientation="portrait" />
-        <activity android:theme="@style/FullscreenTheme" android:name=".activity.SetUp1Screen" android:screenOrientation="portrait" />
+        <activity android:theme="@style/FullscreenTheme" android:name=".activity.SetUp1OneScreen" android:screenOrientation="portrait" />
         <activity android:theme="@style/FullscreenTheme" android:name=".activity.SetUp2Screen" android:screenOrientation="portrait" />
         <activity android:theme="@style/FullscreenTheme" android:name=".activity.SetUp3Screen" android:screenOrientation="portrait" />
         <activity android:theme="@style/FullscreenTheme" android:name=".activity.SuspendOff" android:screenOrientation="portrait" />

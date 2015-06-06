@@ -32,7 +32,7 @@ public class WelcomeScreen extends Activity {
         this.mContinue = ((Button)findViewById(R.id.button_continue));
         this.mContinue.setOnClickListener(new View.OnClickListener() {
             public void onClick(View paramAnonymousView) {
-                WelcomeScreen.this.startActivity(new Intent(WelcomeScreen.this, SetUp1Screen.class));
+                WelcomeScreen.this.startActivity(new Intent(WelcomeScreen.this, SetUp1OneScreen.class));
                 WelcomeScreen.this.finish();
             }
         });
