@@ -14,7 +14,7 @@ import unahhennessy.com.suspend.R;
 public class MmsListener   extends BroadcastReceiver
 { //a listener for mms received - gonna just send back a text
 
-  private final String DEFAULT_MSG = "Driving so cant reply. I will have a look later when I'm not driving.";
+
   private SharedPreferences preferences;
   private static final String TAG = "MmsListener";
   public void onReceive(Context paramContext, Intent paramIntent)

@@ -10,26 +10,28 @@ import android.content.SharedPreferences;
 import android.os.IBinder;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
+import android.util.Log;
 
 import java.util.Vector;
 
 import unahhennessy.com.suspend.R;
-import unahhennessy.com.suspend.other.SuspendApplication;
 import unahhennessy.com.suspend.factors.FactorsInThisApp;
 import unahhennessy.com.suspend.other.NotificationStopOtherApps;
+import unahhennessy.com.suspend.other.SuspendApplication;
 
 public class PhoneListener extends Service
 { // a listener for calls received
   public static StateListener phoneStateListener = null;
   public static TelephonyManager telephonymanager = null;
-  private final String DEFAULT_MSG = "Driving at the mo. Talk later";
   private Vector<String> mNum;
   private SharedPreferences.Editor mEdit;
   String mMsgText = "Suspend Reply:";
   private SharedPreferences pref;
-  
+  private static final String TAG = "PhoneListener";
+
   private boolean isNumberValid(String paramString)
   {
+      this.log("entered isNumberValid() within PhoneListener.java");
     int i = this.mNum.size();
     if (paramString != null) {}
     for (;;)
@@ -38,32 +40,33 @@ public class PhoneListener extends Service
       try
       {
         if (paramString.trim().length() <= 0) {
-          break; //label106;
+            break;
         }
          
       }
       catch (Exception localException)
-      {
-        String string;
-        boolean bool;
-        string = this.mNum.get(j).toString();
-        if ((string == null) || (string.trim().length() >= 9)) {
-          if (!paramString.contains(string.trim()))
-          {
-            bool = string.trim().contains(paramString);
-            if (!bool) {}
+          { 
+            String string;
+            boolean bool;
+            string = this.mNum.get(j).toString();
+            if ((string == null) || (string.trim().length() >= 9))
+            {
+              if (!paramString.contains(string.trim()))
+              {
+                bool = string.trim().contains(paramString);
+                if (!bool) {}
+              }
+              else
+              {
+                return true;
+              }
+            }
+            break; 
           }
-          else
-          {
-            return true;
-          }
-        }
-        break;// label106;
-      }
 
       while (j >= i)
       {
-        label106:
+         
         j++;
         return false;
 
@@ -76,6 +79,7 @@ public class PhoneListener extends Service
   {
     try
     {
+
       telephonymanager.listen(phoneStateListener, 0);
       return;
     }
@@ -84,14 +88,14 @@ public class PhoneListener extends Service
   
   public IBinder onBind(Intent paramIntent)
   {
+      this.log("entered onBind() within PhoneListener.java");
     return null;
   }
   
   public void onCreate()
   {
+      this.log("entered onCreate() within PhoneListener.java");
     super.onCreate();
-    label268:
-    label281:
     for (;;)
     {
       int i =0;
@@ -101,16 +105,16 @@ public class PhoneListener extends Service
         this.pref = getSharedPreferences(FactorsInThisApp.mSUSPEND_PREF, 0);
         i = this.pref.getInt("contact_count", 0);
         this.mEdit = this.pref.edit();
-        String str1 = this.pref.getString("custom_msg", getResources().getString(R.string.default_message_to_reply));
-        if (str1.trim().length() == 0) {
-          str1 = getResources().getString(R.string.default_message_to_reply);
+        String mString1 = this.pref.getString("custom_msg", getResources().getString(R.string.default_message_to_reply));
+        if (mString1.trim().length() == 0) {
+          mString1 = getResources().getString(R.string.default_message_to_reply);
         }
-        this.mMsgText += str1.trim();
+        this.mMsgText += mString1.trim();
           
         if (i > 0)
         {
           j = 1;
-          break label268;
+          break;
         }
         phoneStateListener = new StateListener();
         telephonymanager = (TelephonyManager)getSystemService(TELEPHONY_SERVICE);
@@ -119,22 +123,22 @@ public class PhoneListener extends Service
       }
       catch (Exception localException)
       {
-        String str2;
+        String mString2;
         int k;
-        Object localObject;
-        String str3;
-          str2 = this.pref.getString("contact_number" + j, "");
-          k = str2.trim().length();
-          if ((str2 != null) && (k > 0)) {
+        Object mObject;
+        String mString3;
+          mString2 = this.pref.getString("contact_number" + j, "");
+          k = mString2.trim().length();
+          if ((mString2 != null) && (k > 0)) {
               if (k > 10)
               {
-                  localObject = str2.trim().substring(k - 10);
+                  mObject = mString2.trim().substring(k - 10);
 
               }
               else
               {
-                  str3 = str2.trim();
-                  localObject = str3;
+                  mString3 = mString2.trim();
+                  mObject = mString3;
                   continue;
               }
         return;
@@ -144,8 +148,9 @@ public class PhoneListener extends Service
       }
       for (;;)
       {
-        if (j <= i) {
-          break label281;
+        if (j <= i)
+        {
+          break;
         }
           j++;
         break;
@@ -155,53 +160,65 @@ public class PhoneListener extends Service
   }
   
   public void onDestroy()
-  {
+  {  this.log("entered onDestroy() within PhoneListener.java");
     super.onDestroy();
     telephonymanager.listen(null, 0);
     stopSelf();
-    System.out.println("Inside OnDestroy***********Stopping DefaultAccessibilityService*****");
+    System.out.println("Inside OnDestroy within PhoneListener");
   }
-  
-  class StateListener
-    extends PhoneStateListener
-  {
-    StateListener() {}
-    
-    public void onCallStateChanged(int paramInt, String paramString)
+
+    class StateListener extends PhoneStateListener
     {
-      super.onCallStateChanged(paramInt, paramString);
-      String str = ((SuspendApplication)PhoneListener.this.getApplicationContext()).getOutGoingNumber();
-      System.out.println("Mobile Nimber: " + str);
-      if ((paramString == null) || (paramString.trim().length() == 0)) {
-        paramString = str;
-      }
-      System.out.println("Phone Number: " + paramString);
-      switch (paramInt)
-      {
-          default:
-          case 1:
-          case 2:
-            do
-            {    if (PhoneListener.this.pref.getBoolean("is_suspend_on", false))
-                {
-                      if (PhoneListener.this.pref.getBoolean("is_phone_enabled", false))
-                      {
-                        if (PhoneListener.this.pref.getBoolean("is_suspend_call_active", false))
-                        {  }
-                      }
-                }
-              PhoneListener.this.mEdit.putBoolean("is_suspend_call_active", true);
-              PhoneListener.this.mEdit.commit();
-              NotificationStopOtherApps.silentMode(PhoneListener.this.getApplicationContext());
+        StateListener() {}
 
-            } while ((!PhoneListener.this.pref.getBoolean("is_suspend_on", false)) || (!PhoneListener.this.isNumberValid(paramString)));
+        public void onCallStateChanged(int paramInt, String paramString)
+        {
+            super.onCallStateChanged(paramInt, paramString);
+            String mString = ((SuspendApplication)PhoneListener.this.getApplicationContext()).getOutGoingNumber();
+            System.out.println("Mobile Nimber: " + mString);
+            if ((paramString == null) || (paramString.trim().length() == 0)) {
+                paramString = mString;
+            }
+            System.out.println("Phone Number: " + paramString);
+            switch (paramInt)
+            {
+                default:
+                case 1:
+                case 2:
+                    do
+                    {    if (PhoneListener.this.pref.getBoolean("is_suspend_on", false))
+                    {
+                        if (PhoneListener.this.pref.getBoolean("is_phone_enabled", false))
+                        {
+                            if (PhoneListener.this.pref.getBoolean("is_suspend_call_active", false))
+                            {  }
+                        }
+                    }
+                        PhoneListener.this.mEdit.putBoolean("is_suspend_call_active", true);
+                        PhoneListener.this.mEdit.commit();
+                        NotificationStopOtherApps.silentMode(PhoneListener.this.getApplicationContext());
 
-            PhoneListener.this.mEdit.putBoolean("is_suspend_call_active", true);
-            PhoneListener.this.mEdit.commit();
-            return;
-      }  }
+                    } while ((!PhoneListener.this.pref.getBoolean("is_suspend_on", false)) || (!PhoneListener.this.isNumberValid(paramString)));
+
+                    PhoneListener.this.mEdit.putBoolean("is_suspend_call_active", true);
+                    PhoneListener.this.mEdit.commit();
+                    return;
+            }  }
 
 
 
     }
+    private void log(String msg)
+    {
+        try {
+            Thread.sleep(500);
+        }
+        catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Log.i(PhoneListener.TAG, msg);
+
+    }
+
+
   }
