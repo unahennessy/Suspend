@@ -2,10 +2,17 @@
 <!-- Una Hennessy d02126371@mydit.ie Semester 2 2015 -->
 <!-- use design to see changes to this screen -->
 <!-- xml to display the suspend off screen -->
-<RelativeLayout android:background="@color/black" android:layout_width="fill_parent" android:layout_height="fill_parent"
+<RelativeLayout
+    android:background="@color/black"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
   xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- emergency image -->
-    <ImageView android:id="@id/image_emergency" android:focusable="true" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content"
+    <ImageView android:id="@id/image_emergency"
+        android:focusable="true"
+        android:clickable="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:src="@drawable/image_emergency_selector"
         android:layout_alignBottom="@id/image_cross"
         android:layout_alignParentLeft="true"
@@ -75,11 +82,24 @@
         android:layout_toRightOf="@id/image_emergency"
         android:layout_toEndOf="@id/image_emergency" />
     <!-- music image -->
-    <ImageView android:id="@id/image_music" android:focusable="true" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content"
+    <ImageView android:id="@id/image_music"
+        android:focusable="true"
+        android:clickable="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:src="@drawable/image_music_selector"
         android:layout_alignParentBottom="true"
         android:layout_toLeftOf="@id/image_suspend_off"
         android:layout_toStartOf="@id/image_suspend_off" />
     <!-- navigation image -->
-    <ImageView android:id="@id/image_navigation" android:focusable="true" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="10.0dip" android:layout_marginBottom="10.0dip" android:src="@drawable/image_navigation_selector" android:layout_alignParentRight="true" android:layout_alignParentBottom="true" />
+    <ImageView android:id="@id/image_navigation"
+        android:focusable="true"
+        android:clickable="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10.0dip"
+        android:layout_marginBottom="10.0dip"
+        android:src="@drawable/image_navigation_selector"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true" />
 </RelativeLayout>
