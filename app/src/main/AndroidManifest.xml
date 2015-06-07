@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest  package="unahhennessy.com.suspend" xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="preferExternal">
+<!-- 2 different manifest declarations one for emulater and one for samsung s2 -->
+<!-- Una Hennessy d02126371@mydit.ie Semester 2 2015 -->
+<!-- need to switch them depending on which you are testing on  -->
+<!-- 1st one for s2 and 2nd one for emulator so 1st one installLocation prefer external 2nd one installLocation auto  -->
+<!--<manifest  package="unahhennessy.com.suspend" xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="preferExternal">-->
+<manifest  package="unahhennessy.com.suspend" xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="auto">
     <uses-sdk  android:minSdkVersion="16" android:targetSdkVersion="22" />
     <uses-permission android:name="android.permission.VIBRATE" android:maxSdkVersion="18"/>
     <uses-permission android:name="android.permission.BLUETOOTH" />
