@@ -55,7 +55,8 @@ public class SuspendOff   extends Activity {
       localIntent.addFlags(67108864);
         startActivity(localIntent);
       return;
-    } catch (Exception localException) {
+    } catch (Exception localException)
+    {
       NotificationStopOtherApps.writeErrorLog(this, localException.getMessage());
     }
   }
@@ -130,8 +131,8 @@ public class SuspendOff   extends Activity {
          }
         }.start();
       }
-    for (; ; )
-    {
+
+
         this.mEmergency.setOnClickListener(new View.OnClickListener() {
             public void onClick(View paramAnonymousView) {
                 log("entered mEmergency.setOnClickListener() within SuspendOff.java");
@@ -193,7 +194,7 @@ public class SuspendOff   extends Activity {
         this.mCross.setVisibility(View.INVISIBLE);
         this.mPopup.setVisibility(View.INVISIBLE);
         this.mPopupText.setVisibility(View.INVISIBLE);
-      }
+
   }
 
   protected Fragment fragmentCreateDialog(int mParamInt)

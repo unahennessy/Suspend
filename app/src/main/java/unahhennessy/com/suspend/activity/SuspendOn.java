@@ -202,7 +202,10 @@ public class SuspendOn  extends Activity
       mSuspendOff.setOnClickListener(new View.OnClickListener() {
           public void onClick(View paramAnonymousView) {
               SuspendOn.this.log("entered mSuspendOff.setOnClickListener() within SuspendOn.java");
-              SuspendOn.this.vibrate();
+              //SuspendOn.this.vibrate();
+              SuspendOn.this.getSystemService(VIBRATOR_SERVICE);
+
+
               SuspendOn.this.SuspendOff();
               SuspendOn.this.startActivity(new Intent(SuspendOn.this, SuspendOff.class));
               SuspendOn.this.finish();
