@@ -78,7 +78,7 @@ public class Help extends Activity
     catch (InterruptedException e) {
       e.printStackTrace();
     }
-    Log.i(Help.TAG, msg);
+    Log.i(TAG, msg);
 
   }
 }

@@ -56,7 +56,7 @@ public class SuspendApplication  extends Application
         catch (InterruptedException e) {
             e.printStackTrace();
         }
-        Log.i(SuspendApplication.TAG, msg);
+        Log.i(TAG, msg);
 
     }
 }

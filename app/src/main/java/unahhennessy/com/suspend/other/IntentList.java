@@ -61,7 +61,7 @@ public class IntentList
     catch (InterruptedException e) {
       e.printStackTrace();
     }
-    Log.i(IntentList.TAG, msg);
+    Log.i(TAG, msg);
 
   }
 

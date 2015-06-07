@@ -72,7 +72,7 @@ public class WhatsAppListener  extends BroadcastReceiver
     catch (InterruptedException e) {
       e.printStackTrace();
     }
-    Log.i(WhatsAppListener.TAG, msg);
+    Log.i(TAG, msg);
 
   }
   

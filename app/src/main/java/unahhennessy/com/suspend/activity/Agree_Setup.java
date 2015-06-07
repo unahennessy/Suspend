@@ -72,7 +72,7 @@ public class Agree_Setup extends Activity
         catch (InterruptedException e) {
             e.printStackTrace();
         }
-        Log.i(Agree_Setup.TAG, msg);
+        Log.i(TAG, msg);
 
     }
 }

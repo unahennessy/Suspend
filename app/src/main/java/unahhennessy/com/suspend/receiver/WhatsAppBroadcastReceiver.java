@@ -31,7 +31,7 @@ Toast.LENGTH_LONG).show();
         catch (InterruptedException e) {
             e.printStackTrace();
         }
-        Log.i(WhatsAppBroadcastReceiver.TAG, msg);
+        Log.i(TAG, msg);
 
     }
 

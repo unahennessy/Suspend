@@ -116,7 +116,7 @@ public class AppTrackingService extends Service
         catch (InterruptedException e) {
             e.printStackTrace();
         }
-        Log.i(AppTrackingService.TAG, msg);
+        Log.i(TAG, msg);
 
     }
 

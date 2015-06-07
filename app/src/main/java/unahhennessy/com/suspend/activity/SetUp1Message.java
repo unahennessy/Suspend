@@ -60,7 +60,7 @@ public class SetUp1Message extends Activity
     catch (InterruptedException e) {
       e.printStackTrace();
     }
-    Log.i(SetUp1Message.TAG, msg);
+    Log.i(TAG, msg);
 
   }
 }

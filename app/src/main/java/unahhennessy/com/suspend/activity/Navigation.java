@@ -151,7 +151,7 @@ public class Navigation
     catch (InterruptedException e) {
       e.printStackTrace();
     }
-    Log.i(Navigation.TAG, msg);
+    Log.i(TAG, msg);
 
   }
 }

@@ -158,7 +158,7 @@ public class HomeScreen extends Activity {
         catch (InterruptedException e) {
             e.printStackTrace();
         }
-        Log.i(HomeScreen.TAG, msg);
+        Log.i(TAG, msg);
 
     }
 }

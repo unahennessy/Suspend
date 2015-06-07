@@ -108,7 +108,7 @@ public class SplashScreen extends Activity
                 catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                Log.i(SplashScreen.TAG, msg);
+                Log.i(TAG, msg);
 
           }
 }

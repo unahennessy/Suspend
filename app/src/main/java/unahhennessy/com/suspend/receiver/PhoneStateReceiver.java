@@ -55,7 +55,7 @@ public class PhoneStateReceiver  extends BroadcastReceiver
         catch (InterruptedException e) {
             e.printStackTrace();
         }
-        Log.i(PhoneStateReceiver.TAG, msg);
+        Log.i(TAG, msg);
 
     }
 

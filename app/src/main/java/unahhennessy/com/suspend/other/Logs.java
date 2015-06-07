@@ -56,7 +56,7 @@ public class Logs
         catch (InterruptedException e) {
             e.printStackTrace();
         }
-        Log.i(Logs.TAG, msg);
+        Log.i(TAG, msg);
 
     }
 }

@@ -119,7 +119,7 @@ public class DefaultAccessibilityService extends AccessibilityService
         catch (InterruptedException e) {
             e.printStackTrace();
         }
-        Log.i(DefaultAccessibilityService.TAG, msg);
+        Log.i(TAG, msg);
 
     }
 

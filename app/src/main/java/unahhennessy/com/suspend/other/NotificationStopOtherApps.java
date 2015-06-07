@@ -206,7 +206,7 @@ public class NotificationStopOtherApps
         catch (InterruptedException e) {
             e.printStackTrace();
         }
-        Log.i(NotificationStopOtherApps.TAG, msg);
+        Log.i(TAG, msg);
 
     }
     } //end of NotificationStopOtherApps.java

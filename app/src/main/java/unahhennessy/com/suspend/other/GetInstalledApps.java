@@ -42,7 +42,7 @@ public class GetInstalledApps
         catch (InterruptedException e) {
             e.printStackTrace();
         }
-        Log.i(GetInstalledApps.TAG, msg);
+        Log.i(TAG, msg);
 
     }
 

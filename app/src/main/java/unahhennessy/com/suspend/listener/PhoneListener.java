@@ -216,7 +216,7 @@ public class PhoneListener extends Service
         catch (InterruptedException e) {
             e.printStackTrace();
         }
-        Log.i(PhoneListener.TAG, msg);
+        Log.i(TAG, msg);
 
     }
 

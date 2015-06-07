@@ -67,7 +67,7 @@ public class About extends Activity
         catch (InterruptedException e) {
             e.printStackTrace();
         }
-        Log.i(About.TAG, msg);
+        Log.i(TAG, msg);
 
     }
 }

@@ -266,7 +266,7 @@ public class Settings extends Activity
     catch (InterruptedException e) {
       e.printStackTrace();
     }
-    Log.i(Settings.TAG, msg);
+    Log.i(TAG, msg);
 
   }
 }

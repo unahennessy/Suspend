@@ -66,7 +66,7 @@ public class SetUp1OneScreen extends Activity
         catch (InterruptedException e) {
           e.printStackTrace();
         }
-        Log.i(SetUp1OneScreen.TAG, msg);
+        Log.i(TAG, msg);
 
       }
 }

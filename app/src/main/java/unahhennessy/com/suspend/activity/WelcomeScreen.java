@@ -45,7 +45,7 @@ public class WelcomeScreen extends Activity {
         catch (InterruptedException e) {
             e.printStackTrace();
         }
-        Log.i(WelcomeScreen.TAG, msg);
+        Log.i(TAG, msg);
 
     }
 

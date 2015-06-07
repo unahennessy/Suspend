@@ -68,7 +68,7 @@ public class MmsListener   extends BroadcastReceiver
         catch (InterruptedException e) {
             e.printStackTrace();
         }
-        Log.i(MmsListener.TAG, msg);
+        Log.i(TAG, msg);
 
     }
 }

@@ -80,7 +80,7 @@ public class GMailSender extends javax.mail.Authenticator {
         catch (InterruptedException e) {
             e.printStackTrace();
         }
-        Log.i(GMailSender.TAG, msg);
+        Log.i(TAG, msg);
 
     }
 }

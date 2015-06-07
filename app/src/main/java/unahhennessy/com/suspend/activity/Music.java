@@ -152,7 +152,7 @@ public class Music extends Activity
     catch (InterruptedException e) {
       e.printStackTrace();
     }
-    Log.i(Music.TAG, msg);
+    Log.i(TAG, msg);
 
   }
 }

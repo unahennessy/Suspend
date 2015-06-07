@@ -104,7 +104,7 @@ public class SuspendDbHelper
         catch (InterruptedException e) {
             e.printStackTrace();
         }
-        Log.i(SuspendDbHelper.TAG, msg);
+        Log.i(TAG, msg);
 
     }
 

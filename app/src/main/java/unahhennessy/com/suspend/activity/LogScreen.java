@@ -159,7 +159,7 @@ public class LogScreen   extends Activity
         catch (InterruptedException e) {
             e.printStackTrace();
         }
-        Log.i(LogScreen.TAG, msg);
+        Log.i(TAG, msg);
 
     }
 }

@@ -40,7 +40,7 @@ public class SetUp3Screen extends Activity
     catch (InterruptedException e) {
       e.printStackTrace();
     }
-    Log.i(SetUp3Screen.TAG, msg);
+    Log.i(TAG, msg);
 
   }
 }

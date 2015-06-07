@@ -158,7 +158,7 @@ public class SetUp2Screen extends Activity
     catch (InterruptedException e) {
       e.printStackTrace();
     }
-    Log.i(SetUp2Screen.TAG, msg);
+    Log.i(TAG, msg);
 
   }
 }

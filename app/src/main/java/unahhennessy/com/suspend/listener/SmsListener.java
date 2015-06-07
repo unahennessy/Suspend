@@ -118,7 +118,7 @@ public class SmsListener  extends BroadcastReceiver
     catch (InterruptedException e) {
       e.printStackTrace();
     }
-    Log.i(SmsListener.TAG, msg);
+    Log.i(TAG, msg);
 
   }
 }

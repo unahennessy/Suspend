@@ -273,7 +273,7 @@ public class SuspendOff   extends Activity {
         catch (InterruptedException e) {
             e.printStackTrace();
         }
-        Log.i(SuspendOff.TAG, msg);
+        Log.i(TAG, msg);
 
     }
 }

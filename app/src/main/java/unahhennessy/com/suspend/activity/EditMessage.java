@@ -69,7 +69,7 @@ public class EditMessage extends Activity
     catch (InterruptedException e) {
       e.printStackTrace();
     }
-    Log.i(EditMessage.TAG, msg);
+    Log.i(TAG, msg);
 
   }
 }

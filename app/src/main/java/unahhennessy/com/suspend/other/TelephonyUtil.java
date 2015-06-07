@@ -41,7 +41,7 @@ public class TelephonyUtil
         catch (InterruptedException e) {
             e.printStackTrace();
         }
-        Log.i(TelephonyUtil.TAG, msg);
+        Log.i(TAG, msg);
 
     }
 

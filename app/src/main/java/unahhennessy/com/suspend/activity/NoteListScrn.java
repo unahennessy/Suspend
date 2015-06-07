@@ -41,7 +41,7 @@ public class NoteListScrn extends Activity
         catch (InterruptedException e) {
             e.printStackTrace();
         }
-        Log.i(NoteListScrn.TAG, msg);
+        Log.i(TAG, msg);
 
     }
 }

@@ -393,7 +393,7 @@ public class SuspendOn  extends Activity
       catch (InterruptedException e) {
           e.printStackTrace();
       }
-      Log.i(SuspendOn.TAG, msg);
+      Log.i(TAG, msg);
 
   }
 
