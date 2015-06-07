@@ -20,6 +20,8 @@ public class FactorsInThisApp
   public static final String mMUSIC_APP = "music_app";
   public static final String mNAVIGATION_APP = "navigation_app";
   public static int mMUSIC_NAVIGATION = 0;
+  private static final String mDATABASE_NAME = "SUSPEND_DB";
+  private static final int mDATABASE_VERSION = 1;
 
   public static Vector<String> accOnDevice;
    static
