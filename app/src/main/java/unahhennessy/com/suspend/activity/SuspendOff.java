@@ -71,7 +71,8 @@ public class SuspendOff   extends Activity {
     localEditor.commit();
   }
 
-  private void setAppIcon() {
+  private void setAppIcon()
+  {
       log("entered setAppIcon() within SuspendOff.java");
       this.mMusicApp = this.pref.getString("music_pkg", "");
       this.mNavigationApp = this.pref.getString("navigation_pkg", "");
