@@ -13,6 +13,8 @@ public class FactorsInThisApp
   public static Vector mCONTACT_VEC;
   public static String mIS_PHONE_SERVICE_ACTIVE;
   public static String mIS_SETUP_COMPLETE;
+  public static String mIS_SETTINGSAREGOOD;
+
   public static String mSUSPEND_PREF;
   public static int mIMAP_COUNT = 0;
   public static int mPOP_COUNT = 0;
@@ -28,6 +30,7 @@ public class FactorsInThisApp
   {
     mSUSPEND_PREF = "Suspend_Pref";
     mIS_SETUP_COMPLETE = "Is_Setup_Complete";
+    mIS_SETTINGSAREGOOD = " is_settingsAreGood";
     mIS_PHONE_SERVICE_ACTIVE = "is_phone_service_active";
     mGMAIL_COUNT  = 0;
     mIMAP_COUNT = 0;

@@ -31,6 +31,7 @@ public class SetUp2Screen extends Activity
   private SharedPreferences pref;
   private static final String TAG = "SetUp2Screen Activity";
   private boolean mSettingsAreGood;
+  private boolean mIS_SETUP_COMPLETE;
 
    private void initializeCheckedValue()
   {
@@ -44,6 +45,7 @@ public class SetUp2Screen extends Activity
     this.mMMSCheck.setChecked(this.mIsMMSChecked);
     this.mWHATSAPPCheck.setChecked(this.mIsWHATSAPPChecked);
     this.mPhoneCheck.setChecked(this.mIsPhoneChecked);
+    this.mIS_SETUP_COMPLETE = this.pref.getBoolean("Is_Setup_Complete", true);
   }
 
   private void saveCheckedValue()
@@ -53,12 +55,15 @@ public class SetUp2Screen extends Activity
     this.mIsMMSChecked = this.mMMSCheck.isChecked();
     this.mIsWHATSAPPChecked = this.mWHATSAPPCheck.isChecked();
     this.mIsPhoneChecked = this.mPhoneCheck.isChecked();
+      if ((this.mIsSMSChecked)&&(this.mIsMMSChecked) && (this.mIsPhoneChecked))
+      {this.mIS_SETUP_COMPLETE = true; this.mSettingsAreGood = true;}
     SharedPreferences.Editor localEditor = this.pref.edit();
     localEditor.putBoolean("is_sms_enabled", this.mIsSMSChecked);
     localEditor.putBoolean("is_mms_enabled", this.mIsMMSChecked);
     localEditor.putBoolean("is_whatsapp_enabled", this.mIsWHATSAPPChecked);
     localEditor.putBoolean("is_phone_enabled", this.mIsPhoneChecked);
     localEditor.putBoolean("is_settingsAreGood", this.mSettingsAreGood);
+    localEditor.putBoolean("is_Setup_Complete", this.mIS_SETUP_COMPLETE);
     localEditor.commit();
 
   }

@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 
 import unahhennessy.com.suspend.R;
+import unahhennessy.com.suspend.factors.FactorsInThisApp;
 
 public class HomeScreen extends Activity {
     /*
@@ -29,6 +30,7 @@ public class HomeScreen extends Activity {
     private Button mCancel;
     private SharedPreferences pref;
     private Boolean mSettingsAreGood;
+    private boolean mIS_SETUP_COMPLETE;
 
     private static final String TAG = "HomeScreen Activity";
 
@@ -37,6 +39,7 @@ public class HomeScreen extends Activity {
         this.log("entered initializeCheckedValue() within HomeScreen.java");
         //mSettingsAreGood true then settings are already saved
         this.mSettingsAreGood = this.pref.getBoolean("is_settingsAreGood", true);
+        this.mIS_SETUP_COMPLETE = this.pref.getBoolean("Is_Setup_Complete", true);
 
     }
 
@@ -52,8 +55,9 @@ public class HomeScreen extends Activity {
     {   // set up the home screen
         this.log("entered onCreate() within HomeScreen.java");
         super.onCreate(paramBundle);
+        this.pref = getSharedPreferences(FactorsInThisApp.mSUSPEND_PREF, 0);
         initializeCheckedValue();
-        if (mSettingsAreGood == true)
+        if ((mSettingsAreGood == true) || (mIS_SETUP_COMPLETE == true))
         {
             //todo bring up Suspend screen instead of going through settings
             startActivity(new Intent(this, SuspendOff.class));
