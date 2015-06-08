@@ -32,8 +32,6 @@ import unahhennessy.com.suspend.listener.PhoneListener;
 import unahhennessy.com.suspend.other.NotificationStopOtherApps;
 import unahhennessy.com.suspend.other.TelephonyUtil;
 import unahhennessy.com.suspend.service.AppTrackingService;
-//import unahhennessy.com.suspend.adapter.BluetoothAdapter;
-
 
 public class SuspendOn  extends Activity
 {
@@ -48,6 +46,7 @@ public class SuspendOn  extends Activity
   private ImageView mMusic;
   private ImageView mNavigation;
   private boolean mIsBluetooth_Available;
+  private boolean mBlueTooth_none_on_device;
 
   private ImageView mPopup;
   private TextView mPopupText;
@@ -64,13 +63,12 @@ public class SuspendOn  extends Activity
 
       removeSavedSms();
       SharedPreferences.Editor mEditor = this.pref.edit();
+
       mEditor.putBoolean("is_suspend_on", true);
       mEditor.commit();
 
 
-        //TODO
-        // need to check for bluetooth here and if driver has bluetooth then phone can be answered otherwise send a message
-        //add bluetooth code here
+
 
         this.mAudioManager.setRingerMode(0);
 
@@ -181,28 +179,10 @@ public class SuspendOn  extends Activity
   }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     protected void onCreate(Bundle paramBundle) {
       this.log("entered onCreate() within SuspendOn.java");
 
       //---check if bluetooth is available on the device---
-
-
-
 
 
       super.onCreate(paramBundle);
@@ -226,14 +206,20 @@ public class SuspendOn  extends Activity
       if (mBluetoothAdapter == null)
       {
           // Device does not support Bluetooth
-          //
-          //
-          //
           // TODO
           // so replies have to be sent to phonecalls
+          mBlueTooth_none_on_device = true;
+          SharedPreferences.Editor mEditor = SuspendOn.this.pref.edit();
+          mEditor.putBoolean("mBlueTooth_none_on_device", true);
+          mEditor.commit();
       }
         else
       {
+          mBlueTooth_none_on_device = false;
+          SharedPreferences.Editor mEditor = SuspendOn.this.pref.edit();
+          mEditor.putBoolean("mBlueTooth_none_on_device", false);
+          mEditor.commit();
+
           // Device  supports Bluetooth
 
               if (!mBluetoothAdapter.isEnabled())
