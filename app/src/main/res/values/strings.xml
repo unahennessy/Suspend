@@ -13,10 +13,10 @@
     <string name="welcome3_txt"><font color="blue"> Suspend! </font> will not allow texts, WhatsAPPs etc to distract you from driving."</string>
     <string name="default_message_to_reply">"I'm driving and can't respond just now. I will get back to you soon."</string>
     <string name="Step2_headerQuestion">Which features do you want to set on automatic Reply?</string>
-    <string name="Step2Option1">Texts(sms)</string>
-    <string name="Step2Option2">Picture Messages(mms)</string>
-    <string name="Step2Option3">WhatsApp</string>
-    <string name="Step2Option4">Phone Calls</string>
+    <string name="Step2Option1">SMS(Texts)</string>
+    <string name="Step2Option2">MMS(Picture Messages)</string>
+    <string name="Step2Option3">WhatsApp(whatsapp texts)</string>
+    <string name="Step2Option4">Phone Calls(Reply/Texts)</string>
     <string name="Step2Option4_text">Reply messages will be sent to mobile callers. If the caller is from a land-line, the app will redirect to voice-mail.</string>
     <string name="step2WhatsAPPInfo">To activate an automatic Reply for your WhatsAPP account, please confirm your username and password.</string>
     <string name="Step2AllSetup">"Great! Your settings are saved. If you want to change any of them please click on the settings button on the Home Screen."</string>

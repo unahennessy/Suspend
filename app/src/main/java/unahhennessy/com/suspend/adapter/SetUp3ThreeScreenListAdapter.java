@@ -17,6 +17,8 @@ import unahhennessy.com.suspend.R;
 
 public class SetUp3ThreeScreenListAdapter  extends BaseAdapter
 {
+    // this adapter is used by the NotifyListScreen.java class to fill the setup3_list_item.xml screen with items that have
+    // come in while SuspendOn was set. It is used to fill the screen after SuspendOff screen reached.
   private Context mContext;
   private Vector mName;
   private Vector mNumber;
@@ -67,8 +69,7 @@ public class SetUp3ThreeScreenListAdapter  extends BaseAdapter
           mViewHolder.num = ((TextView)paramView.findViewById(R.id.text_num));
           mViewHolder.arrow = ((ImageView)paramView.findViewById(R.id.arrow));
           paramView.setTag(mViewHolder);
-          if (this.mName.get(paramInt).toString().equalsIgnoreCase("Emergency"))
-            mViewHolder.arrow.setVisibility(View.GONE);
+
         }
         for (;;)
         {
@@ -83,10 +84,8 @@ public class SetUp3ThreeScreenListAdapter  extends BaseAdapter
   
   public boolean isEnabled(int paramInt)
   {
-      this.log("entered isEnabled() within SetUp3ThreeScreenListAdapter.java");
-    if (this.mName.get(paramInt).toString().equalsIgnoreCase("Emergency")) {
-      return false;
-    }
+     this.log("entered isEnabled() within SetUp3ThreeScreenListAdapter.java");
+
     return super.isEnabled(paramInt);
   }
   

@@ -33,6 +33,8 @@ public class MusicListAdapter extends BaseAdapter
   
   public MusicListAdapter(Context paramContext, ArrayList<PackageInfo> paramArrayList)
   {
+    // this adapter finds all the music apps on a persons phone and lists them for them to pick one out to be used while they are driving
+    //
     this.log("entered MusicListAdapter() within MusicListAdapter.java");
     this.mContext = paramContext;
     this.mPackageInfoList = paramArrayList;

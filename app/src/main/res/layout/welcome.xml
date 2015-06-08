@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Una Hennessy d02126371@mydit.ie Semester 2 2015 -->
 <!-- xml to display the welcome screen -->
-<RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent"
+<RelativeLayout
+    android:background="@drawable/headersuspend"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <TextView android:textSize="20.0dip"
         android:textColor="@color/topHeadFontColour"
-        android:gravity="center_horizontal" android:id="@id/setup_text"
-        android:background="@drawable/headersuspend" android:padding="8.0dip"
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:text="Welcome to Suspend!" />
+        android:gravity="center_horizontal"
+        android:id="@id/setup_text"
+        android:background="@drawable/headersuspend"
+        android:padding="8.0dip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome to Suspend!"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"/>
     <RelativeLayout
         android:background="@drawable/splashscreensuspend"
         android:layout_width="fill_parent"
@@ -16,7 +24,7 @@
         android:layout_below="@id/setup_text">
         <RelativeLayout
             android:background="@drawable/welcomeroundededgeboxsuspend"
-            android:padding="10.0dip"
+            android:padding="5.0dip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -25,7 +33,7 @@
             <TextView android:textSize="14.0dip"
                 android:textColor="@color/topHeadFontColour"
                 android:id="@id/welcome_text"
-                android:paddingLeft="10.0dip"
+                android:paddingLeft="15.0dip"
                 android:paddingTop="10.0dip"
                 android:paddingRight="10.0dip"
                 android:layout_width="wrap_content"
@@ -56,7 +64,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_below="@id/welcome3_text" />
+                       android:layout_below="@id/welcome3_text"/>
             <Button android:id="@id/button_continue"
                 android:background="@drawable/btn_continue_selector"
                 android:layout_width="wrap_content"

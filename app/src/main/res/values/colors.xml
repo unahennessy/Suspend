@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="setupScreeBackground">#d5cda8ff</color>
-    <color name="settingFontColour">#e37153ff</color>
+    <color name="settingFontColour">#e3664ccb</color>
     <color name="topHeadFontColour">#ff3b0976</color>
     <color name="black">#ff000000</color>
     <color name="black_Overlay">#49484848</color>
