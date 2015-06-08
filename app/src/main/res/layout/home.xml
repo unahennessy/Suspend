@@ -73,12 +73,5 @@
                 android:layout_alignParentBottom="true"
                 android:layout_alignRight="@id/home3_text"
                 android:layout_alignEnd="@id/home3_text" />
-         <CheckBox android:id="@id/settingsok_checkbox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-             android:button="@drawable/btn_checkbox_selector"
-             android:layout_alignParentTop="true"
-             android:layout_alignRight="@id/home_text"
-             android:layout_alignEnd="@id/home_text" />
     </RelativeLayout>
 </RelativeLayout>

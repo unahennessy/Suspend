@@ -30,10 +30,12 @@ public class SetUp2Screen extends Activity
   private Button mSave;
   private SharedPreferences pref;
   private static final String TAG = "SetUp2Screen Activity";
+  private boolean mSettingsAreGood;
 
    private void initializeCheckedValue()
   {
     this.log("entered initializeCheckedValue() within SetUp2Screen.java");
+    this.mSettingsAreGood = this.pref.getBoolean("is_settingsAreGood", true);
     this.mIsSMSChecked = this.pref.getBoolean("is_sms_enabled", true);
     this.mIsMMSChecked = this.pref.getBoolean("is_mms_enabled", true);
     this.mIsWHATSAPPChecked = this.pref.getBoolean("is_whatsapp_enabled", true);
@@ -56,7 +58,9 @@ public class SetUp2Screen extends Activity
     localEditor.putBoolean("is_mms_enabled", this.mIsMMSChecked);
     localEditor.putBoolean("is_whatsapp_enabled", this.mIsWHATSAPPChecked);
     localEditor.putBoolean("is_phone_enabled", this.mIsPhoneChecked);
+    localEditor.putBoolean("is_settingsAreGood", this.mSettingsAreGood);
     localEditor.commit();
+
   }
 
   private void saveEdit()
@@ -104,13 +108,23 @@ public class SetUp2Screen extends Activity
         SetUp2Screen.this.mIsWHATSAPPChecked = paramAnonymousBoolean;
       }
     });
-   this.mPhoneCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
-    {
-      public void onCheckedChanged(CompoundButton paramAnonymousCompoundButton, boolean paramAnonymousBoolean)
-      {
-        SetUp2Screen.this.mIsPhoneChecked = paramAnonymousBoolean;
-      }
-    });
+   this.mPhoneCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+       public void onCheckedChanged(CompoundButton paramAnonymousCompoundButton, boolean paramAnonymousBoolean) {
+           SetUp2Screen.this.mIsPhoneChecked = paramAnonymousBoolean;
+       }
+   });
+
+      if ((mIsSMSChecked)&& (mIsMMSChecked) && (mIsWHATSAPPChecked) && (mIsPhoneChecked))
+          SetUp2Screen.this.mSettingsAreGood = true;
+      else if ((mIsSMSChecked)&& (mIsMMSChecked)  && (mIsPhoneChecked))
+          SetUp2Screen.this.mSettingsAreGood = true;
+      else if  ((mIsSMSChecked)&& (mIsMMSChecked) )
+      SetUp2Screen.this.mSettingsAreGood = true;
+      else
+          SetUp2Screen.this.mSettingsAreGood = false;
+
+
+
     this.mBack.setOnClickListener(new View.OnClickListener() {
       public void onClick(View paramAnonymousView) {
         SetUp2Screen.this.startActivity(new Intent(SetUp2Screen.this, SetUp2Screen.class));

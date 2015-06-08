@@ -5,12 +5,11 @@ package unahhennessy.com.suspend.activity;
  */
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 
 import unahhennessy.com.suspend.R;
 
@@ -19,6 +18,8 @@ public class HomeScreen extends Activity {
     *  The HomeScreen is the 1st activity in Suspend, It has 3 buttons About(when you press it you get more information about this app)
     *  it has the Agree button which launches the Terms and Condtions Screen which have to be accepted by the driver
     *  and it has a cancel button, so if a driver choses not to setup suspend they can leave.
+    *  This is where you would first come into the app to begin process of setting up settings
+    *  after the settings have all been setup then you are directed to the SuspendOff screen as a future entry point to the app
 
     */
 
@@ -26,9 +27,18 @@ public class HomeScreen extends Activity {
     private Button mAbout;
     private Button mAgree;
     private Button mCancel;
-    private boolean mIsSettingsCheckbox_checked;
-    private CheckBox mSettingsCheck;
+    private SharedPreferences pref;
+    private Boolean mSettingsAreGood;
+
     private static final String TAG = "HomeScreen Activity";
+
+    private void initializeCheckedValue()
+    {
+        this.log("entered initializeCheckedValue() within HomeScreen.java");
+        //mSettingsAreGood true then settings are already saved
+        this.mSettingsAreGood = this.pref.getBoolean("is_settingsAreGood", true);
+
+    }
 
     protected void onActivityResult(int paramInt1, int paramInt2, Intent paramIntent)
     {
@@ -42,18 +52,21 @@ public class HomeScreen extends Activity {
     {   // set up the home screen
         this.log("entered onCreate() within HomeScreen.java");
         super.onCreate(paramBundle);
-        setContentView(R.layout.home);
-        this.mSettingsCheck = ((CheckBox)findViewById(R.id.settingsok_checkbox));
-        //initialize listener for settings checkbox
-        this.mSettingsCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
+        initializeCheckedValue();
+        if (mSettingsAreGood == true)
         {
-            public void onCheckedChanged(CompoundButton paramAnonymousCompoundButton, boolean paramAnonymousBoolean)
-            {
-                HomeScreen.this.mIsSettingsCheckbox_checked = paramAnonymousBoolean;
-            }
-        });
-        if (!mIsSettingsCheckbox_checked)
-        {    HomeScreen.this.mSettingsCheck.setVisibility(View.INVISIBLE);
+            //todo bring up Suspend screen instead of going through settings
+            startActivity(new Intent(this, SuspendOff.class));
+            HomeScreen.this.finish();
+
+        }
+
+        else{
+
+        setContentView(R.layout.home);
+
+
+
             this.mAbout = ((Button)findViewById(R.id.button_about));
             this.mAbout.setOnClickListener(new View.OnClickListener()
             {
@@ -82,45 +95,6 @@ public class HomeScreen extends Activity {
 
             });
         }
-
-        if (mIsSettingsCheckbox_checked)
-        {  // this is what i hope to use when settings have been saved
-            //go directly to Suspend screen
-            startActivity(new Intent(this, SuspendOff.class));
-            HomeScreen.this.finish();
-        }
-        
-        else
-        {
-
-            // set up listener on the about button
-
-            this.mAbout = ((Button)findViewById(R.id.button_about));
-            this.mAbout.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View paramAnonymousView)
-                {// call method onOptionsItemSelected using mAbout value
-                    onOptionsItemSelected(mAbout);
-                }
-            });
-            // set up listener on the settings button
-            this.mAgree = ((Button)findViewById(R.id.btn_agree));
-            this.mAgree.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View paramAnonymousView)
-                {// call method onOptionsItemSelected using mAgree value
-                    onOptionsItemSelected(mAgree);
-                }
-            });
-            // set up listener on the settings button
-            this.mCancel = ((Button)findViewById(R.id.button_cancel));
-            this.mCancel.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View paramAnonymousView)
-                {// call method onOptionsItemSelected using mCancel value
-                    onOptionsItemSelected(mCancel);
-                }
-
-            });
-        }
-
 
     }
 
