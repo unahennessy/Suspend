@@ -4,6 +4,8 @@ package unahhennessy.com.suspend.activity;
  */
 
 import android.app.Activity;
+import android.bluetooth.*;
+import android.bluetooth.BluetoothManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -30,48 +32,28 @@ import unahhennessy.com.suspend.listener.PhoneListener;
 import unahhennessy.com.suspend.other.NotificationStopOtherApps;
 import unahhennessy.com.suspend.other.TelephonyUtil;
 import unahhennessy.com.suspend.service.AppTrackingService;
+//import unahhennessy.com.suspend.adapter.BluetoothAdapter;
 
 
 public class SuspendOn  extends Activity
 {
+  private BluetoothAdapter mBluetoothAdapter;
+  private static final int REQUEST_ENABLE_BT = 0;
   private AudioManager mAudioManager;
+  private BluetoothManager mBluetoothManager;
   private ImageView mCross;
   private Context mContext;
   private ImageView mSuspendOff;
   private ImageView mEmergency;
   private ImageView mMusic;
   private ImageView mNavigation;
+  private boolean mIsBluetooth_Available;
+
   private ImageView mPopup;
   private TextView mPopupText;
   private int mParamInt;
   private SharedPreferences pref;
   private static final String TAG = "SuspendOn Activity";
-
-  private void SuspendOff()
-  {
-    try
-    {
-        this.log("entered SuspendOff() within SuspendOn.java");
-      SharedPreferences.Editor mEditor = this.pref.edit();
-      mEditor.putBoolean("is_suspend_on", false);
-      mEditor.commit();
-        this.mAudioManager.setRingerMode(2);
-      if ( PhoneListener.telephonymanager != null)
-      {
-        PhoneListener.removeListener();
-      }
-        stopService(new Intent(this, PhoneListener.class));
-        stopService(new Intent(this, AppTrackingService.class));
-
-      NotificationStopOtherApps.notifyIcon(this);
-      return;
-    }
-    catch (Exception localException)
-    {
-      NotificationStopOtherApps.writeErrorLog(this, localException.getMessage());
-    }
-  }
-
 
 
     private void SuspendOn()
@@ -176,7 +158,7 @@ public class SuspendOn  extends Activity
 
   protected void onActivityResult(int paramInt1, int paramInt2, Intent paramIntent)
   {
-      this.log("entered onActivityResult within SuspendOn.java");
+    this.log("entered onActivityResult within SuspendOn.java");
     super.onActivityResult(paramInt1, paramInt2, paramIntent);
     if (-1 == paramInt2 && paramIntent.getExtras().getBoolean("exit"))
     {
@@ -184,14 +166,49 @@ public class SuspendOn  extends Activity
         finish();
       System.exit(0);
     }
+    if (paramInt1 == REQUEST_ENABLE_BT)
+    {
+          if (paramInt2 == RESULT_OK)
+          {
+              Log.d("onActivityResult","Bluetooth turned on.");
+          } else
+          {
+              Log.d("onActivityResult","Bluetooth failed to turn on.");
+          }
+    }
+
+
   }
 
-  protected void onCreate(Bundle paramBundle)
-  {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    protected void onCreate(Bundle paramBundle) {
       this.log("entered onCreate() within SuspendOn.java");
-    super.onCreate(paramBundle);
+
+      //---check if bluetooth is available on the device---
+
+
+
+
+
+      super.onCreate(paramBundle);
       setContentView(R.layout.suspendon);
       this.pref = getSharedPreferences(FactorsInThisApp.mSUSPEND_PREF, 0);
+      this.mBluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
       this.mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
       this.mMusic = (ImageView) findViewById(id.image_music);
       this.mNavigation = (ImageView) findViewById(id.image_navigation);
@@ -200,6 +217,40 @@ public class SuspendOn  extends Activity
       this.mSuspendOff = (ImageView) findViewById(R.id.image_suspend_on_clickable);
       this.mEmergency = (ImageView) findViewById(id.image_emergency);
       this.mPopupText = (TextView) findViewById(id.text_popup);
+
+        // get the bluetooth adapter in the phone
+        //
+      mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+
+
+      if (mBluetoothAdapter == null)
+      {
+          // Device does not support Bluetooth
+          //
+          //
+          //
+          // TODO
+          // so replies have to be sent to phonecalls
+      }
+        else
+      {
+          // Device  supports Bluetooth
+
+              if (!mBluetoothAdapter.isEnabled())
+                  {
+                      Intent i = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                      startActivityForResult(i, REQUEST_ENABLE_BT);
+                  }
+              else
+                  {
+                      mBluetoothAdapter.disable();
+                  }
+      }
+
+
+
+
+
     SuspendOn();
     if (this.pref.getBoolean("is_suspend_on_popup_shown", false))
     {
@@ -364,6 +415,34 @@ public class SuspendOn  extends Activity
           }
     }
 
+    private void SuspendOff()
+    {
+        try
+        {
+            this.log("entered SuspendOff() within SuspendOn.java");
+            SharedPreferences.Editor mEditor = this.pref.edit();
+            mEditor.putBoolean("is_suspend_on", false);
+            mEditor.commit();
+            this.mAudioManager.setRingerMode(2);
+            if ( PhoneListener.telephonymanager != null)
+            {
+                PhoneListener.removeListener();
+            }
+            stopService(new Intent(this, PhoneListener.class));
+            stopService(new Intent(this, AppTrackingService.class));
+
+            NotificationStopOtherApps.notifyIcon(this);
+            return;
+        }
+        catch (Exception localException)
+        {
+            NotificationStopOtherApps.writeErrorLog(this, localException.getMessage());
+        }
+    }
+
+
+
+
   public boolean onCreateOptionsMenu(Menu paramMenu)
   {
       this.log("entered onCreateOptionsMenu within SuspendOn.java");
@@ -383,6 +462,8 @@ public class SuspendOn  extends Activity
         startActivity(new Intent(this, Help.class));
       return true;
     }
+
+
 
   }
   private void log(String msg)
