@@ -247,10 +247,6 @@ public class SuspendOn  extends Activity
                   }
       }
 
-
-
-
-
     SuspendOn();
     if (this.pref.getBoolean("is_suspend_on_popup_shown", false))
     {
