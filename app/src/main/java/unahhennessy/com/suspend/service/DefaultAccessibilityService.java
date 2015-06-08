@@ -1,4 +1,4 @@
-package unahhennessy.com.suspend.DefaultAccessibilityService;
+package unahhennessy.com.suspend.service;
 
 /**
  * Created by unahe_000 on 01/06/2015.
@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class DefaultAccessibilityService extends AccessibilityService
 {
-    //public static final String FACEBOOK_PACKAGE_NAME = "com.facebook.orca";
+    // used to access WhatsApp so I can send messages back to WhatsApp if they come in
     public static final String WHATSAPP_PACKAGE_NAME = "com.whatsapp";
     public static final String mActions = null;
     private final static String TAG = "Accessibility service";

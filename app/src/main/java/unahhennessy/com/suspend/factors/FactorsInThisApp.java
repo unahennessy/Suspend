@@ -9,6 +9,8 @@ import unahhennessy.com.suspend.other.SuspendDbHelper;
   public class FactorsInThisApp
   {
       // variables that are used in various activities in Suspend
+      // written to by the SharedPreferences class in alot of the activities expecially if I want the
+      // information in another activity
       public static SuspendDbHelper mSUSPEND_DB = null;
       public static String mIS_PHONE_SERVICE_ACTIVE = "is_phone_service_active";
       public static String mIS_SETUP_COMPLETE = "Is_Setup_Complete";

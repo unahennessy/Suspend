@@ -19,6 +19,8 @@ import javax.mail.internet.MimeMessage;
 
 
 public class GMailSender extends javax.mail.Authenticator {
+
+    // I want to be able to get logs of problems so I am using the gmailsender for this, to send myself information
     private String mMailHost = "smtp.gmail.com";
     private String mUser;
     private String mPassword;
