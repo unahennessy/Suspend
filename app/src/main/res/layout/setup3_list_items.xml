@@ -4,22 +4,35 @@
 <!-- xml to display the 3list screen screen -->
 <!-- not sure if i need this screen but i have created it anyway  -->
 <!-- might use it to show a list of who contacted the driver -->
-<RelativeLayout android:paddingLeft="1.0dip"
-    android:paddingTop="5.0dip" android:paddingBottom="5.0dip"
-    android:layout_width="fill_parent" android:layout_height="wrap_content"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <TextView android:textSize="14.0dip"
-        android:textColor="@color/black"
-        android:ellipsize="marquee" android:id="@id/text_name"
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:singleLine="true" android:maxLength="20" android:layout_alignParentLeft="true" />
-    <TextView android:textSize="14.0dip"
-        android:textColor="@color/black"
-        android:ellipsize="marquee" android:id="@id/text_num"
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:layout_marginRight="31.0dip" android:singleLine="true" android:maxLength="19"
-        android:layout_alignParentRight="true" />
-    <ImageView android:id="@id/arrow"
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:src="@drawable/arrow4suspend" android:layout_alignParentRight="true" />
-</RelativeLayout>
+<LinearLayout
+    android:background="@drawable/backgroundsuspend"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5.0dip">
+        <TextView
+            android:textSize="14.0dip"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textColor="@color/topHeadFontColour"
+            android:background="@drawable/headersuspend_lilac"
+            android:id="@id/header_text"
+            android:padding="5.0dip"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/notification_text" />
+    </RelativeLayout>
+        <ListView
+        android:textColor="@color/topHeadFontColour"
+        android:id="@+id/music_list"
+        android:scrollbars="vertical"
+        android:fadingEdge="none"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="5.0dip"
+        android:listSelector="@color/transparency" />
+</LinearLayout>

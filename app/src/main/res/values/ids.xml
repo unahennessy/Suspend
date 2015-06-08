@@ -75,6 +75,7 @@
     <item type="id" name="msg">false</item>
     <item type="id" name="url">false</item>
     <item type="id" name="music_list">false</item>
+    <item type="id" name="notification_list">false</item>
     <item type="id" name="music_text">false</item>
     <item type="id" name="button_off">false</item>
     <item type="id" name="image_icon">false</item>
