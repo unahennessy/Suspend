@@ -12,15 +12,15 @@ import android.widget.Button;
 
 import unahhennessy.com.suspend.R;
 
-public class NoteListScrn extends Activity
+public class NotifyListScreen extends Activity
 {
     /* all set up so now you get sent to the Suspend Off screen */
     private Button mBack;
-    private static final String TAG = "NoteListScrn Activity";
+    private static final String TAG = "NotifyListScrnActivity";
 
     protected void onCreate(Bundle paramBundle)
     {
-        this.log("entered onCreate() within NoteListScrn.java");
+        this.log("entered onCreate() within NotifyListScreen.java");
 
         super.onCreate(paramBundle);
         setContentView(R.layout.setuptwocontinue);
@@ -28,8 +28,8 @@ public class NoteListScrn extends Activity
         this.mBack.setOnClickListener(new View.OnClickListener() {
             public void onClick(View paramAnonymousView) {
 
-                NoteListScrn.this.startActivity(new Intent(NoteListScrn.this, SuspendOff.class));
-                NoteListScrn.this.finish();
+                NotifyListScreen.this.startActivity(new Intent(NotifyListScreen.this, SuspendOff.class));
+                NotifyListScreen.this.finish();
             }
         });
     }

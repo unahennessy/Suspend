@@ -25,7 +25,7 @@ import unahhennessy.com.suspend.other.ConnectToServerThread;
 import unahhennessy.com.suspend.other.ServerThread;
 
 /**
- * Created by unahe_000 on 08/06/2015 unahhennessy.com.suspend.activity Suspend.
+ * Created by unahe_000 on 08/05/2015 unahhennessy.com.suspend.activity Suspend.
  */
 public class BlueToothActivity extends ListActivity
 {
