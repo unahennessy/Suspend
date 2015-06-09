@@ -18,6 +18,8 @@ import unahhennessy.com.suspend.other.TelephonyUtil;
 
 public class AppTrackingService extends Service
 {
+    // I need to check which apps are on a drivers phone and allow them music and navigation
+    //
      private Context mContext;
      private boolean mIsContinue;
      private String mMusic = "";

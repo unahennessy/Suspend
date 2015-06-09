@@ -17,7 +17,7 @@ import unahhennessy.com.suspend.factors.FactorsInThisApp;
 
 public class PhoneStateReceiver  extends BroadcastReceiver
 { // this is a phone state receiver class for Suspend
-  // i want this used only when there is no bluetooth
+  //
   private SharedPreferences pref;
   private static final String TAG = "PhoneStateReceiver";
   
