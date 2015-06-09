@@ -4,7 +4,7 @@
 <!-- xml to display Suspend On screen -->
 <RelativeLayout android:background="@color/white" android:layout_width="fill_parent" android:layout_height="fill_parent"
   xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- emergency image -->
+    <!-- emergency image-->
     <ImageView android:id="@id/image_emergency"
         android:focusable="true"
         android:clickable="true"
@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:src="@drawable/image_emergency_selector"
         android:layout_alignTop="@id/image_setting"/>
-    <!-- onsuspend image -->
+    <!--onsuspend image -->
     <ImageView android:id="@id/image_setting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

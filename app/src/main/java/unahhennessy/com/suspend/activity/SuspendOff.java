@@ -51,13 +51,13 @@ public class SuspendOff   extends Activity {
       log("entered activate() within SuspendOff.java");
     try
     {
-      Intent localIntent = new Intent(this, SuspendOn.class);
-      localIntent.addFlags(67108864);
-        startActivity(localIntent);
+      Intent mIntent = new Intent(this, SuspendOn.class);
+      mIntent.addFlags(67108864);
+        startActivity(mIntent);
       return;
-    } catch (Exception localException)
+    } catch (Exception e)
     {
-      NotificationStopOtherApps.writeErrorLog(this, localException.getMessage());
+      NotificationStopOtherApps.writeErrorLog(this, e.getMessage());
     }
   }
 
@@ -95,8 +95,7 @@ public class SuspendOff   extends Activity {
     }
   }
 
-  protected void onCreate(Bundle paramBundle)
-  {
+  protected void onCreate(Bundle paramBundle) {
       log("entered onCreate() within SuspendOff.java");
       super.onCreate(paramBundle);
       setContentView(R.layout.suspendoff);
@@ -111,102 +110,97 @@ public class SuspendOff   extends Activity {
       this.mPopup = (ImageView) findViewById(R.id.image_popup);
       this.mSuspendOn = (ImageView) findViewById(R.id.image_suspend_off_clickable);
       this.mPopupText = (TextView) findViewById(R.id.text_popup);
-      if (this.pref.getBoolean("is_suspend_on", false))
-      {
+      if (this.pref.getBoolean("is_suspend_on", false)) {
           activate();
           finish();
       }
-      if (!this.pref.getBoolean("is_suspend_off_popup_shown", false))
-      {
-      new CountDownTimer(4000L, 500L)
-        {
-         public void onFinish()
-         {
-             log("entered onFinish() within SuspendOff.java");
-             SuspendOff.this.handlePopup();
-         }
+      if (!this.pref.getBoolean("is_suspend_off_popup_shown", false)) {
+          new CountDownTimer(4000L, 500L) {
+              public void onFinish() {
+                  log("entered onFinish() within SuspendOff.java");
+                  SuspendOff.this.handlePopup();
+              }
 
-        public void onTick(long paramAnonymousLong)
-         {
-             log("entered onTick() within SuspendOff.java");
-         }
-        }.start();
+              public void onTick(long paramAnonymousLong) {
+                  log("entered onTick() within SuspendOff.java");
+              }
+          }.start();
       }
 
 
-        this.mEmergency.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View paramAnonymousView) {
-                log("entered mEmergency.setOnClickListener() within SuspendOff.java");
-                mParamInt = 1;
-            }
-        });
-        this.mSetting.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View paramAnonymousView) {
-                log("entered mSetting.setOnClickListener() within SuspendOff.java");
-                SuspendOff.this.startActivity(new Intent(SuspendOff.this, Settings.class));
-            }
-        });
-        this.mCross.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View paramAnonymousView) {
-                log("entered mCross.setOnClickListener() within SuspendOff.java");
-                SuspendOff.this.handlePopup();
-            }
-        });
+          this.mEmergency.setOnClickListener(new View.OnClickListener() {
+              public void onClick(View paramAnonymousView) {
+                  log("entered mEmergency.setOnClickListener() within SuspendOff.java");
+                  mParamInt = 1;
+                  fragmentCreateDialog(mParamInt);
+              }
+          });
+          this.mSetting.setOnClickListener(new View.OnClickListener() {
+              public void onClick(View paramAnonymousView) {
+                  log("entered mSetting.setOnClickListener() within SuspendOff.java");
+                  SuspendOff.this.startActivity(new Intent(SuspendOff.this, Settings.class));
+              }
+          });
+          this.mCross.setOnClickListener(new View.OnClickListener() {
+              public void onClick(View paramAnonymousView) {
+                  log("entered mCross.setOnClickListener() within SuspendOff.java");
+                  SuspendOff.this.handlePopup();
+              }
+          });
 
-        this.mSuspendOn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View paramAnonymousView) {
-                SuspendOff.this.isSMS = SuspendOff.this.pref.getBoolean("is_sms_enabled", false);
-                SuspendOff.this.isMMS = SuspendOff.this.pref.getBoolean("is_mms_enabled", false);
-                SuspendOff.this.isWHATSAPP = SuspendOff.this.pref.getBoolean("is_whatsapp_enabled", false);
-                SuspendOff.this.isPhone = SuspendOff.this.pref.getBoolean("is_phone_enabled", false);
-                if (!SuspendOff.this.isSMS && !SuspendOff.this.isMMS && !SuspendOff.this.isWHATSAPP && !SuspendOff.this.isPhone) {
-                    mParamInt = 2;
-                    log("entered onClick mParamInt set to 2 (1st) within SuspendOff.java");
-                    return;
-                }
-                SuspendOff.this.activate();
-                SuspendOff.this.finish();
-            }
-        });
+          this.mSuspendOn.setOnClickListener(new View.OnClickListener() {
+              public void onClick(View paramAnonymousView) {
+                  SuspendOff.this.isSMS = SuspendOff.this.pref.getBoolean("is_sms_enabled", false);
+                  SuspendOff.this.isMMS = SuspendOff.this.pref.getBoolean("is_mms_enabled", false);
+                  SuspendOff.this.isWHATSAPP = SuspendOff.this.pref.getBoolean("is_whatsapp_enabled", false);
+                  SuspendOff.this.isPhone = SuspendOff.this.pref.getBoolean("is_phone_enabled", false);
+                  if (!SuspendOff.this.isSMS && !SuspendOff.this.isMMS && !SuspendOff.this.isWHATSAPP && !SuspendOff.this.isPhone) {
+                      mParamInt = 2;
+                      log("entered onClick mParamInt set to 2 (1st) within SuspendOff.java");
 
-        this.mMusic.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View paramAnonymousView) {
-                if (SuspendOff.this.mMusicApp != null && SuspendOff.this.mMusicApp.length() > 0) {
-                    NotificationStopOtherApps.launchApp(SuspendOff.this, SuspendOff.this.mMusicApp);
-                }
-            }
-        });
-        this.mNavigation.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View paramAnonymousView) {
-                if (SuspendOff.this.mNavigationApp != null && SuspendOff.this.mNavigationApp.length() > 0) {
-                    NotificationStopOtherApps.launchApp(SuspendOff.this, SuspendOff.this.mNavigationApp);
-                }
-            }
-        });
-        this.isSMS = this.pref.getBoolean("is_sms_enabled", false);
-        this.isMMS = this.pref.getBoolean("is_mms_enabled", false);
-        this.isWHATSAPP = this.pref.getBoolean("is_whatsapp_enabled", false);
-        this.isPhone = this.pref.getBoolean("is_phone_enabled", false);
-        if (!this.isSMS && !this.isMMS && !this.isWHATSAPP && !this.isPhone)
-          {
+                  }
+                  SuspendOff.this.activate();
+                  SuspendOff.this.finish();
+              }
+          });
+
+          this.mMusic.setOnClickListener(new View.OnClickListener() {
+              public void onClick(View paramAnonymousView) {
+                  if (SuspendOff.this.mMusicApp != null && SuspendOff.this.mMusicApp.length() > 0) {
+                      NotificationStopOtherApps.launchApp(SuspendOff.this, SuspendOff.this.mMusicApp);
+                  }
+              }
+          });
+          this.mNavigation.setOnClickListener(new View.OnClickListener() {
+              public void onClick(View paramAnonymousView) {
+                  if (SuspendOff.this.mNavigationApp != null && SuspendOff.this.mNavigationApp.length() > 0) {
+                      NotificationStopOtherApps.launchApp(SuspendOff.this, SuspendOff.this.mNavigationApp);
+                  }
+              }
+          });
+          this.isSMS = this.pref.getBoolean("is_sms_enabled", false);
+          this.isMMS = this.pref.getBoolean("is_mms_enabled", false);
+          this.isWHATSAPP = this.pref.getBoolean("is_whatsapp_enabled", false);
+          this.isPhone = this.pref.getBoolean("is_phone_enabled", false);
+          if (!this.isSMS && !this.isMMS && !this.isWHATSAPP && !this.isPhone) {
               log("entered where mParamInt is set to 2 within SuspendOff.java");
               mParamInt = 2;
+
           }
-        this.mCross.setVisibility(View.INVISIBLE);
-        this.mPopup.setVisibility(View.INVISIBLE);
-        this.mPopupText.setVisibility(View.INVISIBLE);
+          this.mCross.setVisibility(View.INVISIBLE);
+          this.mPopup.setVisibility(View.INVISIBLE);
+          this.mPopupText.setVisibility(View.INVISIBLE);
+
 
   }
-
   protected Fragment fragmentCreateDialog(int mParamInt)
 
   {
       log("entered fragmentCreateDialog() within SuspendOff.java");
     AlertDialog myalert = new AlertDialog.Builder(this).create();
-      // mParamInt == 1 driver wants to may Emergency call
+      // mParamInt == 1 driver wants to make Emergency call
     if ( mParamInt == 1)
-        { myalert.findViewById(R.id.option1_layout);
-
+        { myalert.findViewById(R.id.emergency_dialog);
           Button button2 = (Button) findViewById(R.id.button_No);
           Button button3 = (Button) findViewById(R.id.button_yes);
           button2.setOnClickListener(new View.OnClickListener()
@@ -228,10 +222,10 @@ public class SuspendOff   extends Activity {
               System.exit(0);
             }
           });
-          myalert.setView(myalert.findViewById(R.id.option1_layout));
+          myalert.setView(myalert.findViewById(R.id.emergency_dialog));
         }
 
-    myalert.setView(myalert.findViewById(R.id.option1_layout));
+    myalert.setView(myalert.findViewById(R.id.emergency_dialog));
     return fragmentCreateDialog(1);
   }
 

@@ -42,6 +42,7 @@
     <item type="id" name="edit_port">false</item>
     <item type="id" name="edit_message">false</item>
     <item type="id" name="exit">false</item>
+    <item type="id" name="emergency_dialog">false</item>
     <item type="id" name="header_text">false</item>
     <item type="id" name="home_text">false</item>
     <item type="id" name="home2_text">false</item>
@@ -79,8 +80,10 @@
     <item type="id" name="music_list">false</item>
     <item type="id" name="music_text">false</item>
     <item type="id" name="message_text">false</item>
+    <item type="id" name="music_dialog">false</item>
     <item type="id" name="mms_text">false</item>
     <item type="id" name="name_text">false</item>
+    <item type="id" name="navigation_dialog">false</item>
     <item type="id" name="navigation_url">false</item>
     <item type="id" name="navigation_list">false</item>
     <item type="id" name="navigation_text">false</item>
@@ -107,6 +110,7 @@
     <item type="id" name="setup_continue_text">false</item>
     <item type="id" name="setup_continue_text2">false</item>
     <item type="id" name="setup_continue_text3">false</item>
+    <item type="id" name="settings_dialog">false</item>
     <item type="id" name="top_image">false</item>
     <item type="id" name="text_help">false</item>
     <item type="id" name="text_aboutsuspend">false</item>
